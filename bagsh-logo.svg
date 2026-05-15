@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" aria-label="БАГШ лого">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a4a2e"/>
+      <stop offset="100%" stop-color="#4d7c2a"/>
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fcd34d"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#00000033"/>
+    </filter>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect width="48" height="48" rx="11" ry="11" fill="url(#bgGrad)"/>
+
+  <!-- Inner subtle highlight top -->
+  <rect x="0" y="0" width="48" height="24" rx="11" ry="11" fill="white" opacity="0.04"/>
+
+  <!-- Graduation cap board (diamond / mortarboard) -->
+  <polygon points="24,8 40,15 24,22 8,15" fill="white" opacity="0.95" filter="url(#softShadow)"/>
+  <!-- Cap top (square on top) -->
+  <rect x="20.5" y="5" width="7" height="6" rx="2" fill="url(#goldGrad)"/>
+  <!-- Tassel string -->
+  <line x1="39.5" y1="15" x2="39.5" y2="25" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Tassel end -->
+  <circle cx="39.5" cy="26.5" r="2.5" fill="url(#goldGrad)"/>
+
+  <!-- "Б" letter (Монгол — Багш гэсэн утгатай) -->
+  <text
+    x="24"
+    y="40"
+    text-anchor="middle"
+    font-family="Arial Black, Arial, sans-serif"
+    font-size="15"
+    font-weight="900"
+    fill="white"
+    letter-spacing="-0.5"
+  >БАГШ</text>
+
+  <!-- Gold underline bar -->
+  <rect x="10" y="42" width="28" height="2.5" rx="1.25" fill="url(#goldGrad)" opacity="0.9"/>
+</svg>
