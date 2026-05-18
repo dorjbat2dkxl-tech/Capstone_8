@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8-р Баг Танилцуулга — Хиймэл Оюуны Багш Бэлтгэх Үндэсний Хөтөлбөр 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #050d1a;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: #fff;
+    height: 100vh;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  /* ── Header ── */
+  .header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 1.5rem;
+    background: linear-gradient(180deg, rgba(5,13,26,0.97) 0%, rgba(5,13,26,0.0) 100%);
+  }
+  .header-title {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #7ec8f5;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .header-title span {
+    color: #fff;
+    margin-left: 0.5rem;
+  }
+  .slide-counter {
+    background: rgba(30,80,160,0.55);
+    border: 1px solid rgba(100,180,255,0.25);
+    border-radius: 20px;
+    padding: 0.28rem 0.9rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #a8d8ff;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Main slide area ── */
+  .slideshow {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slides-track {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.55s cubic-bezier(.4,0,.2,1), transform 0.55s cubic-bezier(.4,0,.2,1);
+    transform: scale(1.03);
+    pointer-events: none;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+  }
+  .slide.prev {
+    opacity: 0;
+    transform: scale(0.97) translateX(-40px);
+  }
+  .slide.next-anim {
+    opacity: 0;
+    transform: scale(0.97) translateX(40px);
+  }
+
+  .slide img {
+    max-height: calc(100vh - 130px);
+    max-width: min(600px, 90vw);
+    object-fit: contain;
+    border-radius: 18px;
+    box-shadow:
+      0 0 0 1px rgba(100,180,255,0.18),
+      0 8px 60px rgba(0,60,160,0.55),
+      0 2px 12px rgba(0,0,0,0.6);
+    margin-top: 48px;
+    transition: transform 0.3s ease;
+  }
+  .slide img:hover {
+    transform: scale(1.012);
+  }
+
+  /* ── Navigation arrows ── */
+  .nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 200;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(100,180,255,0.35);
+    background: rgba(10,30,70,0.72);
+    color: #7ec8f5;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(8px);
+    transition: all 0.22s ease;
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .nav-btn:hover {
+    background: rgba(30,80,180,0.85);
+    border-color: rgba(130,200,255,0.7);
+    color: #fff;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 20px rgba(60,140,255,0.4);
+  }
+  .nav-btn:active { transform: translateY(-50%) scale(0.96); }
+  .nav-prev { left: 1rem; }
+  .nav-next { right: 1rem; }
+
+  /* ── Bottom controls ── */
+  .controls {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0.7rem 1.5rem 0.9rem;
+    background: linear-gradient(0deg, rgba(5,13,26,0.97) 0%, rgba(5,13,26,0.0) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  /* Thumbnail strip */
+  .thumbnails {
+    display: flex;
+    gap: 5px;
+    overflow-x: auto;
+    max-width: calc(100vw - 3rem);
+    padding: 4px 2px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(100,180,255,0.3) transparent;
+  }
+  .thumbnails::-webkit-scrollbar { height: 3px; }
+  .thumbnails::-webkit-scrollbar-thumb { background: rgba(100,180,255,0.35); border-radius: 10px; }
+
+  .thumb {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    opacity: 0.5;
+  }
+  .thumb:hover { opacity: 0.85; border-color: rgba(100,180,255,0.5); }
+  .thumb.active {
+    opacity: 1;
+    border-color: #4a9eff;
+    box-shadow: 0 0 10px rgba(74,158,255,0.5);
+    transform: scale(1.08);
+  }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Playback controls row */
+  .playback-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .ctrl-btn {
+    background: rgba(30,60,130,0.5);
+    border: 1px solid rgba(100,180,255,0.25);
+    color: #a8d8ff;
+    border-radius: 10px;
+    padding: 0.32rem 0.8rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    letter-spacing: 0.03em;
+  }
+  .ctrl-btn:hover {
+    background: rgba(40,90,200,0.7);
+    border-color: rgba(130,200,255,0.5);
+    color: #fff;
+  }
+  .ctrl-btn.playing { background: rgba(20,100,60,0.6); border-color: rgba(80,200,120,0.4); color: #80ffb0; }
+  .ctrl-btn.playing:hover { background: rgba(30,120,70,0.75); }
+
+  .speed-label {
+    font-size: 0.72rem;
+    color: rgba(140,190,255,0.6);
+    margin-left: -0.3rem;
+  }
+
+  /* Dot indicators */
+  .dots {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+  }
+  .dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: rgba(100,180,255,0.28);
+    transition: all 0.25s ease;
+    cursor: pointer;
+  }
+  .dot.active {
+    background: #4a9eff;
+    transform: scale(1.6);
+    box-shadow: 0 0 6px rgba(74,158,255,0.6);
+  }
+
+  /* Keyboard hint */
+  .kbd-hint {
+    position: fixed;
+    bottom: 80px;
+    right: 1.2rem;
+    font-size: 0.68rem;
+    color: rgba(140,190,255,0.35);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* Fullscreen overlay on image click */
+  .fullscreen-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(0,0,0,0.95);
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  .fullscreen-overlay.visible { display: flex; }
+  .fullscreen-overlay img {
+    max-width: 98vw;
+    max-height: 98vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 0 80px rgba(0,80,200,0.4);
+  }
+  .fs-close {
+    position: fixed;
+    top: 1rem; right: 1.2rem;
+    font-size: 1.8rem;
+    color: rgba(255,255,255,0.6);
+    cursor: pointer;
+    z-index: 1000;
+    transition: color 0.2s;
+  }
+  .fs-close:hover { color: #fff; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-title">
+    🤖 Хиймэл Оюуны Багш Бэлтгэх Үндэсний Хөтөлбөр — 2026
+    <span>| 8-р Баг</span>
+  </div>
+  <div class="slide-counter" id="counter">1 / 36</div>
+</div>
+
+<!-- Slideshow -->
+<div class="slideshow">
+  <div class="slides-track" id="slidesTrack"></div>
+</div>
+
+<!-- Prev / Next -->
+<button class="nav-btn nav-prev" id="prevBtn" aria-label="Өмнөх">&#8592;</button>
+<button class="nav-btn nav-next" id="nextBtn" aria-label="Дараах">&#8594;</button>
+
+<!-- Bottom controls -->
+<div class="controls">
+  <div class="thumbnails" id="thumbStrip"></div>
+  <div class="playback-row">
+    <button class="ctrl-btn" id="playBtn">▶ Авто тоглуулах</button>
+    <span class="speed-label">4 сек</span>
+    <div class="dots" id="dotsContainer"></div>
+  </div>
+</div>
+
+<!-- Keyboard hint -->
+<div class="kbd-hint">← → гарын товч<br>Зурган дээр дарж томруулах</div>
+
+<!-- Fullscreen overlay -->
+<div class="fullscreen-overlay" id="fsOverlay">
+  <span class="fs-close" id="fsClose">✕</span>
+  <img id="fsImg" src="" alt="Томруулсан зураг">
+</div>
+
+<script>
+const images = [
+  "ChatGPT Image May 15, 2026, 08_20_42 AM.png",
+  "ChatGPT Image May 15, 2026, 08_28_22 AM.png",
+  "ChatGPT Image May 15, 2026, 08_31_03 AM.png",
+  "ChatGPT Image May 15, 2026, 08_42_56 AM.png",
+  "ChatGPT Image May 15, 2026, 08_46_59 AM.png",
+  "ChatGPT Image May 15, 2026, 08_55_01 AM.png",
+  "ChatGPT Image May 15, 2026, 09_00_17 AM.png",
+  "ChatGPT Image May 15, 2026, 09_12_07 AM.png",
+  "ChatGPT Image May 15, 2026, 09_14_46 AM.png",
+  "ChatGPT Image May 15, 2026, 09_16_43 AM.png",
+  "ChatGPT Image May 15, 2026, 09_19_48 AM.png",
+  "ChatGPT Image May 15, 2026, 09_29_07 AM.png",
+  "ChatGPT Image May 15, 2026, 09_39_33 AM.png",
+  "ChatGPT Image May 15, 2026, 09_51_02 AM.png",
+  "ChatGPT Image May 15, 2026, 09_57_10 AM.png",
+  "ChatGPT Image May 15, 2026, 10_02_05 AM.png",
+  "ChatGPT Image May 15, 2026, 10_07_17 AM.png",
+  "ChatGPT Image May 15, 2026, 10_14_21 AM.png",
+  "ChatGPT Image May 15, 2026, 10_17_46 AM.png",
+  "ChatGPT Image May 15, 2026, 10_22_42 AM.png",
+  "ChatGPT Image May 15, 2026, 11_11_49 AM.png",
+  "ChatGPT Image May 15, 2026, 11_38_03 AM.png",
+  "ChatGPT Image May 15, 2026, 11_41_45 AM.png",
+  "ChatGPT Image May 15, 2026, 11_43_18 AM.png",
+  "ChatGPT Image May 15, 2026, 11_44_53 AM.png",
+  "ChatGPT Image May 15, 2026, 11_46_46 AM.png",
+  "ChatGPT Image May 15, 2026, 12_17_32 PM.png",
+  "ChatGPT Image May 15, 2026, 12_19_43 PM.png",
+  "ChatGPT Image May 15, 2026, 12_22_31 PM.png",
+  "ChatGPT Image May 15, 2026, 12_27_49 PM.png",
+  "ChatGPT Image May 15, 2026, 12_36_29 PM.png",
+  "ChatGPT Image May 15, 2026, 01_35_26 PM.png",
+  "ChatGPT Image May 15, 2026, 01_39_56 PM.png",
+  "ChatGPT Image May 15, 2026, 01_45_10 PM.png",
+  "ChatGPT Image May 15, 2026, 03_58_09 PM.png",
+  "ChatGPT Image May 15, 2026, 07_09_48 PM.png"
+];
+
+const total = images.length;
+let current = 0;
+let playing = false;
+let autoTimer = null;
+const INTERVAL = 4000;
+
+// Build slides
+const track = document.getElementById("slidesTrack");
+const thumbStrip = document.getElementById("thumbStrip");
+const dotsContainer = document.getElementById("dotsContainer");
+const counter = document.getElementById("counter");
+const playBtn = document.getElementById("playBtn");
+
+images.forEach((src, i) => {
+  // Slide
+  const slide = document.createElement("div");
+  slide.className = "slide" + (i === 0 ? " active" : "");
+  const img = document.createElement("img");
+  img.src = src;
+  img.alt = `8-р баг — ${i + 1}-р гишүүн`;
+  img.title = "Томруулахын тулд дарна уу";
+  img.addEventListener("click", () => openFullscreen(src));
+  slide.appendChild(img);
+  track.appendChild(slide);
+
+  // Thumbnail
+  const thumb = document.createElement("div");
+  thumb.className = "thumb" + (i === 0 ? " active" : "");
+  const tImg = document.createElement("img");
+  tImg.src = src;
+  tImg.alt = "";
+  tImg.loading = "lazy";
+  thumb.appendChild(tImg);
+  thumb.addEventListener("click", () => goTo(i));
+  thumbStrip.appendChild(thumb);
+
+  // Dot (show max 36 dots — use smaller dots if many)
+  const dot = document.createElement("div");
+  dot.className = "dot" + (i === 0 ? " active" : "");
+  dot.addEventListener("click", () => goTo(i));
+  dotsContainer.appendChild(dot);
+});
+
+function updateUI() {
+  counter.textContent = `${current + 1} / ${total}`;
+  document.querySelectorAll(".slide").forEach((s, i) => {
+    s.classList.remove("active", "prev", "next-anim");
+    if (i === current) s.classList.add("active");
+  });
+  document.querySelectorAll(".thumb").forEach((t, i) => {
+    t.classList.toggle("active", i === current);
+  });
+  document.querySelectorAll(".dot").forEach((d, i) => {
+    d.classList.toggle("active", i === current);
+  });
+  // Scroll thumbnail into view
+  const activThumb = thumbStrip.querySelectorAll(".thumb")[current];
+  if (activThumb) activThumb.scrollIntoView({ inline: "center", behavior: "smooth" });
+}
+
+function goTo(idx, direction) {
+  const from = current;
+  current = (idx + total) % total;
+  if (from === current) return;
+
+  const slides = document.querySelectorAll(".slide");
+  const dir = direction ?? (current > from ? 1 : -1);
+  slides[from].classList.remove("active");
+  slides[from].classList.add(dir > 0 ? "prev" : "next-anim");
+  setTimeout(() => slides[from].classList.remove("prev", "next-anim"), 600);
+  updateUI();
+}
+
+function next() { goTo(current + 1, 1); }
+function prev() { goTo(current - 1, -1); }
+
+document.getElementById("nextBtn").addEventListener("click", () => { next(); resetTimer(); });
+document.getElementById("prevBtn").addEventListener("click", () => { prev(); resetTimer(); });
+
+document.addEventListener("keydown", e => {
+  if (e.key === "ArrowRight") { next(); resetTimer(); }
+  if (e.key === "ArrowLeft")  { prev(); resetTimer(); }
+  if (e.key === " ") { e.preventDefault(); togglePlay(); }
+  if (e.key === "Escape") closeFullscreen();
+});
+
+// Touch / swipe
+let touchStartX = 0;
+document.addEventListener("touchstart", e => { touchStartX = e.changedTouches[0].clientX; });
+document.addEventListener("touchend", e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) { dx < 0 ? next() : prev(); resetTimer(); }
+});
+
+// Auto-play
+function startPlay() {
+  playing = true;
+  playBtn.textContent = "⏸ Зогсоох";
+  playBtn.classList.add("playing");
+  autoTimer = setInterval(next, INTERVAL);
+}
+function stopPlay() {
+  playing = false;
+  playBtn.textContent = "▶ Авто тоглуулах";
+  playBtn.classList.remove("playing");
+  clearInterval(autoTimer);
+}
+function togglePlay() { playing ? stopPlay() : startPlay(); }
+function resetTimer() { if (playing) { clearInterval(autoTimer); autoTimer = setInterval(next, INTERVAL); } }
+playBtn.addEventListener("click", togglePlay);
+
+// Fullscreen
+const fsOverlay = document.getElementById("fsOverlay");
+const fsImg = document.getElementById("fsImg");
+function openFullscreen(src) {
+  fsImg.src = src;
+  fsOverlay.classList.add("visible");
+}
+function closeFullscreen() {
+  fsOverlay.classList.remove("visible");
+  fsImg.src = "";
+}
+document.getElementById("fsClose").addEventListener("click", closeFullscreen);
+fsOverlay.addEventListener("click", e => { if (e.target === fsOverlay) closeFullscreen(); });
+
+// Init
+updateUI();
+</script>
+</body>
+</html>
