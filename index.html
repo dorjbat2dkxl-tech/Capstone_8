@@ -6,6 +6,8 @@
     <title>Мэдлэг 8-р Баг | Хиймэл оюун ухааны багш бэлтгэл</title>
     <meta name="description" content="EduMongol Capstone 8-р баг — Хиймэл оюун ухааны багш бэлтгэх хөтөлбөр. Өмнөговь & Сэлэнгэ аймгуудийн нэгдэл.">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- EmailJS — серверийн хэрэгцээгүй имэйл илгээх үйлчилгээ -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
 
@@ -89,7 +91,7 @@
             <button class="edu-tab active" data-tab="ebs" role="tab" aria-selected="true" aria-controls="tab-ebs">
                 <span class="tab-icon">📚</span>
                 <span class="tab-label">ЕБС</span>
-                <span class="tab-desc">8 хичээл</span>
+                <span class="tab-desc">10 хичээл</span>
             </button>
             <button class="edu-tab" data-tab="sob" role="tab" aria-selected="false" aria-controls="tab-sob">
                 <span class="tab-icon">🌱</span>
@@ -100,6 +102,11 @@
                 <span class="tab-icon">🔧</span>
                 <span class="tab-label">Мэргэжлийн боловсрол</span>
                 <span class="tab-desc">Техник & технологи</span>
+            </button>
+            <button class="edu-tab" data-tab="aub" role="tab" aria-selected="false" aria-controls="tab-aub">
+                <span class="tab-icon">👩‍🏫</span>
+                <span class="tab-label">АУБ</span>
+                <span class="tab-desc">Анги удирдсан багш</span>
             </button>
         </div>
 
@@ -276,12 +283,377 @@
                 </div>
             </div>
         </div>
+
+        <!-- АУБ хэсэг -->
+        <div class="edu-tab-content" id="tab-aub" role="tabpanel" style="display:none;">
+            <div class="tab-section-banner" style="background: linear-gradient(135deg,#eef4ff,#dceafe); border-color: rgba(60,100,200,0.15);">
+                <div class="tsb-icon">👩‍🏫</div>
+                <div class="tsb-body">
+                    <div class="tsb-title">Анги Удирдсан Багш (АУБ)</div>
+                    <div class="tsb-meta">Ангийн удирдлага, эцэг эхтэй харилцаа, суралцагчийн хяналт, цахим хэрэгслүүд</div>
+                </div>
+                <span class="tsb-badge" style="background:#3b5fc0;">12+ хэрэгсэл</span>
+            </div>
+
+            <!-- Ангийн удирдлага -->
+            <div class="aub-section-label">🏫 Ангийн удирдлага & харилцаа холбоо</div>
+            <div class="courses-grid bridge-grid">
+
+                <div class="card bridge-card" data-accent="aub-dojo">
+                    <div class="card-img" aria-hidden="true">🟢</div>
+                    <div class="card-content">
+                        <h3>ClassDojo</h3>
+                        <p>Ангийн зан байдал хянах, эцэг эхтэй шууд харилцах, цонхны мессеж болон зургаар мэдээлэл хуваалцах хамгийн алдартай платформ.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://www.classdojo.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-classroom">
+                    <div class="card-img" aria-hidden="true">📋</div>
+                    <div class="card-content">
+                        <h3>Google Classroom</h3>
+                        <p>Даалгавар, зар мэдэгдэл, хичээлийн материал тараах, суралцагчдын ажлыг цахимаар шалгах бүрэн орчин.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://classroom.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-remind">
+                    <div class="card-img" aria-hidden="true">💬</div>
+                    <div class="card-content">
+                        <h3>Remind</h3>
+                        <p>Эцэг эх, суралцагчдад SMS болон апп-аар мессеж илгээх. Хувийн утасны дугаар нуугдаж, аюулгүй харилцаа үүснэ.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://www.remind.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-seesaw">
+                    <div class="card-img" aria-hidden="true">📔</div>
+                    <div class="card-content">
+                        <h3>Seesaw</h3>
+                        <p>Суралцагчийн цахим портфолио үүсгэх, эцэг эхэд ахицыг дүрс болон тайлбараар хүргэх, бага ангид маш тохиромжтой.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://web.seesaw.me" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Бүртгэл & хяналт -->
+            <div class="aub-section-label">📊 Бүртгэл, ирц & хяналт</div>
+            <div class="courses-grid bridge-grid">
+
+                <div class="card bridge-card" data-accent="aub-forms">
+                    <div class="card-img" aria-hidden="true">📝</div>
+                    <div class="card-content">
+                        <h3>Google Forms</h3>
+                        <p>Ирц бүртгэл, асуулга, эцэг эхийн санал авах маягт хурдан зохиох. Хариулт автоматаар Google Sheets руу орно.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://forms.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-sheets">
+                    <div class="card-img" aria-hidden="true">📊</div>
+                    <div class="card-content">
+                        <h3>Google Sheets</h3>
+                        <p>Суралцагчдын гүйцэтгэл, ирц, үнэлгээний дүн хяналтын хүснэгт гаргах. Автомат тооцоо, өнгөт дүрслэлтэй.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://sheets.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-trello">
+                    <div class="card-img" aria-hidden="true">📌</div>
+                    <div class="card-content">
+                        <h3>Trello</h3>
+                        <p>Ангийн ажлын төлөвлөгөө, арга хэмжээ, хурлын цэс болон жилийн ажлын хуваарийг карт системээр удирдах.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://trello.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-calendar">
+                    <div class="card-img" aria-hidden="true">📅</div>
+                    <div class="card-content">
+                        <h3>Google Calendar</h3>
+                        <p>Ангийн арга хэмжээ, эцэг эхийн уулзалт, сургуулийн хуваарийг нэг дороос харах, сануулга тохируулах.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://calendar.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Бүтээлч хэрэгсэл -->
+            <div class="aub-section-label">🎨 Бүтээлч хэрэгсэл & танилцуулга</div>
+            <div class="courses-grid bridge-grid">
+
+                <div class="card bridge-card" data-accent="aub-canva">
+                    <div class="card-img" aria-hidden="true">🎨</div>
+                    <div class="card-content">
+                        <h3>Canva for Education</h3>
+                        <p>Ангийн мэдэгдэл, хүндэтгэлийн гэрчилгээ, хурлын слайд, ангийн сонин зэргийг мэргэжлийн загвараар хурдан хийх.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://www.canva.com/education/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-padlet">
+                    <div class="card-img" aria-hidden="true">🗂️</div>
+                    <div class="card-content">
+                        <h3>Padlet</h3>
+                        <p>Ангийн дижитал самбар: суралцагчдын бүтээл, зураг, мэдэгдэл нийтлэх, эцэг эхэд хуваалцах цахим тэмдэглэлийн самбар.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://padlet.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-jamboard">
+                    <div class="card-img" aria-hidden="true">🖊️</div>
+                    <div class="card-content">
+                        <h3>Miro Board</h3>
+                        <p>Ангийн тархалтын зураглал, сэдэлзүй, оролцогчидтой хамтын зурагт самбар. Зайнаас оролцоход тохиромжтой.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://miro.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bridge-card" data-accent="aub-notion">
+                    <div class="card-img" aria-hidden="true">📒</div>
+                    <div class="card-content">
+                        <h3>Notion</h3>
+                        <p>АУБ-ийн ажлын дэвтэр: суралцагчийн бүртгэл, хурлын тэмдэглэл, жилийн ажлын тайлан нэг газар цуглуулах.</p>
+                        <div class="card-footer">
+                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                            <a href="https://www.notion.so" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- COURSES PAGE -->
     <div id="coursesPage" style="display: none;">
-        <h2 class="section-title">📚 Хичээлүүд (ХО-ны багш бэлтгэл)</h2>
-        <div class="courses-grid" id="coursesGrid"></div>
+        <h2 class="section-title">📚 Хичээлүүд — Хиймэл Оюун Ухааны Сургалт</h2>
+        <p class="section-intro">Үнэгүй нээлттэй хичээлүүд, Монгол хэлтэй видео контент болон олон улсын платформуудыг нэг дороос.</p>
+
+        <!-- ══ Монгол хэлтэй видео хичээлүүд ══ -->
+        <div class="crs-section-label">🇲🇳 Монгол хэлтэй видео хичээлүүд</div>
+
+        <div class="crs-video-grid">
+
+            <!-- Card 1 — AI хичээл монгол хайлт -->
+            <div class="crs-video-card crs-search-card" style="background:linear-gradient(135deg,#f0fff4,#dcfce7);">
+                <div class="crs-search-icon">🧠</div>
+                <div class="crs-video-info">
+                    <span class="crs-lang-badge mn">🇲🇳 Монгол</span>
+                    <div class="crs-video-title">Хиймэл оюун ухаан — Монгол хэлтэй хичээлүүд (YouTube)</div>
+                    <div class="crs-free-desc" style="font-size:0.75rem;">Монгол хэлтэй AI болон хиймэл оюун ухааны сургалтын видеонуудыг YouTube-ээс хайх</div>
+                    <a href="https://www.youtube.com/results?search_query=%D1%85%D0%B8%D0%B9%D0%BC%D1%8D%D0%BB+%D0%BE%D1%8E%D1%83%D0%BD+%D1%83%D1%85%D0%B0%D0%B0%D0%BD+%D1%85%D0%B8%D1%87%D1%8D%D1%8D%D0%BB+%D0%BC%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB" target="_blank" rel="noopener" class="crs-watch-btn" style="background:#e60000;">▶ YouTube хайлт</a>
+                </div>
+            </div>
+
+            <!-- Card 2 — ChatGPT багш монгол -->
+            <div class="crs-video-card crs-search-card" style="background:linear-gradient(135deg,#fff7ed,#ffedd5);">
+                <div class="crs-search-icon">💬</div>
+                <div class="crs-video-info">
+                    <span class="crs-lang-badge mn">🇲🇳 Монгол</span>
+                    <div class="crs-video-title">ChatGPT ашиглах — Монгол багш нарт зориулсан видео</div>
+                    <div class="crs-free-desc" style="font-size:0.75rem;">ChatGPT болон генератив AI-г ангид ашиглах арга зүйн Монгол видеонууд</div>
+                    <a href="https://www.youtube.com/results?search_query=ChatGPT+%D0%BC%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB+%D0%B1%D0%B0%D0%B3%D1%88" target="_blank" rel="noopener" class="crs-watch-btn" style="background:#e60000;">▶ YouTube хайлт</a>
+                </div>
+            </div>
+
+            <!-- Card 3 — AI боловсрол монгол -->
+            <div class="crs-video-card crs-search-card" style="background:linear-gradient(135deg,#eff6ff,#dbeafe);">
+                <div class="crs-search-icon">🎓</div>
+                <div class="crs-video-info">
+                    <span class="crs-lang-badge mn">🇲🇳 Монгол</span>
+                    <div class="crs-video-title">AI боловсролд — Монгол хэлтэй сургалтын контент</div>
+                    <div class="crs-free-desc" style="font-size:0.75rem;">Боловсролд хиймэл оюун ухаан ашиглах арга зүйн видеонууд</div>
+                    <a href="https://www.youtube.com/results?search_query=AI+%D0%B1%D0%BE%D0%BB%D0%BE%D0%B2%D1%81%D1%80%D0%BE%D0%BB+%D0%BC%D0%BE%D0%BD%D0%B3%D0%BE%D0%BB" target="_blank" rel="noopener" class="crs-watch-btn" style="background:#e60000;">▶ YouTube хайлт</a>
+                </div>
+            </div>
+
+            <!-- Card 4 — AI Academy Asia -->
+            <div class="crs-video-card crs-search-card" style="background:linear-gradient(135deg,#e8f0ff,#d0e4ff);">
+                <div class="crs-search-icon">🤖</div>
+                <div class="crs-video-info">
+                    <span class="crs-lang-badge" style="background:#1a3f8a;color:#fff;">AI Academy Asia</span>
+                    <div class="crs-video-title">AI Academy Asia — Монгол хэлтэй сургалт, видео нөөц</div>
+                    <div class="crs-free-desc" style="font-size:0.75rem;">Хөтөлбөрийн хамтрагч байгууллага — Ази дахь AI боловсролын тэргүүлэх платформ</div>
+                    <a href="https://www.youtube.com/@AIAcademyAsia" target="_blank" rel="noopener" class="crs-watch-btn">📺 Суваг үзэх</a>
+                </div>
+            </div>
+
+            <!-- Card 5 — Unitel STEAM -->
+            <div class="crs-video-card crs-search-card" style="background:linear-gradient(135deg,#fff8e8,#ffefc8);">
+                <div class="crs-search-icon">⚡</div>
+                <div class="crs-video-info">
+                    <span class="crs-lang-badge" style="background:#e07800;color:#fff;">Unitel STEAM</span>
+                    <div class="crs-video-title">Юнитэл STEAM Hub — Монгол хэлтэй дижитал хичээлүүд</div>
+                    <div class="crs-free-desc" style="font-size:0.75rem;">Монголын хамгийн идэвхтэй STEAM боловсролын суваг — шинжлэх ухаан, технологи, математик</div>
+                    <a href="https://www.youtube.com/@unitelsteamhub" target="_blank" rel="noopener" class="crs-watch-btn" style="background:#e07800;">📺 Суваг үзэх</a>
+                </div>
+            </div>
+
+            <!-- Card 6 — Khan Academy Mongolian -->
+            <div class="crs-video-card crs-search-card" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7);">
+                <div class="crs-search-icon">📐</div>
+                <div class="crs-video-info">
+                    <span class="crs-lang-badge" style="background:#15803d;color:#fff;">Khan Academy</span>
+                    <div class="crs-video-title">Khan Academy — Монгол хэлтэй Computing & AI хэсэг</div>
+                    <div class="crs-free-desc" style="font-size:0.75rem;">Компьютер, алгоритм, AI-ийн үндэс — зарим агуулга Монгол орчуулгатай, бүгд үнэгүй</div>
+                    <a href="https://mn.khanacademy.org/" target="_blank" rel="noopener" class="crs-watch-btn" style="background:#15803d;">📚 Хичээл үзэх</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ══ Үнэгүй нээлттэй олон улсын хичээлүүд ══ -->
+        <div class="crs-section-label" style="margin-top:2rem;">🌐 Үнэгүй нээлттэй олон улсын хичээлүүд</div>
+
+        <div class="crs-free-grid">
+
+            <div class="crs-free-card">
+                <div class="crs-free-logo" style="background:linear-gradient(135deg,#1a73e8,#0d47a1);">G</div>
+                <div class="crs-free-body">
+                    <div class="crs-free-title">Google — AI Essentials</div>
+                    <div class="crs-free-meta">
+                        <span class="crs-badge-free">✅ Үнэгүй</span>
+                        <span class="crs-badge-lang">🌐 Англи</span>
+                        <span class="crs-badge-dur">⏱ ~14 цаг</span>
+                    </div>
+                    <div class="crs-free-desc">AI хэрэгслүүд ашиглах, ажлын бүтээмжийг нэмэгдүүлэх. Гэрчилгээтэй.</div>
+                    <a href="https://grow.google/certificates/ai-essentials/" target="_blank" rel="noopener" class="crs-free-btn">Хичээл эхлэх →</a>
+                </div>
+            </div>
+
+            <div class="crs-free-card">
+                <div class="crs-free-logo" style="background:linear-gradient(135deg,#6a0dad,#9c27b0);">E</div>
+                <div class="crs-free-body">
+                    <div class="crs-free-title">Elements of AI</div>
+                    <div class="crs-free-meta">
+                        <span class="crs-badge-free">✅ Үнэгүй</span>
+                        <span class="crs-badge-lang">🌐 Олон хэл</span>
+                        <span class="crs-badge-dur">⏱ ~30 цаг</span>
+                    </div>
+                    <div class="crs-free-desc">Хельсинкийн Их Сургуулийн AI курс. Хаана ч бүртгүүлж, дуусгаад гэрчилгээ авна.</div>
+                    <a href="https://www.elementsofai.com/" target="_blank" rel="noopener" class="crs-free-btn">Хичээл эхлэх →</a>
+                </div>
+            </div>
+
+            <div class="crs-free-card">
+                <div class="crs-free-logo" style="background:linear-gradient(135deg,#0078d4,#005a9e);">M</div>
+                <div class="crs-free-body">
+                    <div class="crs-free-title">Microsoft — AI for Education</div>
+                    <div class="crs-free-meta">
+                        <span class="crs-badge-free">✅ Үнэгүй</span>
+                        <span class="crs-badge-lang">🌐 Англи</span>
+                        <span class="crs-badge-dur">⏱ Өөрийн хурдаар</span>
+                    </div>
+                    <div class="crs-free-desc">Боловсролд AI ашиглах, Copilot хэрэгслүүд, Microsoft Learn дээрх бүх хичээл үнэгүй.</div>
+                    <a href="https://learn.microsoft.com/en-us/training/paths/introduction-to-ai-technology/" target="_blank" rel="noopener" class="crs-free-btn">Хичээл эхлэх →</a>
+                </div>
+            </div>
+
+            <div class="crs-free-card">
+                <div class="crs-free-logo" style="background:linear-gradient(135deg,#2196f3,#0b7dda);">C</div>
+                <div class="crs-free-body">
+                    <div class="crs-free-title">Coursera — AI For Everyone</div>
+                    <div class="crs-free-meta">
+                        <span class="crs-badge-free">✅ Үнэгүй (audit)</span>
+                        <span class="crs-badge-lang">🌐 Англи</span>
+                        <span class="crs-badge-dur">⏱ 6 цаг</span>
+                    </div>
+                    <div class="crs-free-desc">Andrew Ng-ийн алдарт AI хичээл. Техникч биш ч ойлгомжтой. "Audit" сонгоход үнэгүй.</div>
+                    <a href="https://www.coursera.org/learn/ai-for-everyone" target="_blank" rel="noopener" class="crs-free-btn">Хичээл эхлэх →</a>
+                </div>
+            </div>
+
+            <div class="crs-free-card">
+                <div class="crs-free-logo" style="background:linear-gradient(135deg,#00897b,#00695c);">K</div>
+                <div class="crs-free-body">
+                    <div class="crs-free-title">Khan Academy — AI хэсэг</div>
+                    <div class="crs-free-meta">
+                        <span class="crs-badge-free">✅ Үнэгүй</span>
+                        <span class="crs-badge-lang">🌐 Монгол / Англи</span>
+                        <span class="crs-badge-dur">⏱ Өөрийн хурдаар</span>
+                    </div>
+                    <div class="crs-free-desc">Алгоритм, машин сургалт, нейрон сүлжээний үндэс. Монгол орчуулгатай хэсэг байдаг.</div>
+                    <a href="https://www.khanacademy.org/computing/computers-and-internet/xcae6f4a7ff015e7d:ai-and-machine-learning" target="_blank" rel="noopener" class="crs-free-btn">Хичээл эхлэх →</a>
+                </div>
+            </div>
+
+            <div class="crs-free-card">
+                <div class="crs-free-logo" style="background:linear-gradient(135deg,#ff6f00,#e65100);">D</div>
+                <div class="crs-free-body">
+                    <div class="crs-free-title">DeepLearning.AI — Short Courses</div>
+                    <div class="crs-free-meta">
+                        <span class="crs-badge-free">✅ Үнэгүй</span>
+                        <span class="crs-badge-lang">🌐 Англи</span>
+                        <span class="crs-badge-dur">⏱ 1–2 цаг</span>
+                    </div>
+                    <div class="crs-free-desc">ChatGPT, Prompt Engineering, AI Tools — богино хугацааны практик хичээлүүд. Нэвтрэлгүй үзэх боломжтой.</div>
+                    <a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener" class="crs-free-btn">Хичээл эхлэх →</a>
+                </div>
+            </div>
+
+            <div class="crs-free-card">
+                <div class="crs-free-logo" style="background:linear-gradient(135deg,#43a047,#2e7d32);">U</div>
+                <div class="crs-free-body">
+                    <div class="crs-free-title">UNESCO — AI Competency for Teachers</div>
+                    <div class="crs-free-meta">
+                        <span class="crs-badge-free">✅ Үнэгүй</span>
+                        <span class="crs-badge-lang">🌐 Олон хэл</span>
+                        <span class="crs-badge-dur">⏱ Модульчлагдсан</span>
+                    </div>
+                    <div class="crs-free-desc">Юнеско-ийн "AI Competency Framework for Teachers" — багш нарт зориулсан бодлого, арга зүй.</div>
+                    <a href="https://www.unesco.org/en/digital-education/artificial-intelligence" target="_blank" rel="noopener" class="crs-free-btn">Хичээл эхлэх →</a>
+                </div>
+            </div>
+
+            <div class="crs-free-card">
+                <div class="crs-free-logo" style="background:linear-gradient(135deg,#f44336,#b71c1c);">f</div>
+                <div class="crs-free-body">
+                    <div class="crs-free-title">fast.ai — Practical Deep Learning</div>
+                    <div class="crs-free-meta">
+                        <span class="crs-badge-free">✅ Үнэгүй</span>
+                        <span class="crs-badge-lang">🌐 Англи</span>
+                        <span class="crs-badge-dur">⏱ Дунд түвшин</span>
+                    </div>
+                    <div class="crs-free-desc">Практикт суурилсан дийлэнх хичээл. Онол биш, кодоор шууд хийдэг арга барил.</div>
+                    <a href="https://www.fast.ai/" target="_blank" rel="noopener" class="crs-free-btn">Хичээл эхлэх →</a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="courses-grid" id="coursesGrid" style="display:none;"></div>
     </div>
 
     <!-- МАТЕМАТИК PAGE -->
@@ -726,11 +1098,23 @@
 
     <!-- TEAM PAGE -->
     <div id="teamPage" style="display: none;">
-        <h2 class="section-title">👥 8-р багийн гишүүд</h2>
+        <div class="team-page-header">
+            <h2 class="section-title" style="margin-bottom:0;">👥 8-р багийн гишүүд</h2>
+            <span class="team-total-badge">36 гишүүн</span>
+        </div>
+        <div style="background:linear-gradient(135deg,#eef4ff,#dceafe); border-radius:1.2rem; padding:1rem 1.3rem; margin-bottom:1.2rem; border:1px solid rgba(60,100,200,0.12);">
+            <strong>🤖 Хиймэл Оюуны Багш Бэлтгэх Үндэсний Хөтөлбөр — 2026</strong>
+            <p style="margin-top:0.3rem; font-size:0.88rem; color:#4a5a7a;">Өмнөговь болон Сэлэнгэ аймгийн багш нарын нэгдэл. Зурган дээр дарж томруулан үзнэ үү.</p>
+        </div>
         <div class="team-grid" id="teamGrid"></div>
-        <div style="background:#eef2ff; border-radius:1.5rem; padding:1.2rem; margin-top:1rem;">
-            <h3>🏔️ Өмнөговь &amp; Сэлэнгэ аймгуудийн нэгдэл</h3>
-            <p>Энэхүү capstone төсөл нь хоёр аймгийн багш нарыг хиймэл оюун ухааны арга зүйгээр хангах, дижитал ур чадварыг хөгжүүлэх зорилготой. Хамтран ажилласанд баярлалаа!</p>
+
+        <!-- Lightbox -->
+        <div class="team-lightbox" id="teamLightbox">
+            <span class="team-lb-close" id="teamLbClose">✕</span>
+            <button class="team-lb-nav team-lb-prev" id="teamLbPrev">&#8592;</button>
+            <img class="team-lightbox-img" id="teamLbImg" src="" alt="Багийн гишүүн">
+            <button class="team-lb-nav team-lb-next" id="teamLbNext">&#8594;</button>
+            <div class="team-lb-counter" id="teamLbCounter">1 / 36</div>
         </div>
     </div>
 
@@ -738,21 +1122,27 @@
     <div id="contactPage" style="display: none;">
         <div class="contact-section">
             <h2>📬 Холбоо барих</h2>
-            <p>Асуулт, санал хүсэлтээ бидэнд илгээнэ үү.</p>
+            <p>Асуулт, санал хүсэлтээ бидэнд илгээнэ үү. Мессеж <strong>dorjbat2dkxl@moes.edu.mn</strong> хаягт шууд ирнэ.</p>
             <form id="contactForm" novalidate>
                 <div class="form-group">
-                    <label for="contactName" class="sr-only">Нэр</label>
-                    <input type="text" id="contactName" placeholder="Нэр" required>
+                    <label for="contactName">Нэр</label>
+                    <input type="text" id="contactName" placeholder="Таны нэр" required>
                 </div>
                 <div class="form-group">
-                    <label for="contactEmail" class="sr-only">Имэйл</label>
-                    <input type="email" id="contactEmail" placeholder="Имэйл" required>
+                    <label for="contactEmail">Имэйл хаяг</label>
+                    <input type="email" id="contactEmail" placeholder="example@mail.com" required>
                 </div>
                 <div class="form-group">
-                    <label for="contactMsg" class="sr-only">Мессеж</label>
-                    <textarea id="contactMsg" rows="3" placeholder="Мессеж"></textarea>
+                    <label for="contactSubject">Сэдэв</label>
+                    <input type="text" id="contactSubject" placeholder="Мессежийн сэдэв">
                 </div>
-                <button type="submit" class="btn-primary">Илгээх</button>
+                <div class="form-group">
+                    <label for="contactMsg">Мессеж</label>
+                    <textarea id="contactMsg" rows="5" placeholder="Асуулт, санал, хүсэлтээ бичнэ үү..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary" id="contactSubmitBtn">
+                    <span id="submitBtnText">📨 Илгээх</span>
+                </button>
             </form>
             <div id="formFeedback" role="status" aria-live="polite" style="margin-top:1rem;"></div>
         </div>
@@ -4076,11 +4466,43 @@
     ];
 
     // Багийн гишүүд
-    const teamMembers = [
-        { name: "Батбаяр О.", role: "Ахлах сургагч (Өмнөговь)", desc: "ХО-ны интеграци", avatar: "🧑‍🏫" },
-        { name: "Сэлэнгэ Т.", role: "Дадлагажигч (Сэлэнгэ)", desc: "Хичээлийн загвар", avatar: "👩‍💻" },
-        { name: "Гантулга Э.", role: "Судлаач (Өмнөговь)", desc: "AI арга зүй", avatar: "📊" },
-        { name: "Мөнхтуяа Б.", role: "Технологийн мэргэжилтэн (Сэлэнгэ)", desc: "Платформ хөгжүүлэлт", avatar: "⚙️" }
+    const teamPhotos = [
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 01_39_56 PM.png",   // 1 — Багийн ахлагч
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 01_45_10 PM.png",   // 2
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 10_14_21 AM.png",   // 3 (was 20)
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_11_49 AM.png",   // 4 (was 23)
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_41_45 AM.png",   // 5 (was 25)
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_43_18 AM.png",   // 6 (was 26)
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_44_53 AM.png",   // 7 (was 27)
+        "8-р баг танилцуулга/8.png",                                          // 8
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 08_20_42 AM.png",   // 9
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 08_28_22 AM.png",   // 10
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 08_31_03 AM.png",   // 11
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 08_42_56 AM.png",   // 12
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 08_46_59 AM.png",   // 13
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 08_55_01 AM.png",   // 14
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_00_17 AM.png",   // 15
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_12_07 AM.png",   // 16
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_14_46 AM.png",   // 17
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_16_43 AM.png",   // 18
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_19_48 AM.png",   // 19
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_29_07 AM.png",   // 20
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_39_33 AM.png",   // 21
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_51_02 AM.png",   // 22
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 09_57_10 AM.png",   // 23
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 10_02_05 AM.png",   // 24
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 10_07_17 AM.png",   // 25
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 10_17_46 AM.png",   // 26
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 10_22_42 AM.png",   // 27
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_38_03 AM.png",   // 28
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_46_46 AM.png",   // 29
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 12_19_43 PM.png",   // 30
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 12_22_31 PM.png",   // 31
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 12_27_49 PM.png",   // 32
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 12_36_29 PM.png",   // 33
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 01_35_26 PM.png",   // 34
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 03_58_09 PM.png",   // 35
+        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 07_09_48 PM.png"    // 36
     ];
 
     // BRIDGE BUTTONS — biology intentionally left empty until the team supplies its own URL
@@ -4266,20 +4688,60 @@
         });
     }
 
+    let teamLbIndex = 0;
+
+    function openTeamLb(idx) {
+        teamLbIndex = idx;
+        const lb = document.getElementById("teamLightbox");
+        document.getElementById("teamLbImg").src = teamPhotos[teamLbIndex];
+        document.getElementById("teamLbCounter").textContent = `${teamLbIndex + 1} / ${teamPhotos.length}`;
+        lb.classList.add("open");
+    }
+    function closeTeamLb() {
+        document.getElementById("teamLightbox").classList.remove("open");
+    }
+    function teamLbNav(dir) {
+        teamLbIndex = (teamLbIndex + dir + teamPhotos.length) % teamPhotos.length;
+        document.getElementById("teamLbImg").src = teamPhotos[teamLbIndex];
+        document.getElementById("teamLbCounter").textContent = `${teamLbIndex + 1} / ${teamPhotos.length}`;
+    }
+
     function renderTeam() {
         const container = document.getElementById("teamGrid");
-        if (!container) return;
+        if (!container || container.dataset.rendered) return;
+        container.dataset.rendered = "1";
         container.innerHTML = "";
-        teamMembers.forEach(m => {
+
+        teamPhotos.forEach((src, i) => {
             const card = document.createElement("div");
             card.className = "team-card";
+            card.title = "Томруулахын тулд дарна уу";
+            const leaderBadge = i === 0
+                ? `<div class="team-leader-badge">⭐ Багийн ахлагч</div>`
+                : "";
             card.innerHTML = `
-                <div class="team-avatar" aria-hidden="true">${m.avatar}</div>
-                <h3>${m.name}</h3>
-                <div style="color:#f59e0b;">${m.role}</div>
-                <p style="margin-top:0.5rem;">${m.desc}</p>
+                <div class="team-card-photo-wrap">
+                    <img class="team-card-photo" src="${src}" alt="8-р баг — ${i + 1}-р гишүүн" loading="${i === 0 ? 'eager' : 'lazy'}">
+                    ${leaderBadge}
+                </div>
+                <div class="team-card-num">${i + 1} / ${teamPhotos.length}</div>
             `;
+            card.addEventListener("click", () => openTeamLb(i));
             container.appendChild(card);
+        });
+
+        // Lightbox events (attach once)
+        document.getElementById("teamLbClose")?.addEventListener("click", closeTeamLb);
+        document.getElementById("teamLightbox")?.addEventListener("click", e => {
+            if (e.target === document.getElementById("teamLightbox")) closeTeamLb();
+        });
+        document.getElementById("teamLbPrev")?.addEventListener("click", e => { e.stopPropagation(); teamLbNav(-1); });
+        document.getElementById("teamLbNext")?.addEventListener("click", e => { e.stopPropagation(); teamLbNav(1); });
+        document.addEventListener("keydown", e => {
+            if (!document.getElementById("teamLightbox")?.classList.contains("open")) return;
+            if (e.key === "ArrowRight") teamLbNav(1);
+            if (e.key === "ArrowLeft")  teamLbNav(-1);
+            if (e.key === "Escape")     closeTeamLb();
         });
     }
 
@@ -4350,15 +4812,76 @@
     }
 
     // CONTACT FORM
-    document.getElementById("contactForm")?.addEventListener("submit", (e) => {
+    // ══════════════════════════════════════════════
+    // EmailJS тохиргоо
+    // emailjs.com дээр бүртгүүлээд доорх 3 утгыг оруулна уу:
+    const EMAILJS_PUBLIC_KEY  = "dlwJ--9TYv4c1ziNY";   // Account → API Keys
+    const EMAILJS_SERVICE_ID  = "service_k8hd8jj";   // Email Services → Service ID
+    const EMAILJS_TEMPLATE_ID = "template_bcagdab";  // Email Templates → Template ID
+    // ══════════════════════════════════════════════
+
+    (function initEmailJS() {
+        if (typeof emailjs !== "undefined" && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
+            emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+        }
+    })();
+
+    document.getElementById("contactForm")?.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const name = document.getElementById("contactName").value.trim();
-        const email = document.getElementById("contactEmail").value.trim();
-        if (name && email) {
-            document.getElementById("formFeedback").innerHTML = `<p style="color:green;">✅ Мессеж илгээгдлээ. Бид удахгүй холбогдоно.</p>`;
-            document.getElementById("contactForm").reset();
+        const name    = document.getElementById("contactName").value.trim();
+        const email   = document.getElementById("contactEmail").value.trim();
+        const subject = document.getElementById("contactSubject").value.trim() || "EduMongol вэбсайтаас мессеж";
+        const msg     = document.getElementById("contactMsg").value.trim();
+        const feedback = document.getElementById("formFeedback");
+        const btn      = document.getElementById("contactSubmitBtn");
+        const btnText  = document.getElementById("submitBtnText");
+
+        // Баталгаажуулалт
+        if (!name || !email || !msg) {
+            feedback.innerHTML = `<div style="background:#fff0f0;border:1px solid #f5c6cb;border-radius:0.8rem;padding:0.8rem 1rem;color:#c00;">❌ Нэр, имэйл, мессежийг заавал бөглөнө үү.</div>`;
+            return;
+        }
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            feedback.innerHTML = `<div style="background:#fff0f0;border:1px solid #f5c6cb;border-radius:0.8rem;padding:0.8rem 1rem;color:#c00;">❌ Зөв имэйл хаяг оруулна уу.</div>`;
+            return;
+        }
+
+        // EmailJS тохируулагдсан бол → EmailJS-ээр илгээх
+        const ejsReady = typeof emailjs !== "undefined" && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY";
+
+        if (ejsReady) {
+            btn.disabled = true;
+            btnText.textContent = "⏳ Илгээж байна...";
+            feedback.innerHTML = "";
+            try {
+                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                    from_name:  name,
+                    from_email: email,
+                    subject:    subject,
+                    message:    msg
+                });
+                feedback.innerHTML = `<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:0.8rem;padding:0.9rem 1.1rem;color:#166534;">
+                    ✅ <strong>Мессеж амжилттай илгээгдлээ!</strong><br>
+                    <span style="font-size:0.85rem;">dorjbat2dkxl@moes.edu.mn хаягт очлоо. Удахгүй хариу өгнө.</span>
+                </div>`;
+                document.getElementById("contactForm").reset();
+            } catch(err) {
+                console.error("EmailJS error:", err);
+                feedback.innerHTML = `<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:0.8rem;padding:0.8rem 1rem;color:#9a3412;">⚠️ Алдаа: ${JSON.stringify(err)}</div>`;
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = "📨 Илгээх";
+            }
         } else {
-            document.getElementById("formFeedback").innerHTML = `<p style="color:red;">❌ Бүх талбарыг бөглөнө үү.</p>`;
+            // EmailJS тохируулаагүй → mailto fallback
+            const mailSubject = encodeURIComponent(`EduMongol: ${subject}`);
+            const mailBody    = encodeURIComponent(`Нэр: ${name}\nИмэйл: ${email}\nСэдэв: ${subject}\n\nМессеж:\n${msg}`);
+            window.location.href = `mailto:dorjbat2dkxl@moes.edu.mn?subject=${mailSubject}&body=${mailBody}`;
+            feedback.innerHTML = `<div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:0.8rem;padding:0.9rem 1.1rem;color:#075985;">
+                📧 <strong>Имэйл апп нээгдлээ.</strong><br>
+                <span style="font-size:0.85rem;">Gmail эсвэл имэйл клиент дээр «Илгээх» товч дарна уу.</span>
+            </div>`;
+            document.getElementById("contactForm").reset();
         }
     });
 
@@ -4582,21 +5105,87 @@
             reply: "📬 <b>Холбоо барих</b>\n\nДээрх «Холбоо барих» цэсийг нээгээд:\n1. Нэрээ бичнэ\n2. Имэйл хаягаа оруулна\n3. Мессежээ бичнэ\n4. «Илгээх» товч дарна\n\nБид удахгүй хариу илгээнэ! ✉️"
         },
 
+        // ── Физик ──
+        {
+            keys: ["физик","physics","симуляци","туршилт","falstad","phet физик","physicsclassroom","stellarium","javalab","оптик","долгион","цахилгаан","механик","термодинамик"],
+            reply: "⚛️ <b>Физикийн хэсэгт 18 симуляцийн холбоос</b> байна:\n\n🔬 <b>Виртуал туршилт & симуляци:</b>\n• PhET (Монгол) — Колорадо их сургуулийн физик симуляци\n• Falstad Circuit — цахилгааны хэлхээний симуляци\n• JavaLab — мультиплатформ физикийн симуляци\n• Physics Classroom — видео хичээл, тоглоом, туршилт\n• MyPhysicsLab — механик, чичиргээний симуляци\n\n🌌 <b>Сансар & одон орон:</b>\n• Stellarium — орой бүрийн одны зураглал, одон орон судлал\n• NASA Eyes — сансрын аялал 3D-д\n• Universe Sandbox — гаригуудын хүндийн хүч симуляци\n\n🌊 <b>Долгион & оптик:</b>\n• Ripple Tank (Falstad) — долгионы интерференц\n• PhET Wave Interference — долгионы давхцал\n\n⚡ <b>Цахилгаан & термодинамик:</b>\n• Ohm Zone — Омын хуулийн интерактив\n• PhET Circuit Construction — хэлхээ зохиох\n• PhET States of Matter — молекулын хөдөлгөөн\n\n→ Нүүр хуудас » ЕБС таб » Физик"
+        },
+
+        // ── Хөгжим ──
+        {
+            keys: ["хөгжим","music","нот","ритм","аялгуу","musescore","bandlab","soundtrap","flat.io","chrome music lab","noteflight","incredibox","musiclab","хэрэгсэл тоглох","хөгжмийн онол"],
+            reply: "🎵 <b>Хөгжмийн хэсэгт</b> 2 хүснэгт (20 платформ) байна:\n\n🆓 <b>Үнэгүй платформууд (10):</b>\n• Chrome Music Lab — хүүхдэд ойлгомжтой, ритм, аялгуу\n• MuseScore — мэргэжлийн нот бичих, 1M+ нотын сан\n• Soundtrap (Spotify) — хамтын бүтээлч студи\n• Flat.io — хамтарч нот бичих онлайн орчин\n• BandLab — бүтээлч музик бичих, сошиал\n• Incredibox — дроп-энд-плэй битбокс тоглоом\n• Noteflight — онлайн нот бичих хэрэгсэл\n• Hooktheory — хөгжмийн онол + аккорд аялгуу\n• Teoria — сольфеджио, музикийн онолын дасгал\n• Audacity — дуу бичих, засварлах (үнэгүй)\n\n📱 <b>Апп & дэвшилтэт платформ (10):</b>\n• Simply Piano — фортепиано сурах AI апп\n• Yousician — гитар, фортепиано, басс зэрэглэлтэй\n• GarageBand — Apple-ийн мэргэжлийн студи (iOS)\n• Sibelius Ultimate — симфони партитур бичих\n• Splice — сэмпл, луп, хамтын ажил\n• Soundation — хөнгөн онлайн DAW\n• Groovepad — битмэйкер апп\n• PianoMarvel — фортепианы дасгал, гамма, аккорд\n• EarMaster — аудио дадлага, интервал таних\n• Amped Studio — хөнгөн онлайн студи\n\n→ Нүүр хуудас » ЕБС таб » Хөгжим"
+        },
+
+        // ── АУБ (Анги Удирдсан Багш) ──
+        {
+            keys: ["ауб","aub","анги удирдсан","анги удирдагч","classdojo","remind","seesaw","padlet","trello","notion","анги удирдлага","эцэг эх харилцаа","ирц","homeroom"],
+            reply: "👩‍🏫 <b>АУБ (Анги Удирдсан Багш) хэсэгт 12 хэрэгсэл</b> байна:\n\n🏫 <b>Ангийн удирдлага & харилцаа холбоо:</b>\n• ClassDojo — зан байдал хянах, эцэг эхтэй мессеж, зургаар мэдээлэл хуваалцах\n• Google Classroom — даалгавар, материал тараах, шалгах\n• Remind — аюулгүй SMS/апп мессеж, хувийн дугаар нуугддаг\n• Seesaw — суралцагчийн портфолио, эцэг эхэд ахиц дамжуулах\n\n📊 <b>Бүртгэл, ирц & хяналт:</b>\n• Google Forms — ирц бүртгэл, асуулга маягт\n• Google Sheets — дүн, ирц хяналтын хүснэгт\n• Trello — ажлын төлөвлөгөө, арга хэмжээний хуваарь\n• Google Calendar — уулзалт, хуваарь сануулга\n\n🎨 <b>Бүтээлч хэрэгсэл & танилцуулга:</b>\n• Canva for Education — гэрчилгээ, мэдэгдэл, слайд\n• Padlet — дижитал самбар, бүтээл хуваалцах\n• Miro Board — хамтын зурагт самбар\n• Notion — АУБ-ийн ажлын дэвтэр, тайлан\n\n→ Нүүр хуудас » АУБ таб"
+        },
+
+        // ── Хичээлүүд хуудас ──
+        {
+            keys: ["хичээлүүд","courses","үнэгүй хичээл","онлайн сургалт","elements of ai","google ai","microsoft learn","coursera ai","deeplearning","fast.ai","khan ai","steam hub","ai academy","unitel steam"],
+            reply: "📚 <b>Хичээлүүд хуудсанд</b> дараах агуулга байна:\n\n🇲🇳 <b>Монгол хэлтэй видео хичээлүүд:</b>\n• YouTube: «хиймэл оюун ухаан монгол» хайлт\n• YouTube: «ChatGPT монгол багш» хайлт\n• YouTube: «AI боловсрол монгол» хайлт\n• AI Academy Asia — хөтөлбөрийн хамтрагч сувааг\n• Unitel STEAM Hub — Монголын идэвхтэй STEAM суваг\n• Khan Academy Монгол — mn.khanacademy.org\n\n🌐 <b>Үнэгүй нээлттэй олон улсын хичээлүүд (8):</b>\n• Google AI Essentials — гэрчилгээтэй, ~14 цаг\n• Elements of AI — Хельсинкийн их сургууль, олон хэл дээр\n• Microsoft AI for Education — өөрийн хурдаар\n• Coursera AI for Everyone (Andrew Ng) — audit үнэгүй\n• Khan Academy AI — Монгол/Англи хэлтэй хэсэгтэй\n• DeepLearning.AI Short Courses — 1–2 цагийн практик\n• UNESCO AI for Teachers — олон улсын стандарт\n• fast.ai — практикт суурилсан дийлэнх хичээл\n\n→ «Хичээлүүд» цэсийг нээнэ үү"
+        },
+
+        // ── Slideshow / Баг танилцуулга ──
+        {
+            keys: ["slideshow","слайдшоу","танилцуулга","8-р баг танилцуулга","профайл","гишүүдийн зураг"],
+            reply: "🖼️ <b>8-р Баг Танилцуулга Slideshow</b>\n\n«Бидний баг» хуудас дотор 36 гишүүний фото грид байна.\nЗурагт дарахад lightbox томруулан нээгдэнэ.\n\nМөн дараах файлыг нээж slideshow харах боломжтой:\n📁 <b>8-р баг танилцуулга/slideshow.html</b>\n\n⭐ 1-р зураг = Багийн ахлагч\n← → товч эсвэл thumbnail-aar шилжинэ."
+        },
+
+        // ── Вэбсайтын ерөнхий тухай ──
+        {
+            keys: ["вэб","website","платформ","edumongol","edu mongol","энэ сайт","сайт тухай","юу байна","ямар сайт","хаана"],
+            reply: "🌐 <b>EduMongol</b> — Монгол багш нарт зориулсан боловсролын нөөцийн нэгдсэн платформ.\n\n📂 <b>Үндсэн хэсгүүд:</b>\n🏠 Нүүр — ЕБС (10 хичээл), СӨБ, Мэргэжлийн боловсрол, АУБ\n📚 Хичээлүүд — Үнэгүй онлайн хичээл, Монгол видео\n📊 Дашбоард — сурах явцын хяналт\n🧩 Тест — AI-ийн мэдлэг шалгах тест\n👥 Бидний баг — 8-р багийн 36 гишүүний фото грид\n📬 Холбоо барих — маягт\n\n💬 Аль хэсгийн тухай дэлгэрэнгүй мэдэхийг хүсэж байна вэ?"
+        },
+
+        // ── Дашбоард / Тест ──
+        {
+            keys: ["дашбоард","dashboard","явц","дэвшил","тест","quiz","шалгалт","оноо"],
+            reply: "📊 <b>Дашбоард</b> — сурах явцын хяналтын самбар.\n\nХичээл бүрийн дэвшлийг хувиар хянаж, нийт дундаж дэвшлийг харна.\n\n🧩 <b>Тест хэсэг</b> — Хиймэл оюун ухааны мэдлэг шалгах олон сонголттой асуулт:\n• ХО-ны үндсэн ойлголтууд\n• Боловсролд AI ашиглах жишээ\n• Ёс зүйн асуудлууд\n\n→ Цэснээс «Дашбоард» эсвэл «Тест» сонгоно уу."
+        },
+
         // ── Баярлалаа ──
         {
-            keys: ["баярлалаа","баяр","талархал","thanks","thank you","болсон"],
+            keys: ["баярлалаа","баяр","талархал","thanks","thank you","болсон","за","ок","ok"],
             reply: "Баяртай! 😊 Та EduMongol платформыг ашиглаж буйд баярлалаа. Өөр асуулт байвал надаас асуугаарай. Амжилт хүсье! 🎓"
         }
     ];
 
     function getBotReply(msg) {
-        const lower = msg.toLowerCase();
+        const lower = msg.toLowerCase().trim();
+
+        // Оноо суурилсан хамгийн тохирох хариулт олох
+        let bestScore = 0;
+        let bestReply = null;
+
         for (const item of chatResponses) {
-            if (item.keys.some(k => lower.includes(k))) {
-                return item.reply;
+            let score = 0;
+            for (const k of item.keys) {
+                if (lower.includes(k)) {
+                    // Урт keyword → илүү өндөр оноо
+                    score += k.length;
+                }
+            }
+            if (score > bestScore) {
+                bestScore = score;
+                bestReply = item.reply;
             }
         }
-        return "🤔 Уучлаарай, тэр асуултыг ойлгосонгүй. Дараах сэдвүүдийн талаар асуугаарай: хичээлүүд, математик, ЕБС, СӨБ, баг, холбоо барих.";
+
+        if (bestReply) return bestReply;
+
+        // Таалцаагүй бол динамик зөвлөмж
+        const suggestions = [
+            "ЕБС", "СӨБ", "АУБ", "Физик", "Хөгжим", "Математик",
+            "Газар зүй", "Хими", "Англи хэл", "МТ", "Хүүхэд хамгаалал",
+            "Бага боловсрол", "Нийгмийн ухаан", "Мэргэжлийн боловсрол",
+            "Хичээлүүд", "ClassDojo", "ChatGPT", "Khan Academy", "Baг"
+        ];
+        const rnd = suggestions.sort(() => 0.5 - Math.random()).slice(0, 5).join(", ");
+        return `🤔 <b>«${msg}»</b> — ийм асуулт олдсонгүй.\n\nДараах сэдвүүдийн аль нэгийг бичиж туршина уу:\n💡 ${rnd}\n\nЭсвэл «юу мэдэх вэ?» гэж асуугаарай — бүх чадварыг жагсаана.`;
     }
 
     function addMessage(text, sender) {
