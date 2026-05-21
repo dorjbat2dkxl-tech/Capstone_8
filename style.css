@@ -187,7 +187,7 @@ body {
 
 /* ========== HERO SECTION ========== */
 .hero {
-    background-image: url('map.png.png');
+    background-image: url('newhome.png');
     background-size: cover;
     background-position: center 60%;
     background-repeat: no-repeat;
@@ -1584,6 +1584,64 @@ footer {
 }
 .chat-msg.user .chat-time { text-align: right; }
 
+/* ── Chat link buttons ── */
+.chat-bubble a {
+    color: #2f6b46;
+    text-decoration: none;
+    font-weight: 500;
+}
+.chat-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: #e8f5ed;
+    color: #1f4d33 !important;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin: 3px 2px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    border: 1px solid #b8dcc6;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.chat-link-btn:hover {
+    background: #2f6b46;
+    color: white !important;
+    border-color: #2f6b46;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgba(47,107,70,0.25);
+}
+.chat-video-btn {
+    background: #fff0f0;
+    color: #c0392b !important;
+    border-color: #f5b8b8;
+}
+.chat-video-btn:hover {
+    background: #c0392b !important;
+    color: white !important;
+    border-color: #c0392b;
+}
+.chat-links-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 8px;
+}
+.chat-section-title {
+    font-weight: 700;
+    color: #1f4d33;
+    font-size: 0.82rem;
+    margin: 8px 0 4px;
+    display: block;
+}
+.chat-divider {
+    border: none;
+    border-top: 1px solid #e0ece6;
+    margin: 8px 0;
+}
+
 /* Typing dots */
 .typing-indicator .chat-bubble {
     display: flex;
@@ -2018,6 +2076,14 @@ footer {
 .bridge-card[data-accent="aub-notion"] .card-img {
     background: linear-gradient(145deg, #f4f4f4, #444444);  /* саарал — Notion */
 }
+/* Сэтгэл зүй accent */
+.bridge-card[data-accent="psych"] .card-img {
+    background: linear-gradient(145deg, #eef0ff, #5b5fd6);
+}
+.bridge-card[data-accent="psych-crisis"] .card-img {
+    background: linear-gradient(145deg, #fff0f0, #c0392b);
+}
+
 /* АУБ section label */
 .aub-section-label {
     grid-column: 1 / -1;
@@ -2046,6 +2112,176 @@ footer {
     padding: 0.2rem 0.55rem;
     border-radius: 10px;
     border: 1px solid #a8dfc0;
+}
+
+/* ========== СЭТГЭЛ ЗҮЙ SECTION ========== */
+.psych-section {
+    margin: 3rem 0 2rem;
+}
+.psych-header {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    background: linear-gradient(135deg, #f0f4ff, #e8eeff);
+    border: 1.5px solid rgba(80,80,200,0.15);
+    border-radius: 1.2rem;
+    padding: 1.4rem 1.8rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+.psych-header-icon {
+    font-size: 2.6rem;
+    line-height: 1;
+    flex-shrink: 0;
+}
+.psych-header-body {
+    flex: 1;
+    min-width: 200px;
+}
+.psych-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #2b2d6e;
+    margin: 0 0 0.3rem;
+}
+.psych-subtitle {
+    font-size: 0.88rem;
+    color: #555;
+    margin: 0;
+}
+.psych-stats {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+.psych-stat {
+    background: #fff;
+    border: 1.5px solid #c5c9f5;
+    color: #3b3f9e;
+    font-size: 0.78rem;
+    font-weight: 700;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+}
+
+.psych-category {
+    margin-bottom: 2.2rem;
+}
+.psych-cat-header {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 1.1rem;
+    background: linear-gradient(90deg, #3b3f9e, #5b5fd6);
+    color: #fff;
+    border-radius: 0.8rem 0.8rem 0 0;
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+.psych-cat-icon { font-size: 1.2rem; }
+.psych-cat-title { flex: 1; }
+.psych-cat-count {
+    background: rgba(255,255,255,0.25);
+    padding: 0.15rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.77rem;
+    font-weight: 600;
+}
+
+.psych-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    padding: 1.1rem;
+    background: #f7f8ff;
+    border: 1.5px solid #d0d4f5;
+    border-top: none;
+    border-radius: 0 0 0.8rem 0.8rem;
+}
+
+.psych-card {
+    background: #fff;
+    border: 1.5px solid #e0e3f5;
+    border-radius: 0.9rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    cursor: pointer;
+}
+.psych-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(60,65,200,0.13);
+    border-color: #8088e0;
+}
+.psych-card-yt:hover { border-color: #e60000; box-shadow: 0 6px 20px rgba(230,0,0,0.12); }
+.psych-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+}
+.psych-card-icon { font-size: 1.4rem; }
+.psych-card-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+.psych-card-badge.free { background: #e6f9ef; color: #1a7a4a; border: 1px solid #a8dfc0; }
+.psych-card-badge.mn   { background: #fff3e0; color: #b45000; border: 1px solid #ffd09e; }
+.psych-card-badge.yt   { background: #fff0f0; color: #cc0000; border: 1px solid #ffb3b3; }
+.psych-card-badge.crisis { background: #fff0f0; color: #b30000; border: 1px solid #ffaaaa; }
+
+.psych-card-name {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #1a1d4e;
+}
+.psych-card-desc {
+    font-size: 0.78rem;
+    color: #555;
+    line-height: 1.45;
+    flex: 1;
+}
+.psych-card-link {
+    font-size: 0.72rem;
+    color: #5055cc;
+    font-weight: 600;
+    margin-top: auto;
+}
+
+/* Хямралын хэсэг */
+.psych-crisis .psych-cat-header {
+    background: linear-gradient(90deg, #8b0000, #c0392b);
+}
+.psych-hotline {
+    border-color: #ffcccc;
+    background: #fff8f8;
+}
+.psych-call-btn {
+    display: inline-block;
+    margin-top: 0.5rem;
+    background: linear-gradient(135deg, #c0392b, #e74c3c);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
+    text-decoration: none;
+    text-align: center;
+    transition: opacity 0.15s;
+}
+.psych-call-btn:hover { opacity: 0.85; }
+
+@media (max-width: 600px) {
+    .psych-grid { grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+    .psych-header { padding: 1rem; gap: 0.8rem; }
+    .psych-title { font-size: 1.2rem; }
 }
 
 /* ========== НӨӨЦ САН (collapsible) ========== */

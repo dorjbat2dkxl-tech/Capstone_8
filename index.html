@@ -103,11 +103,6 @@
                 <span class="tab-label">Мэргэжлийн боловсрол</span>
                 <span class="tab-desc">Техник & технологи</span>
             </button>
-            <button class="edu-tab" data-tab="aub" role="tab" aria-selected="false" aria-controls="tab-aub">
-                <span class="tab-icon">👩‍🏫</span>
-                <span class="tab-label">АУБ</span>
-                <span class="tab-desc">Анги удирдсан багш</span>
-            </button>
         </div>
 
         <!-- ЕБС хэсэг -->
@@ -284,172 +279,1090 @@
             </div>
         </div>
 
-        <!-- АУБ хэсэг -->
-        <div class="edu-tab-content" id="tab-aub" role="tabpanel" style="display:none;">
-            <div class="tab-section-banner" style="background: linear-gradient(135deg,#eef4ff,#dceafe); border-color: rgba(60,100,200,0.15);">
-                <div class="tsb-icon">👩‍🏫</div>
-                <div class="tsb-body">
-                    <div class="tsb-title">Анги Удирдсан Багш (АУБ)</div>
-                    <div class="tsb-meta">Ангийн удирдлага, эцэг эхтэй харилцаа, суралцагчийн хяналт, цахим хэрэгслүүд</div>
-                </div>
-                <span class="tsb-badge" style="background:#3b5fc0;">12+ хэрэгсэл</span>
-            </div>
-
-            <!-- Ангийн удирдлага -->
-            <div class="aub-section-label">🏫 Ангийн удирдлага & харилцаа холбоо</div>
-            <div class="courses-grid bridge-grid">
-
-                <div class="card bridge-card" data-accent="aub-dojo">
-                    <div class="card-img" aria-hidden="true">🟢</div>
+                <div class="card bridge-card" data-accent="aub">
+                    <div class="card-img" aria-hidden="true">👩‍🏫</div>
                     <div class="card-content">
-                        <h3>ClassDojo</h3>
-                        <p>Ангийн зан байдал хянах, эцэг эхтэй шууд харилцах, цонхны мессеж болон зургаар мэдээлэл хуваалцах хамгийн алдартай платформ.</p>
+                        <h3>АУБ</h3>
+                        <p>Ангийн удирдлага, эцэг эхтэй харилцаа, суралцагчийн хяналт, цахим хэрэгслүүд.</p>
                         <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://www.classdojo.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                            <span class="card-count">12+ хэрэгсэл</span>
+                            <button class="btn-sm bridge-btn" data-subject="aub">Үзэх →</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="card bridge-card" data-accent="aub-classroom">
-                    <div class="card-img" aria-hidden="true">📋</div>
+                <div class="card bridge-card" data-accent="psych">
+                    <div class="card-img" aria-hidden="true">🧠</div>
                     <div class="card-content">
-                        <h3>Google Classroom</h3>
-                        <p>Даалгавар, зар мэдэгдэл, хичээлийн материал тараах, суралцагчдын ажлыг цахимаар шалгах бүрэн орчин.</p>
+                        <h3>Сэтгэл зүйн боловсрол</h3>
+                        <p>Тест, судалгаа, видео, арга зүй — сургуулийн сэтгэл зүйчид болон багш нарт зориулсан нөөц.</p>
                         <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://classroom.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                            <span class="card-count">40+ эх сурвалж</span>
+                            <button class="btn-sm bridge-btn" data-subject="psych">Үзэх →</button>
                         </div>
                     </div>
                 </div>
 
-                <div class="card bridge-card" data-accent="aub-remind">
-                    <div class="card-img" aria-hidden="true">💬</div>
-                    <div class="card-content">
-                        <h3>Remind</h3>
-                        <p>Эцэг эх, суралцагчдад SMS болон апп-аар мессеж илгээх. Хувийн утасны дугаар нуугдаж, аюулгүй харилцаа үүснэ.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://www.remind.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
-                        </div>
-                    </div>
+        <!-- ══════════════════════════════════════════ -->
+        <!-- СЭТГЭЛ ЗҮЙ SECTION (hidden placeholder) -->
+        <!-- ══════════════════════════════════════════ -->
+        <div class="psych-section" style="display:none;">
+            <div class="psych-header">
+                <div class="psych-header-icon">🧠</div>
+                <div class="psych-header-body">
+                    <h2 class="psych-title">Сэтгэл зүйн боловсрол</h2>
+                    <p class="psych-subtitle">Тест, судалгаа, видео, арга зүй — сургуулийн сэтгэл зүйчид болон багш нарт зориулсан нөөц</p>
                 </div>
-
-                <div class="card bridge-card" data-accent="aub-seesaw">
-                    <div class="card-img" aria-hidden="true">📔</div>
-                    <div class="card-content">
-                        <h3>Seesaw</h3>
-                        <p>Суралцагчийн цахим портфолио үүсгэх, эцэг эхэд ахицыг дүрс болон тайлбараар хүргэх, бага ангид маш тохиромжтой.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://web.seesaw.me" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
-                        </div>
-                    </div>
+                <div class="psych-stats">
+                    <span class="psych-stat">📋 7 ангилал</span>
+                    <span class="psych-stat">🔗 40+ эх сурвалж</span>
                 </div>
             </div>
 
-            <!-- Бүртгэл & хяналт -->
-            <div class="aub-section-label">📊 Бүртгэл, ирц & хяналт</div>
-            <div class="courses-grid bridge-grid">
-
-                <div class="card bridge-card" data-accent="aub-forms">
-                    <div class="card-img" aria-hidden="true">📝</div>
-                    <div class="card-content">
-                        <h3>Google Forms</h3>
-                        <p>Ирц бүртгэл, асуулга, эцэг эхийн санал авах маягт хурдан зохиох. Хариулт автоматаар Google Sheets руу орно.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://forms.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
-                        </div>
-                    </div>
+            <!-- 1. Онлайн тест -->
+            <div class="psych-category">
+                <div class="psych-cat-header">
+                    <span class="psych-cat-icon">📋</span>
+                    <span class="psych-cat-title">Сэтгэл зүйн онлайн тест, сорил</span>
+                    <span class="psych-cat-count">7 хэрэгсэл</span>
                 </div>
-
-                <div class="card bridge-card" data-accent="aub-sheets">
-                    <div class="card-img" aria-hidden="true">📊</div>
-                    <div class="card-content">
-                        <h3>Google Sheets</h3>
-                        <p>Суралцагчдын гүйцэтгэл, ирц, үнэлгээний дүн хяналтын хүснэгт гаргах. Автомат тооцоо, өнгөт дүрслэлтэй.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://sheets.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                <div class="psych-grid">
+                    <a href="https://psychology-tools.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🧪</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="card bridge-card" data-accent="aub-trello">
-                    <div class="card-img" aria-hidden="true">📌</div>
-                    <div class="card-content">
-                        <h3>Trello</h3>
-                        <p>Ангийн ажлын төлөвлөгөө, арга хэмжээ, хурлын цэс болон жилийн ажлын хуваарийг карт системээр удирдах.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://trello.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        <div class="psych-card-name">Psychology Tools</div>
+                        <div class="psych-card-desc">Стандартчлагдсан тест — DASS-21, PHQ-9, GAD-7 гм. Оноо автоматаар тооцогддог.</div>
+                        <div class="psych-card-link">psychology-tools.com →</div>
+                    </a>
+                    <a href="https://www.psychologytoday.com/us/tests" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🧬</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
                         </div>
-                    </div>
-                </div>
-
-                <div class="card bridge-card" data-accent="aub-calendar">
-                    <div class="card-img" aria-hidden="true">📅</div>
-                    <div class="card-content">
-                        <h3>Google Calendar</h3>
-                        <p>Ангийн арга хэмжээ, эцэг эхийн уулзалт, сургуулийн хуваарийг нэг дороос харах, сануулга тохируулах.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://calendar.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                        <div class="psych-card-name">Psychology Today</div>
+                        <div class="psych-card-desc">Бие хүн, харилцаа, сэтгэцийн эрүүл мэндийн чиглэлийн 100+ тест.</div>
+                        <div class="psych-card-link">psychologytoday.com →</div>
+                    </a>
+                    <a href="https://openpsychometrics.org/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">📊</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
                         </div>
-                    </div>
+                        <div class="psych-card-name">Open Psychometrics</div>
+                        <div class="psych-card-desc">Big Five, IQ, MBTI төстэй шинжлэх ухааны үндэстэй нээлттэй тестүүд.</div>
+                        <div class="psych-card-link">openpsychometrics.org →</div>
+                    </a>
+                    <a href="https://www.16personalities.com/mn" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🪞</span>
+                            <span class="psych-card-badge mn">🇲🇳 Монгол</span>
+                        </div>
+                        <div class="psych-card-name">16 Personalities</div>
+                        <div class="psych-card-desc">MBTI хэв шинжийн 16 төрлийг тогтоох тест — монгол хэлтэй.</div>
+                        <div class="psych-card-link">16personalities.com →</div>
+                    </a>
+                    <a href="https://www.truity.com/tests" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🎯</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
+                        </div>
+                        <div class="psych-card-name">Truity</div>
+                        <div class="psych-card-desc">Карьер, бие хүн, харилцааны чиглэлийн олон төрлийн чанартай тестүүд.</div>
+                        <div class="psych-card-link">truity.com →</div>
+                    </a>
+                    <a href="https://www.mhanational.org/get-involved/screening-tools" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🩺</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
+                        </div>
+                        <div class="psych-card-name">MHA Screening</div>
+                        <div class="psych-card-desc">Сэтгэцийн эрүүл мэндийн скрининг — сэтгэл гутрал, түгшүүр, PTSD.</div>
+                        <div class="psych-card-link">mhanational.org →</div>
+                    </a>
+                    <a href="https://www.viacharacter.org/character-strengths" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">⭐</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
+                        </div>
+                        <div class="psych-card-name">VIA Character</div>
+                        <div class="psych-card-desc">Хүний 24 давуу талыг тогтоох тест — эерэг сэтгэл судлалын үндсэн хэрэгсэл.</div>
+                        <div class="psych-card-link">viacharacter.org →</div>
+                    </a>
                 </div>
             </div>
 
-            <!-- Бүтээлч хэрэгсэл -->
-            <div class="aub-section-label">🎨 Бүтээлч хэрэгсэл & танилцуулга</div>
-            <div class="courses-grid bridge-grid">
-
-                <div class="card bridge-card" data-accent="aub-canva">
-                    <div class="card-img" aria-hidden="true">🎨</div>
-                    <div class="card-content">
-                        <h3>Canva for Education</h3>
-                        <p>Ангийн мэдэгдэл, хүндэтгэлийн гэрчилгээ, хурлын слайд, ангийн сонин зэргийг мэргэжлийн загвараар хурдан хийх.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://www.canva.com/education/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+            <!-- 2. Видео, зурагт үзүүлэн -->
+            <div class="psych-category">
+                <div class="psych-cat-header">
+                    <span class="psych-cat-icon">🎬</span>
+                    <span class="psych-cat-title">Видео, зурагт үзүүлэн</span>
+                    <span class="psych-cat-count">5 эх сурвалж</span>
+                </div>
+                <div class="psych-grid">
+                    <a href="https://www.ted.com/topics/psychology" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🎤</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
                         </div>
+                        <div class="psych-card-name">TED — Psychology</div>
+                        <div class="psych-card-desc">Дэлхийн мэргэжилтнүүдийн сэтгэл судлалын TED илтгэлүүд, хадмал орчуулгатай.</div>
+                        <div class="psych-card-link">ted.com →</div>
+                    </a>
+                    <a href="https://www.coursera.org/browse/social-sciences/psychology" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🎓</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
+                        </div>
+                        <div class="psych-card-name">Coursera Psychology</div>
+                        <div class="psych-card-desc">Yale, Stanford, Michigan-ийн онлайн хичээлүүд.</div>
+                        <div class="psych-card-link">coursera.org →</div>
+                    </a>
+                    <a href="https://www.edx.org/learn/psychology" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🏛️</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
+                        </div>
+                        <div class="psych-card-name">edX Psychology</div>
+                        <div class="psych-card-desc">Harvard, MIT-ийн сэтгэл судлалын үнэгүй курсууд.</div>
+                        <div class="psych-card-link">edx.org →</div>
+                    </a>
+                    <a href="https://nobaproject.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">📖</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
+                        </div>
+                        <div class="psych-card-name">Noba Project</div>
+                        <div class="psych-card-desc">Нээлттэй сурах бичиг — 100+ бүлэг, видео үзүүлэнтэй.</div>
+                        <div class="psych-card-link">nobaproject.com →</div>
+                    </a>
+                    <a href="https://www.simplypsychology.org/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">📚</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
+                        </div>
+                        <div class="psych-card-name">Simply Psychology</div>
+                        <div class="psych-card-desc">Үндсэн ойлголт, онол, туршилт, эрдэмтдийн тухай ойлгомжтой материалууд.</div>
+                        <div class="psych-card-link">simplypsychology.org →</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 3. YouTube сувгууд -->
+            <div class="psych-category">
+                <div class="psych-cat-header">
+                    <span class="psych-cat-icon">▶️</span>
+                    <span class="psych-cat-title">Шилдэг YouTube сувгууд</span>
+                    <span class="psych-cat-count">8 суваг</span>
+                </div>
+                <div class="psych-grid">
+                    <a href="https://www.youtube.com/@CrashCourse" target="_blank" rel="noopener" class="psych-card psych-card-yt">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🎬</span>
+                            <span class="psych-card-badge yt">YouTube</span>
+                        </div>
+                        <div class="psych-card-name">Crash Course</div>
+                        <div class="psych-card-desc">Сэтгэл судлалын 40 ангитай танин мэдэхүйн цуврал.</div>
+                        <div class="psych-card-link">@CrashCourse →</div>
+                    </a>
+                    <a href="https://www.youtube.com/@TheSchoolofLifeTV" target="_blank" rel="noopener" class="psych-card psych-card-yt">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">💡</span>
+                            <span class="psych-card-badge yt">YouTube</span>
+                        </div>
+                        <div class="psych-card-name">The School of Life</div>
+                        <div class="psych-card-desc">Сэтгэл хөдлөл, харилцаа, амьдралын ухааны тухай товч хичээлүүд.</div>
+                        <div class="psych-card-link">@TheSchoolofLifeTV →</div>
+                    </a>
+                    <a href="https://www.youtube.com/@PsychExamReview" target="_blank" rel="noopener" class="psych-card psych-card-yt">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">📝</span>
+                            <span class="psych-card-badge yt">YouTube</span>
+                        </div>
+                        <div class="psych-card-name">Psych Exam Review</div>
+                        <div class="psych-card-desc">Анхан шатны хичээлүүд, шалгалтад бэлтгэх материал.</div>
+                        <div class="psych-card-link">@PsychExamReview →</div>
+                    </a>
+                    <a href="https://www.youtube.com/@Psych2go" target="_blank" rel="noopener" class="psych-card psych-card-yt">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🎨</span>
+                            <span class="psych-card-badge yt">YouTube</span>
+                        </div>
+                        <div class="psych-card-name">Psych2Go</div>
+                        <div class="psych-card-desc">Анимэйшнтэй ойлгомжтой сэтгэл судлалын товч хичээлүүд.</div>
+                        <div class="psych-card-link">@Psych2go →</div>
+                    </a>
+                    <a href="https://www.youtube.com/@SprouhsHealth" target="_blank" rel="noopener" class="psych-card psych-card-yt">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🌱</span>
+                            <span class="psych-card-badge yt">YouTube</span>
+                        </div>
+                        <div class="psych-card-name">Sprouts</div>
+                        <div class="psych-card-desc">Сэтгэл судлалын онол, туршилтын анимэйшн тайлбар.</div>
+                        <div class="psych-card-link">@SprouhsHealth →</div>
+                    </a>
+                    <a href="https://www.youtube.com/@gegeemorsetgelzui" target="_blank" rel="noopener" class="psych-card psych-card-yt">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🇲🇳</span>
+                            <span class="psych-card-badge mn">🇲🇳 Монгол</span>
+                        </div>
+                        <div class="psych-card-name">Гэгээмөр Сэтгэл зүй</div>
+                        <div class="psych-card-desc">Монгол хэлээрх сэтгэл зүйн хичээл, дасгалууд.</div>
+                        <div class="psych-card-link">@gegeemorsetgelzui →</div>
+                    </a>
+                    <a href="https://www.youtube.com/@MNB1TV" target="_blank" rel="noopener" class="psych-card psych-card-yt">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">📺</span>
+                            <span class="psych-card-badge mn">🇲🇳 Монгол</span>
+                        </div>
+                        <div class="psych-card-name">МҮОНТ</div>
+                        <div class="psych-card-desc">Сэтгэл зүйчдийн ярилцлага, монгол хэлээрх нэвтрүүлгүүд.</div>
+                        <div class="psych-card-link">@MNB1TV →</div>
+                    </a>
+                    <a href="https://www.youtube.com/@khanacademymedicine" target="_blank" rel="noopener" class="psych-card psych-card-yt">
+                        <div class="psych-card-top">
+                            <span class="psych-card-icon">🏫</span>
+                            <span class="psych-card-badge free">Үнэгүй</span>
+                        </div>
+                        <div class="psych-card-name">Khan Academy</div>
+                        <div class="psych-card-desc">Сэтгэл судлал, мэдрэл судлалын үндсэн хичээлүүд.</div>
+                        <div class="psych-card-link">@khanacademymedicine →</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. Дасгал, арга зүй -->
+            <div class="psych-category">
+                <div class="psych-cat-header">
+                    <span class="psych-cat-icon">🧘</span>
+                    <span class="psych-cat-title">Сэтгэл зүйн дасгал, арга зүйн материал</span>
+                    <span class="psych-cat-count">7 хэрэгсэл</span>
+                </div>
+                <div class="psych-grid">
+                    <a href="https://www.therapistaid.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🛋️</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Therapist Aid</div>
+                        <div class="psych-card-desc">CBT, DBT дасгал, ажлын хуудас, видео — сэтгэл зүйчдэд зориулсан.</div>
+                        <div class="psych-card-link">therapistaid.com →</div>
+                    </a>
+                    <a href="https://positivepsychology.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">☀️</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Positive Psychology</div>
+                        <div class="psych-card-desc">Эерэг сэтгэл судлалын дасгал, хэрэгсэл, шинжлэх ухааны нийтлэл.</div>
+                        <div class="psych-card-link">positivepsychology.com →</div>
+                    </a>
+                    <a href="https://www.psychologytools.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🔧</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Psychology Tools</div>
+                        <div class="psych-card-desc">Мэргэжлийн ажлын хуудас, гарын авлага.</div>
+                        <div class="psych-card-link">psychologytools.com →</div>
+                    </a>
+                    <a href="https://www.mindful.org/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🌊</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Mindful.org</div>
+                        <div class="psych-card-desc">Бясалгал, ухаарал төвтэй дасгал, нийтлэл, аудио заавар.</div>
+                        <div class="psych-card-link">mindful.org →</div>
+                    </a>
+                    <a href="https://www.smilingmind.com.au/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">😊</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Smiling Mind</div>
+                        <div class="psych-card-desc">Хүүхэд, өсвөр насныханд зориулсан үнэгүй бясалгал, ухааралын апп.</div>
+                        <div class="psych-card-link">smilingmind.com.au →</div>
+                    </a>
+                    <a href="https://www.gozen.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🌟</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">GoZen</div>
+                        <div class="psych-card-desc">Хүүхдийн түгшүүр, стрессийг бууруулах анимэйшн хичээлүүд.</div>
+                        <div class="psych-card-link">gozen.com →</div>
+                    </a>
+                    <a href="https://copingskillsforkids.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🎒</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Coping Skills for Kids</div>
+                        <div class="psych-card-desc">Хүүхдэд сэтгэл хөдлөлөө удирдах ур чадвар сургах үнэгүй материал.</div>
+                        <div class="psych-card-link">copingskillsforkids.com →</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 5. Онол, судалгаа -->
+            <div class="psych-category">
+                <div class="psych-cat-header">
+                    <span class="psych-cat-icon">🔬</span>
+                    <span class="psych-cat-title">Сэтгэл судлалын онол, өгөгдөл, судалгаа</span>
+                    <span class="psych-cat-count">6 эх сурвалж</span>
+                </div>
+                <div class="psych-grid">
+                    <a href="https://www.apa.org/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🏛️</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">APA</div>
+                        <div class="psych-card-desc">Америкийн Сэтгэл Судлалын Холбоо — судалгаа, ёс зүйн дүрэм, мэргэжлийн нийтлэл.</div>
+                        <div class="psych-card-link">apa.org →</div>
+                    </a>
+                    <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🔍</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Google Scholar</div>
+                        <div class="psych-card-desc">Шинжлэх ухааны өгүүлэл, судалгааны үнэгүй хайлтын систем.</div>
+                        <div class="psych-card-link">scholar.google.com →</div>
+                    </a>
+                    <a href="https://www.researchgate.net/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">📄</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">ResearchGate</div>
+                        <div class="psych-card-desc">Эрдэмтдийн судалгааны өгүүллийг үнэгүй татаж унших боломжтой сүлжээ.</div>
+                        <div class="psych-card-link">researchgate.net →</div>
+                    </a>
+                    <a href="https://psychology.mn/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🇲🇳</span><span class="psych-card-badge mn">🇲🇳 Монгол</span></div>
+                        <div class="psych-card-name">Psychology.mn</div>
+                        <div class="psych-card-desc">Сэтгэл Судлалын Үндэсний Төв — монгол хэлээрх судалгаа, мэдээлэл.</div>
+                        <div class="psych-card-link">psychology.mn →</div>
+                    </a>
+                    <a href="https://ses.msue.edu.mn/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🎓</span><span class="psych-card-badge mn">🇲🇳 Монгол</span></div>
+                        <div class="psych-card-name">МУБИС Сэтгэл судлал</div>
+                        <div class="psych-card-desc">МУБИС-ийн Сэтгэл судлалын тэнхимийн вэбсайт.</div>
+                        <div class="psych-card-link">ses.msue.edu.mn →</div>
+                    </a>
+                    <a href="https://www.verywellmind.com/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">💆</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Verywell Mind</div>
+                        <div class="psych-card-desc">Сэтгэцийн эрүүл мэнд, сэтгэл судлалын ойлгомжтой нийтлэлүүд.</div>
+                        <div class="psych-card-link">verywellmind.com →</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 6. Сургуулийн сэтгэл зүйч -->
+            <div class="psych-category">
+                <div class="psych-cat-header">
+                    <span class="psych-cat-icon">🏫</span>
+                    <span class="psych-cat-title">Сургуулийн сэтгэл зүйчид зориулсан</span>
+                    <span class="psych-cat-count">6 нөөц</span>
+                </div>
+                <div class="psych-grid">
+                    <a href="https://www.nasponline.org/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🏅</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">NASP Online</div>
+                        <div class="psych-card-desc">Үндэсний сургуулийн сэтгэл зүйчдийн холбоо — сургалтын материал, гарын авлага.</div>
+                        <div class="psych-card-link">nasponline.org →</div>
+                    </a>
+                    <a href="https://www.casel.org/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">💛</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">CASEL (SEL)</div>
+                        <div class="psych-card-desc">Нийгэм сэтгэл хөдлөлийн сургалт (SEL) — хөтөлбөр, дасгал, үнэлгээ.</div>
+                        <div class="psych-card-link">casel.org →</div>
+                    </a>
+                    <a href="https://www.understood.org/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🧩</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Understood.org</div>
+                        <div class="psych-card-desc">Суралцах, анхаарал төвлөрөлийн бэрхшээлтэй хүүхдүүдтэй ажиллах гарын авлага.</div>
+                        <div class="psych-card-link">understood.org →</div>
+                    </a>
+                    <a href="https://childmind.org/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🧠</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Child Mind Institute</div>
+                        <div class="psych-card-desc">Хүүхдийн сэтгэцийн эрүүл мэндийн нөөц, эцэг эхэд зориулсан зөвлөмж.</div>
+                        <div class="psych-card-link">childmind.org →</div>
+                    </a>
+                    <a href="https://www.stopbullying.gov/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🛡️</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">StopBullying.gov</div>
+                        <div class="psych-card-desc">Дээрэлхэлтээс урьдчилан сэргийлэх, шийдвэрлэх материал.</div>
+                        <div class="psych-card-link">stopbullying.gov →</div>
+                    </a>
+                    <a href="https://www.edutopia.org/social-emotional-learning" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">📚</span><span class="psych-card-badge free">Үнэгүй</span></div>
+                        <div class="psych-card-name">Edutopia SEL</div>
+                        <div class="psych-card-desc">Сургуульд нийгэм сэтгэл хөдлөлийн сургалтыг хэрэгжүүлэх практик зөвлөмж.</div>
+                        <div class="psych-card-link">edutopia.org →</div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 7. Хямралын тусламж -->
+            <div class="psych-category psych-crisis">
+                <div class="psych-cat-header">
+                    <span class="psych-cat-icon">🆘</span>
+                    <span class="psych-cat-title">Хямралын үеийн тусламж (Монгол)</span>
+                    <span class="psych-cat-count">24/7</span>
+                </div>
+                <div class="psych-grid psych-crisis-grid">
+                    <div class="psych-card psych-hotline">
+                        <div class="psych-card-top"><span class="psych-card-icon">📞</span><span class="psych-card-badge crisis">24/7 Үнэгүй</span></div>
+                        <div class="psych-card-name">108 — Хүүхдийн тусламж</div>
+                        <div class="psych-card-desc">Хүүхдийн тусламжийн утас. Цагийн аль ч үед, үнэгүй.</div>
+                        <a href="tel:108" class="psych-call-btn">📞 108 залгах</a>
+                    </div>
+                    <div class="psych-card psych-hotline">
+                        <div class="psych-card-top"><span class="psych-card-icon">📞</span><span class="psych-card-badge crisis">24/7 Үнэгүй</span></div>
+                        <div class="psych-card-name">1800-2000 — Гэр бүлийн хүчирхийлэл</div>
+                        <div class="psych-card-desc">Гэр бүлийн хүчирхийллийн эсрэг тусламжийн утас.</div>
+                        <a href="tel:18002000" class="psych-call-btn">📞 1800-2000 залгах</a>
+                    </div>
+                    <a href="https://www.unicef.org/mongolia/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🌍</span><span class="psych-card-badge mn">🇲🇳 Монгол</span></div>
+                        <div class="psych-card-name">ЮНИСЕФ Монгол</div>
+                        <div class="psych-card-desc">Хүүхдийн эрх, сайн сайхан байдлын тухай материал.</div>
+                        <div class="psych-card-link">unicef.org/mongolia →</div>
+                    </a>
+                    <a href="https://nmhc.gov.mn/" target="_blank" rel="noopener" class="psych-card">
+                        <div class="psych-card-top"><span class="psych-card-icon">🏥</span><span class="psych-card-badge mn">🇲🇳 Монгол</span></div>
+                        <div class="psych-card-name">Сэтгэцийн эрүүл мэндийн үндэсний төв</div>
+                        <div class="psych-card-desc">Монголын сэтгэцийн эрүүл мэндийн албан ёсны байгууллага.</div>
+                        <div class="psych-card-link">nmhc.gov.mn →</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- СЭТГЭЛ ЗҮЙ PAGE -->
+    <div id="psychPage" style="display: none;">
+        <h2 class="section-title">🧠 Сэтгэл зүйн боловсрол — Нөөц сан</h2>
+        <p class="section-intro">Тест, судалгаа, видео, арга зүй — сургуулийн сэтгэл зүйчид болон багш нарт зориулсан 40+ үнэгүй эх сурвалж.</p>
+
+        <!-- 1. Онлайн тест -->
+        <div class="aub-section-label">📋 Сэтгэл зүйн онлайн тест, сорил</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🧪</div>
+                <div class="card-content">
+                    <h3>Psychology Tools</h3>
+                    <p>Стандартчлагдсан тест — DASS-21, PHQ-9, GAD-7 гм. Оноо автоматаар тооцогддог.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://psychology-tools.com/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
                     </div>
                 </div>
-
-                <div class="card bridge-card" data-accent="aub-padlet">
-                    <div class="card-img" aria-hidden="true">🗂️</div>
-                    <div class="card-content">
-                        <h3>Padlet</h3>
-                        <p>Ангийн дижитал самбар: суралцагчдын бүтээл, зураг, мэдэгдэл нийтлэх, эцэг эхэд хуваалцах цахим тэмдэглэлийн самбар.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://padlet.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
-                        </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🧬</div>
+                <div class="card-content">
+                    <h3>Psychology Today</h3>
+                    <p>Бие хүн, харилцаа, сэтгэцийн эрүүл мэндийн чиглэлийн 100+ тест.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.psychologytoday.com/us/tests" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
                     </div>
                 </div>
-
-                <div class="card bridge-card" data-accent="aub-jamboard">
-                    <div class="card-img" aria-hidden="true">🖊️</div>
-                    <div class="card-content">
-                        <h3>Miro Board</h3>
-                        <p>Ангийн тархалтын зураглал, сэдэлзүй, оролцогчидтой хамтын зурагт самбар. Зайнаас оролцоход тохиромжтой.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://miro.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
-                        </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">📊</div>
+                <div class="card-content">
+                    <h3>Open Psychometrics</h3>
+                    <p>Big Five, IQ, MBTI төстэй шинжлэх ухааны үндэстэй нээлттэй тестүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://openpsychometrics.org/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
                     </div>
                 </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🪞</div>
+                <div class="card-content">
+                    <h3>16 Personalities</h3>
+                    <p>MBTI хэв шинжийн 16 төрлийг тогтоох тест — монгол хэлтэй.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">🇲🇳 Монгол</span>
+                        <a href="https://www.16personalities.com/mn" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🎯</div>
+                <div class="card-content">
+                    <h3>Truity</h3>
+                    <p>Карьер, бие хүн, харилцааны чиглэлийн олон төрлийн чанартай тестүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.truity.com/tests" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🩺</div>
+                <div class="card-content">
+                    <h3>MHA Screening</h3>
+                    <p>Сэтгэцийн эрүүл мэндийн скрининг — сэтгэл гутрал, түгшүүр, PTSD.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.mhanational.org/get-involved/screening-tools" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">⭐</div>
+                <div class="card-content">
+                    <h3>VIA Character</h3>
+                    <p>Хүний 24 давуу талыг тогтоох тест — эерэг сэтгэл судлалын үндсэн хэрэгсэл.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.viacharacter.org/character-strengths" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                <div class="card bridge-card" data-accent="aub-notion">
-                    <div class="card-img" aria-hidden="true">📒</div>
-                    <div class="card-content">
-                        <h3>Notion</h3>
-                        <p>АУБ-ийн ажлын дэвтэр: суралцагчийн бүртгэл, хурлын тэмдэглэл, жилийн ажлын тайлан нэг газар цуглуулах.</p>
-                        <div class="card-footer">
-                            <span class="card-count aub-free-badge">✅ Үнэгүй</span>
-                            <a href="https://www.notion.so" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
-                        </div>
+        <!-- 2. Видео, курс -->
+        <div class="aub-section-label">🎬 Видео, зурагт үзүүлэн & онлайн курс</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🎤</div>
+                <div class="card-content">
+                    <h3>TED — Psychology</h3>
+                    <p>Дэлхийн мэргэжилтнүүдийн сэтгэл судлалын TED илтгэлүүд, хадмал орчуулгатай.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.ted.com/topics/psychology" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🎓</div>
+                <div class="card-content">
+                    <h3>Coursera Psychology</h3>
+                    <p>Yale, Stanford, Michigan-ийн онлайн хичээлүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.coursera.org/browse/social-sciences/psychology" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🏛️</div>
+                <div class="card-content">
+                    <h3>edX Psychology</h3>
+                    <p>Harvard, MIT-ийн сэтгэл судлалын үнэгүй курсууд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.edx.org/learn/psychology" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">📖</div>
+                <div class="card-content">
+                    <h3>Noba Project</h3>
+                    <p>Нээлттэй сурах бичиг — 100+ бүлэг, видео үзүүлэнтэй.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://nobaproject.com/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">📚</div>
+                <div class="card-content">
+                    <h3>Simply Psychology</h3>
+                    <p>Үндсэн ойлголт, онол, туршилт, эрдэмтдийн тухай ойлгомжтой материалууд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.simplypsychology.org/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. YouTube -->
+        <div class="aub-section-label">▶️ Шилдэг YouTube сувгууд</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🎬</div>
+                <div class="card-content">
+                    <h3>Crash Course</h3>
+                    <p>Сэтгэл судлалын 40 ангитай танин мэдэхүйн цуврал.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">▶ YouTube</span>
+                        <a href="https://www.youtube.com/@CrashCourse" target="_blank" rel="noopener" class="btn-sm bridge-btn">Үзэх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">💡</div>
+                <div class="card-content">
+                    <h3>The School of Life</h3>
+                    <p>Сэтгэл хөдлөл, харилцаа, амьдралын ухааны тухай товч хичээлүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">▶ YouTube</span>
+                        <a href="https://www.youtube.com/@TheSchoolofLifeTV" target="_blank" rel="noopener" class="btn-sm bridge-btn">Үзэх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🎨</div>
+                <div class="card-content">
+                    <h3>Psych2Go</h3>
+                    <p>Анимэйшнтэй ойлгомжтой сэтгэл судлалын товч хичээлүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">▶ YouTube</span>
+                        <a href="https://www.youtube.com/@Psych2go" target="_blank" rel="noopener" class="btn-sm bridge-btn">Үзэх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🌱</div>
+                <div class="card-content">
+                    <h3>Sprouts</h3>
+                    <p>Сэтгэл судлалын онол, туршилтын анимэйшн тайлбар.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">▶ YouTube</span>
+                        <a href="https://www.youtube.com/@SprouhsHealth" target="_blank" rel="noopener" class="btn-sm bridge-btn">Үзэх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🇲🇳</div>
+                <div class="card-content">
+                    <h3>Гэгээмөр Сэтгэл зүй</h3>
+                    <p>Монгол хэлээрх сэтгэл зүйн хичээл, дасгалууд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">🇲🇳 Монгол</span>
+                        <a href="https://www.youtube.com/@gegeemorsetgelzui" target="_blank" rel="noopener" class="btn-sm bridge-btn">Үзэх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">📺</div>
+                <div class="card-content">
+                    <h3>МҮОНТ</h3>
+                    <p>Сэтгэл зүйчдийн ярилцлага, монгол хэлээрх нэвтрүүлгүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">🇲🇳 Монгол</span>
+                        <a href="https://www.youtube.com/@MNB1TV" target="_blank" rel="noopener" class="btn-sm bridge-btn">Үзэх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">📝</div>
+                <div class="card-content">
+                    <h3>Psych Exam Review</h3>
+                    <p>Анхан шатны хичээлүүд, шалгалтад бэлтгэх материал.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">▶ YouTube</span>
+                        <a href="https://www.youtube.com/@PsychExamReview" target="_blank" rel="noopener" class="btn-sm bridge-btn">Үзэх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🏫</div>
+                <div class="card-content">
+                    <h3>Khan Academy</h3>
+                    <p>Сэтгэл судлал, мэдрэл судлалын үндсэн хичээлүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.youtube.com/@khanacademymedicine" target="_blank" rel="noopener" class="btn-sm bridge-btn">Үзэх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Дасгал, арга зүй -->
+        <div class="aub-section-label">🧘 Сэтгэл зүйн дасгал, арга зүйн материал</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🛋️</div>
+                <div class="card-content">
+                    <h3>Therapist Aid</h3>
+                    <p>CBT, DBT дасгал, ажлын хуудас, видео — сэтгэл зүйчдэд зориулсан.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.therapistaid.com/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">☀️</div>
+                <div class="card-content">
+                    <h3>Positive Psychology</h3>
+                    <p>Эерэг сэтгэл судлалын дасгал, хэрэгсэл, шинжлэх ухааны нийтлэл.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://positivepsychology.com/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🌊</div>
+                <div class="card-content">
+                    <h3>Mindful.org</h3>
+                    <p>Бясалгал, ухаарал төвтэй дасгал, нийтлэл, аудио заавар.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.mindful.org/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">😊</div>
+                <div class="card-content">
+                    <h3>Smiling Mind</h3>
+                    <p>Хүүхэд, өсвөр насныханд зориулсан үнэгүй бясалгал, ухааралын апп.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.smilingmind.com.au/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🎒</div>
+                <div class="card-content">
+                    <h3>Coping Skills for Kids</h3>
+                    <p>Хүүхдэд сэтгэл хөдлөлөө удирдах ур чадвар сургах үнэгүй материал.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://copingskillsforkids.com/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🌟</div>
+                <div class="card-content">
+                    <h3>GoZen</h3>
+                    <p>Хүүхдийн түгшүүр, стрессийг бууруулах анимэйшн хичээлүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.gozen.com/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Онол, судалгаа -->
+        <div class="aub-section-label">🔬 Сэтгэл судлалын онол, өгөгдөл, судалгаа</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🏛️</div>
+                <div class="card-content">
+                    <h3>APA</h3>
+                    <p>Америкийн Сэтгэл Судлалын Холбоо — судалгаа, ёс зүйн дүрэм, мэргэжлийн нийтлэл.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.apa.org/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🔍</div>
+                <div class="card-content">
+                    <h3>Google Scholar</h3>
+                    <p>Шинжлэх ухааны өгүүлэл, судалгааны үнэгүй хайлтын систем.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🇲🇳</div>
+                <div class="card-content">
+                    <h3>Psychology.mn</h3>
+                    <p>Сэтгэл Судлалын Үндэсний Төв — монгол хэлээрх судалгаа, мэдээлэл.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">🇲🇳 Монгол</span>
+                        <a href="https://psychology.mn/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🎓</div>
+                <div class="card-content">
+                    <h3>МУБИС Сэтгэл судлал</h3>
+                    <p>МУБИС-ийн Сэтгэл судлалын тэнхимийн вэбсайт.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">🇲🇳 Монгол</span>
+                        <a href="https://ses.msue.edu.mn/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">💆</div>
+                <div class="card-content">
+                    <h3>Verywell Mind</h3>
+                    <p>Сэтгэцийн эрүүл мэнд, сэтгэл судлалын ойлгомжтой нийтлэлүүд.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.verywellmind.com/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">📄</div>
+                <div class="card-content">
+                    <h3>ResearchGate</h3>
+                    <p>Эрдэмтдийн судалгааны өгүүллийг үнэгүй татаж унших боломжтой сүлжээ.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.researchgate.net/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Сургуулийн сэтгэл зүйч -->
+        <div class="aub-section-label">🏫 Сургуулийн сэтгэл зүйчид зориулсан</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🏅</div>
+                <div class="card-content">
+                    <h3>NASP Online</h3>
+                    <p>Үндэсний сургуулийн сэтгэл зүйчдийн холбоо — сургалтын материал, гарын авлага.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.nasponline.org/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">💛</div>
+                <div class="card-content">
+                    <h3>CASEL (SEL)</h3>
+                    <p>Нийгэм сэтгэл хөдлөлийн сургалт (SEL) — хөтөлбөр, дасгал, үнэлгээ.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.casel.org/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🧩</div>
+                <div class="card-content">
+                    <h3>Understood.org</h3>
+                    <p>Суралцах, анхаарал төвлөрөлийн бэрхшээлтэй хүүхдүүдтэй ажиллах гарын авлага.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.understood.org/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🧠</div>
+                <div class="card-content">
+                    <h3>Child Mind Institute</h3>
+                    <p>Хүүхдийн сэтгэцийн эрүүл мэндийн нөөц, эцэг эхэд зориулсан зөвлөмж.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://childmind.org/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🛡️</div>
+                <div class="card-content">
+                    <h3>StopBullying.gov</h3>
+                    <p>Дээрэлхэлтээс урьдчилан сэргийлэх, шийдвэрлэх материал.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.stopbullying.gov/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">📚</div>
+                <div class="card-content">
+                    <h3>Edutopia SEL</h3>
+                    <p>Сургуульд нийгэм сэтгэл хөдлөлийн сургалтыг хэрэгжүүлэх практик зөвлөмж.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.edutopia.org/social-emotional-learning" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 7. Хямралын тусламж -->
+        <div class="aub-section-label">🆘 Хямралын үеийн тусламж (Монгол)</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="psych-crisis">
+                <div class="card-img" aria-hidden="true">📞</div>
+                <div class="card-content">
+                    <h3>108 — Хүүхдийн тусламж</h3>
+                    <p>Хүүхдийн тусламжийн утас. Цагийн аль ч үед, үнэгүй.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">24/7 Үнэгүй</span>
+                        <a href="tel:108" class="btn-sm bridge-btn" style="background:#c0392b;color:#fff;">📞 108</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych-crisis">
+                <div class="card-img" aria-hidden="true">📞</div>
+                <div class="card-content">
+                    <h3>1800-2000 — Гэр бүлийн хүчирхийлэл</h3>
+                    <p>Гэр бүлийн хүчирхийллийн эсрэг тусламжийн утас.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">24/7 Үнэгүй</span>
+                        <a href="tel:18002000" class="btn-sm bridge-btn" style="background:#c0392b;color:#fff;">📞 1800-2000</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🌍</div>
+                <div class="card-content">
+                    <h3>ЮНИСЕФ Монгол</h3>
+                    <p>Хүүхдийн эрх, сайн сайхан байдлын тухай материал.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">🇲🇳 Монгол</span>
+                        <a href="https://www.unicef.org/mongolia/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="psych">
+                <div class="card-img" aria-hidden="true">🏥</div>
+                <div class="card-content">
+                    <h3>Сэтгэцийн эрүүл мэндийн үндэсний төв</h3>
+                    <p>Монголын сэтгэцийн эрүүл мэндийн албан ёсны байгууллага.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">🇲🇳 Монгол</span>
+                        <a href="https://nmhc.gov.mn/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- АУБ PAGE -->
+    <div id="aubPage" style="display: none;">
+        <h2 class="section-title">👩‍🏫 Анги Удирдсан Багш — Цахим хэрэгслүүд</h2>
+        <p class="section-intro">Ангийн удирдлага, эцэг эхтэй харилцаа, суралцагчийн хяналт болон бүтээлч ажилд зориулсан 12 үнэгүй хэрэгсэл.</p>
+
+        <div class="aub-section-label">🏫 Ангийн удирдлага & харилцаа холбоо</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="aub-dojo">
+                <div class="card-img" aria-hidden="true">🟢</div>
+                <div class="card-content">
+                    <h3>ClassDojo</h3>
+                    <p>Ангийн зан байдал хянах, эцэг эхтэй шууд харилцах, цонхны мессеж болон зургаар мэдээлэл хуваалцах хамгийн алдартай платформ.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.classdojo.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-classroom">
+                <div class="card-img" aria-hidden="true">📋</div>
+                <div class="card-content">
+                    <h3>Google Classroom</h3>
+                    <p>Даалгавар, зар мэдэгдэл, хичээлийн материал тараах, суралцагчдын ажлыг цахимаар шалгах бүрэн орчин.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://classroom.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-remind">
+                <div class="card-img" aria-hidden="true">💬</div>
+                <div class="card-content">
+                    <h3>Remind</h3>
+                    <p>Эцэг эх, суралцагчдад SMS болон апп-аар мессеж илгээх. Хувийн утасны дугаар нуугдаж, аюулгүй харилцаа үүснэ.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.remind.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-seesaw">
+                <div class="card-img" aria-hidden="true">📔</div>
+                <div class="card-content">
+                    <h3>Seesaw</h3>
+                    <p>Суралцагчийн цахим портфолио үүсгэх, эцэг эхэд ахицыг дүрс болон тайлбараар хүргэх, бага ангид маш тохиромжтой.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://web.seesaw.me" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="aub-section-label">📊 Бүртгэл, ирц & хяналт</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="aub-forms">
+                <div class="card-img" aria-hidden="true">📝</div>
+                <div class="card-content">
+                    <h3>Google Forms</h3>
+                    <p>Ирц бүртгэл, асуулга, эцэг эхийн санал авах маягт хурдан зохиох. Хариулт автоматаар Google Sheets руу орно.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://forms.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-sheets">
+                <div class="card-img" aria-hidden="true">📊</div>
+                <div class="card-content">
+                    <h3>Google Sheets</h3>
+                    <p>Суралцагчдын гүйцэтгэл, ирц, үнэлгээний дүн хяналтын хүснэгт гаргах. Автомат тооцоо, өнгөт дүрслэлтэй.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://sheets.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-trello">
+                <div class="card-img" aria-hidden="true">📌</div>
+                <div class="card-content">
+                    <h3>Trello</h3>
+                    <p>Ангийн ажлын төлөвлөгөө, арга хэмжээ, хурлын цэс болон жилийн ажлын хуваарийг карт системээр удирдах.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://trello.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-calendar">
+                <div class="card-img" aria-hidden="true">📅</div>
+                <div class="card-content">
+                    <h3>Google Calendar</h3>
+                    <p>Ангийн арга хэмжээ, эцэг эхийн уулзалт, сургуулийн хуваарийг нэг дороос харах, сануулга тохируулах.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://calendar.google.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="aub-section-label">🎨 Бүтээлч хэрэгсэл & танилцуулга</div>
+        <div class="courses-grid bridge-grid">
+            <div class="card bridge-card" data-accent="aub-canva">
+                <div class="card-img" aria-hidden="true">🎨</div>
+                <div class="card-content">
+                    <h3>Canva for Education</h3>
+                    <p>Ангийн мэдэгдэл, хүндэтгэлийн гэрчилгээ, хурлын слайд, ангийн сонин зэргийг мэргэжлийн загвараар хурдан хийх.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.canva.com/education/" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-padlet">
+                <div class="card-img" aria-hidden="true">🗂️</div>
+                <div class="card-content">
+                    <h3>Padlet</h3>
+                    <p>Ангийн дижитал самбар: суралцагчдын бүтээл, зураг, мэдэгдэл нийтлэх, эцэг эхэд хуваалцах цахим тэмдэглэлийн самбар.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://padlet.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-jamboard">
+                <div class="card-img" aria-hidden="true">🖊️</div>
+                <div class="card-content">
+                    <h3>Miro Board</h3>
+                    <p>Ангийн тархалтын зураглал, сэдэлзүй, оролцогчидтой хамтын зурагт самбар. Зайнаас оролцоход тохиромжтой.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://miro.com" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card bridge-card" data-accent="aub-notion">
+                <div class="card-img" aria-hidden="true">📒</div>
+                <div class="card-content">
+                    <h3>Notion</h3>
+                    <p>АУБ-ийн ажлын дэвтэр: суралцагчийн бүртгэл, хурлын тэмдэглэл, жилийн ажлын тайлан нэг газар цуглуулах.</p>
+                    <div class="card-footer">
+                        <span class="card-count aub-free-badge">✅ Үнэгүй</span>
+                        <a href="https://www.notion.so" target="_blank" rel="noopener" class="btn-sm bridge-btn">Нээх →</a>
                     </div>
                 </div>
             </div>
@@ -4453,7 +5366,7 @@
 </main>
 
 <footer>
-    <p>© 2025 Capstone 8-р баг | Хиймэл оюун ухааны багш бэлтгэл хөтөлбөр | Өмнөговь &amp; Сэлэнгэ аймгууд</p>
+    <p>© 2026 Capstone 8-р баг | Хиймэл оюун ухааны багш бэлтгэл хөтөлбөр | Өмнөговь &amp; Сэлэнгэ аймгууд</p>
 </footer>
 
 <script>
@@ -4470,8 +5383,8 @@
         "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 01_39_56 PM.png",   // 1 — Багийн ахлагч
         "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 01_45_10 PM.png",   // 2
         "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 10_14_21 AM.png",   // 3 (was 20)
-        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_11_49 AM.png",   // 4 (was 23)
-        "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_41_45 AM.png",   // 5 (was 25)
+        "8-р баг танилцуулга/4.png",   // 4
+        "8-р баг танилцуулга/5.png",   // 5
         "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_43_18 AM.png",   // 6 (was 26)
         "8-р баг танилцуулга/ChatGPT Image May 15, 2026, 11_44_53 AM.png",   // 7 (was 27)
         "8-р баг танилцуулга/8.png",                                          // 8
@@ -4529,7 +5442,9 @@
         geography: "geography",
         chemistry: "chemistry",
         physics: "physics",
-        music: "music"
+        music: "music",
+        aub: "aub",
+        psych: "psych"
     };
 
     function initBridgeButtons() {
@@ -4748,7 +5663,7 @@
     // PAGE NAVIGATION
     function showPage(pageId) {
         ["homePage","coursesPage","mathPage","quizPage","dashboardPage","teamPage","contactPage",
-         "socialPage","englishPage","itPage","childprotectionPage","primaryeduPage","sobPage","vocationalPage","geographyPage","chemistryPage","physicsPage","musicPage"
+         "socialPage","englishPage","itPage","childprotectionPage","primaryeduPage","sobPage","vocationalPage","geographyPage","chemistryPage","physicsPage","musicPage","aubPage","psychPage"
         ].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.style.display = "none";
@@ -4771,6 +5686,8 @@
         if (pageId === "chemistry") document.getElementById("chemistryPage").style.display = "block";
         if (pageId === "physics")   document.getElementById("physicsPage").style.display = "block";
         if (pageId === "music")     document.getElementById("musicPage").style.display = "block";
+        if (pageId === "aub")       document.getElementById("aubPage").style.display = "block";
+        if (pageId === "psych")     document.getElementById("psychPage").style.display = "block";
         document.querySelectorAll(".nav-links a").forEach(link => {
             if (link.getAttribute("data-page") === pageId) link.classList.add("active");
             else link.classList.remove("active");
@@ -4813,18 +5730,9 @@
 
     // CONTACT FORM
     // ══════════════════════════════════════════════
-    // EmailJS тохиргоо
-    // emailjs.com дээр бүртгүүлээд доорх 3 утгыг оруулна уу:
-    const EMAILJS_PUBLIC_KEY  = "dlwJ--9TYv4c1ziNY";   // Account → API Keys
-    const EMAILJS_SERVICE_ID  = "service_k8hd8jj";   // Email Services → Service ID
-    const EMAILJS_TEMPLATE_ID = "template_nvpu3wk";  // Email Templates → Template ID
+    // Web3Forms — web3forms.com/activate дээр имэйл оруулаад авсан key
+    const W3F_KEY = "b97655f4-6349-40e0-8afd-49350436e5f0";
     // ══════════════════════════════════════════════
-
-    (function initEmailJS() {
-        if (typeof emailjs !== "undefined" && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY") {
-            emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
-        }
-    })();
 
     document.getElementById("contactForm")?.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -4836,7 +5744,6 @@
         const btn      = document.getElementById("contactSubmitBtn");
         const btnText  = document.getElementById("submitBtnText");
 
-        // Баталгаажуулалт
         if (!name || !email || !msg) {
             feedback.innerHTML = `<div style="background:#fff0f0;border:1px solid #f5c6cb;border-radius:0.8rem;padding:0.8rem 1rem;color:#c00;">❌ Нэр, имэйл, мессежийг заавал бөглөнө үү.</div>`;
             return;
@@ -4846,43 +5753,11 @@
             return;
         }
 
-        // EmailJS тохируулагдсан бол → EmailJS-ээр илгээх
-        const ejsReady = typeof emailjs !== "undefined" && EMAILJS_PUBLIC_KEY !== "YOUR_PUBLIC_KEY";
-
-        if (ejsReady) {
-            btn.disabled = true;
-            btnText.textContent = "⏳ Илгээж байна...";
-            feedback.innerHTML = "";
-            try {
-                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                    from_name:  name,
-                    from_email: email,
-                    subject:    subject,
-                    message:    msg
-                });
-                feedback.innerHTML = `<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:0.8rem;padding:0.9rem 1.1rem;color:#166534;">
-                    ✅ <strong>Мессеж амжилттай илгээгдлээ!</strong><br>
-                    <span style="font-size:0.85rem;">dorjbat2dkxl@moes.edu.mn хаягт очлоо. Удахгүй хариу өгнө.</span>
-                </div>`;
-                document.getElementById("contactForm").reset();
-            } catch(err) {
-                console.error("EmailJS error:", err);
-                feedback.innerHTML = `<div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:0.8rem;padding:0.8rem 1rem;color:#9a3412;">⚠️ Алдаа: ${JSON.stringify(err)}</div>`;
-            } finally {
-                btn.disabled = false;
-                btnText.textContent = "📨 Илгээх";
-            }
-        } else {
-            // EmailJS тохируулаагүй → mailto fallback
-            const mailSubject = encodeURIComponent(`EduMongol: ${subject}`);
-            const mailBody    = encodeURIComponent(`Нэр: ${name}\nИмэйл: ${email}\nСэдэв: ${subject}\n\nМессеж:\n${msg}`);
-            window.location.href = `mailto:dorjbat2dkxl@moes.edu.mn?subject=${mailSubject}&body=${mailBody}`;
-            feedback.innerHTML = `<div style="background:#f0f9ff;border:1px solid #bae6fd;border-radius:0.8rem;padding:0.9rem 1.1rem;color:#075985;">
-                📧 <strong>Имэйл апп нээгдлээ.</strong><br>
-                <span style="font-size:0.85rem;">Gmail эсвэл имэйл клиент дээр «Илгээх» товч дарна уу.</span>
-            </div>`;
-            document.getElementById("contactForm").reset();
-        }
+        const s = encodeURIComponent(`EduMongol: ${subject}`);
+        const b = encodeURIComponent(`Нэр: ${name}\nИмэйл: ${email}\nСэдэв: ${subject}\n\nМессеж:\n${msg}`);
+        window.location.href = `mailto:dorjbat2dkxl@moes.edu.mn?subject=${s}&body=${b}`;
+        feedback.innerHTML = `<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:0.8rem;padding:0.9rem 1.1rem;color:#166534;">✅ <strong>Имэйл апп нээгдлээ!</strong><br><span style="font-size:0.85rem;">Gmail эсвэл Outlook дээр <b>«Илгээх»</b> дарна уу.</span></div>`;
+        document.getElementById("contactForm").reset();
     });
 
     // ===== GOOGLE SHEETS ХОЛБООС =====
@@ -4992,7 +5867,7 @@
         // ── Мэндчилгээ ──
         {
             keys: ["сайн уу","сайн байна","hello","hi","мэнд","нүүр","юу мэдэх","юу чадах","чи юу"],
-            reply: "Сайн байна уу! 👋 Би <b>EduBot</b> — EduMongol платформын AI туслах.\n\nДараах <b>бүх хэсгийн</b> мэдээлэл мэднэ:\n\n📚 <b>ЕБС (10 хичээл):</b>\n🇬🇧 Англи хэл · 🌍 Нийгмийн ухаан · 💻 МТ · 🎒 Бага боловсрол\n🛡️ Хүүхэд хамгаалал · 📐 Математик · 🗺️ Газар зүй\n⚗️ Хими · ⚛️ Физик · 🎵 Хөгжим\n\n🌱 <b>СӨБ</b> — Сургуулийн өмнөх боловсрол\n🔧 <b>Мэргэжлийн боловсрол</b> — 8 чиглэл, бодлогын баримт бичиг, AI хэрэгслүүд\n\nАль хэсгийн тухай асуух вэ?"
+            reply: "Сайн байна уу! 👋 Би <b>EduBot</b> — EduMongol платформын AI туслах.\n\nДараах <b>бүх хэсгийн</b> мэдээлэл мэднэ:\n\n📚 <b>ЕБС (10 хичээл):</b>\n🇬🇧 Англи хэл · 🌍 Нийгмийн ухаан · 💻 МТ · 🎒 Бага боловсрол\n🛡️ Хүүхэд хамгаалал · 📐 Математик · 🗺️ Газар зүй\n⚗️ Хими · ⚛️ Физик · 🎵 Хөгжим\n\n🌱 <b>СӨБ</b> — Сургуулийн өмнөх боловсрол\n🔧 <b>Мэргэжлийн боловсрол</b> — 8 чиглэл, бодлогын баримт бичиг, AI хэрэгслүүд\n👩‍🏫 <b>АУБ</b> — 12 хэрэгсэл (ClassDojo, Remind, Notion гм)\n🧠 <b>Сэтгэл зүйн боловсрол</b> — 40+ нөөц, 7 ангилал, тест, видео, арга зүй\n\n📚 <b>Хичээлүүд</b> — Монгол видео + үнэгүй олон улсын курсууд\n👥 <b>Бидний баг</b> — 36 гишүүний фото грид\n📬 <b>Холбоо барих</b> — Маягтаар мессеж илгээх\n\nАль хэсгийн тухай асуух вэ?"
         },
 
         // ── ЕБС ерөнхий ──
@@ -5147,6 +6022,84 @@
             reply: "📊 <b>Дашбоард</b> — сурах явцын хяналтын самбар.\n\nХичээл бүрийн дэвшлийг хувиар хянаж, нийт дундаж дэвшлийг харна.\n\n🧩 <b>Тест хэсэг</b> — Хиймэл оюун ухааны мэдлэг шалгах олон сонголттой асуулт:\n• ХО-ны үндсэн ойлголтууд\n• Боловсролд AI ашиглах жишээ\n• Ёс зүйн асуудлууд\n\n→ Цэснээс «Дашбоард» эсвэл «Тест» сонгоно уу."
         },
 
+        // ── Сэтгэл зүйн боловсрол — ерөнхий ──
+        {
+            keys: ["сэтгэл зүй","сэтгэл судлал","psychology","психологи","psych","сэтгэлзүй","сэтгэцийн"],
+            reply: "🧠 <b>Сэтгэл зүйн боловсрол хэсэгт 40+ нөөц</b> байна:\n\n📋 <b>7 ангилал:</b>\n• 📋 Онлайн тест, сорил — 7 хэрэгсэл\n• 🎬 Видео, курс — TED, Coursera, edX, Noba\n• ▶️ YouTube суваг — 8 суваг (Монгол + олон улсын)\n• 🧘 Дасгал, арга зүй — CBT, DBT, Mindfulness\n• 🔬 Онол, судалгаа — APA, Google Scholar, psychology.mn\n• 🏫 Сургуулийн сэтгэл зүйч — NASP, CASEL, SEL\n• 🆘 Хямралын тусламж — 108, 1800-2000 (24/7)\n\n→ Нүүр хуудас » «Сэтгэл зүйн боловсрол» карт » Үзэх →"
+        },
+
+        // ── Сэтгэл зүйн тест ──
+        {
+            keys: ["сэтгэл зүйн тест","психологийн тест","dass","phq","gad","mbti","16 personalities","big five","openpsychometrics","truity","via character","mha","психометрик","стандартчлагдсан тест"],
+            reply: "📋 <b>Сэтгэл зүйн онлайн тест, сорил (7):</b>\n\n🧪 <b>Psychology Tools</b> — DASS-21, PHQ-9, GAD-7 гм стандартчлагдсан тест, оноо автоматаар тооцогддог\npsychology-tools.com\n\n🧬 <b>Psychology Today</b> — 100+ тест, бие хүн, харилцаа, сэтгэцийн эрүүл мэнд\npsychologytoday.com/us/tests\n\n📊 <b>Open Psychometrics</b> — Big Five, IQ, MBTI төстэй шинжлэх ухааны тестүүд\nopenpsychometrics.org\n\n🪞 <b>16 Personalities</b> — MBTI-ийн 16 хэв шинж, <b>монгол хэлтэй!</b>\n16personalities.com/mn\n\n🎯 <b>Truity</b> — Карьер, харилцааны чанартай тестүүд\ntruity.com/tests\n\n🩺 <b>MHA Screening</b> — Сэтгэл гутрал, түгшүүр, PTSD скрининг\nmhanational.org\n\n⭐ <b>VIA Character</b> — 24 давуу талыг тогтоох тест, эерэг сэтгэл судлал\nviacharacter.org"
+        },
+
+        // ── Сэтгэл зүйн YouTube ──
+        {
+            keys: ["crash course","school of life","psych2go","sprouts","гэгээмөр","gegeemorsetgelzui","psych exam","сэтгэл зүйн видео","сэтгэл зүйн суваг","психологийн суваг"],
+            reply: "▶️ <b>Шилдэг YouTube сувгууд (8):</b>\n\n🎬 <b>Crash Course Psychology</b> — 40 ангитай танин мэдэхүйн цуврал\n@CrashCourse\n\n💡 <b>The School of Life</b> — Сэтгэл хөдлөл, харилцаа, амьдралын ухаан\n@TheSchoolofLifeTV\n\n🎨 <b>Psych2Go</b> — Анимэйшнтэй ойлгомжтой товч хичээлүүд\n@Psych2go\n\n🌱 <b>Sprouts</b> — Онол, туршилтын анимэйшн тайлбар\n@SprouhsHealth\n\n📝 <b>Psych Exam Review</b> — Шалгалтад бэлтгэх хичээлүүд\n@PsychExamReview\n\n🇲🇳 <b>Гэгээмөр Сэтгэл зүй</b> — Монгол хэлтэй хичээл, дасгал\n@gegeemorsetgelzui\n\n📺 <b>МҮОНТ</b> — Монгол сэтгэл зүйчдийн ярилцлага\n@MNB1TV\n\n🏫 <b>Khan Academy</b> — Сэтгэл судлал, мэдрэл судлал\n@khanacademymedicine"
+        },
+
+        // ── Сэтгэл зүйн дасгал, арга зүй ──
+        {
+            keys: ["therapist aid","mindful","bясалгал","бясалгал","cbt","dbt","mindfulness","smiling mind","gozen","coping","positive psychology","positivepsychology","сэтгэл зүйн дасгал","арга зүй","ухаарал"],
+            reply: "🧘 <b>Сэтгэл зүйн дасгал, арга зүйн материал (6+):</b>\n\n🛋️ <b>Therapist Aid</b> — CBT, DBT дасгал, ажлын хуудас (сэтгэл зүйчдэд)\ntherapistaid.com\n\n☀️ <b>Positive Psychology</b> — Эерэг сэтгэл судлалын дасгал, нийтлэл\npositivepsychology.com\n\n🌊 <b>Mindful.org</b> — Бясалгал, аудио заавар, нийтлэл\nmindful.org\n\n😊 <b>Smiling Mind</b> — Хүүхэд, өсвөр насныханд бясалгал, ухаарал\nsmilingmind.com.au\n\n🌟 <b>GoZen</b> — Хүүхдийн түгшүүр, стресс бууруулах анимэйшн\ngozen.com\n\n🎒 <b>Coping Skills for Kids</b> — Сэтгэл хөдлөл удирдах материал\ncopingskillsforkids.com\n\n🔧 <b>Psychology Tools</b> — Мэргэжлийн ажлын хуудас, гарын авлага\npsychologytools.com"
+        },
+
+        // ── Сэтгэл зүйн судалгаа, онол ──
+        {
+            keys: ["apa","american psychological","psychology.mn","verywellmind","researchgate","google scholar","мубис сэтгэл","нобо","сэтгэл судлалын судалгаа","simply psychology","simplypsychology"],
+            reply: "🔬 <b>Сэтгэл судлалын онол, өгөгдөл, судалгаа (6):</b>\n\n🏛️ <b>APA</b> — Америкийн Сэтгэл Судлалын Холбоо, судалгаа, ёс зүйн дүрэм\napa.org\n\n🔍 <b>Google Scholar</b> — Шинжлэх ухааны өгүүллийн үнэгүй хайлт\nscholar.google.com\n\n📄 <b>ResearchGate</b> — Эрдэмтдийн өгүүллийг үнэгүй унших\nresearchgate.net\n\n🇲🇳 <b>Psychology.mn</b> — Сэтгэл Судлалын Үндэсний Төв\npsychology.mn\n\n🎓 <b>МУБИС Сэтгэл судлал</b> — Тэнхимийн вэбсайт\nses.msue.edu.mn\n\n💆 <b>Verywell Mind</b> — Ойлгомжтой нийтлэлүүд, мэргэжилтнүүд бичсэн\nverywellmind.com\n\n📚 <b>Simply Psychology</b> — Үндсэн ойлголт, онол, туршилт\nsimplypsychology.org"
+        },
+
+        // ── Сургуулийн сэтгэл зүйч ──
+        {
+            keys: ["сургуулийн сэтгэл зүйч","nasp","casel","sel","нийгэм сэтгэл хөдлөл","understood","childmind","stopbullying","дээрэлхэлт","bullying","edutopia sel","хүүхдийн сэтгэцийн"],
+            reply: "🏫 <b>Сургуулийн сэтгэл зүйчид зориулсан (6):</b>\n\n🏅 <b>NASP Online</b> — Үндэсний сургуулийн сэтгэл зүйчдийн холбоо, гарын авлага\nnasponline.org\n\n💛 <b>CASEL</b> — Нийгэм сэтгэл хөдлөлийн сургалт (SEL), хөтөлбөр, дасгал\ncasel.org\n\n🧩 <b>Understood.org</b> — Суралцах, ADHD бэрхшээлтэй хүүхдүүд\nunderstood.org\n\n🧠 <b>Child Mind Institute</b> — Хүүхдийн сэтгэцийн эрүүл мэнд, эцэг эхэд зөвлөмж\nchildmind.org\n\n🛡️ <b>StopBullying.gov</b> — Дээрэлхэлтээс урьдчилан сэргийлэх материал\nstopbullying.gov\n\n📚 <b>Edutopia SEL</b> — Сургуульд SEL хэрэгжүүлэх практик зөвлөмж\nedutopia.org/social-emotional-learning"
+        },
+
+        // ── Хямралын тусламж ──
+        {
+            keys: ["хямрал","108","1800","1800-2000","юнисеф","nmhc","сэтгэцийн эрүүл мэндийн үндэсний","тусламжийн утас","хүчирхийлэл","crisis"],
+            reply: "🆘 <b>Хямралын үеийн тусламж (Монгол) — 24/7:</b>\n\n📞 <b>108</b> — Хүүхдийн тусламжийн утас\nЦагийн аль ч үед, үнэгүй залгах боломжтой\n\n📞 <b>1800-2000</b> — Гэр бүлийн хүчирхийллийн эсрэг тусламж\nУтсаар, үнэгүй\n\n🌍 <b>ЮНИСЕФ Монгол</b> — Хүүхдийн эрх, сайн сайхан байдал\nunicef.org/mongolia\n\n🏥 <b>Сэтгэцийн эрүүл мэндийн үндэсний төв</b>\nnmhc.gov.mn\n\n⚠️ Хэрэв яаралтай тусламж хэрэгтэй бол <b>108</b> эсвэл <b>1800-2000</b> руу залгана уу."
+        },
+
+        // ── Psych tools тодорхой ──
+        {
+            keys: ["psychology-tools.com","psychology tools.com","noba","nobaproject","ted psychology","ted сэтгэл"],
+            reply: "🧪 <b>Psychology Tools</b> (psychology-tools.com) — стандартчлагдсан сэтгэл зүйн тест:\n• DASS-21 — Сэтгэл гутрал, түгшүүр, стресс\n• PHQ-9 — Депрессийн скрининг\n• GAD-7 — Ерөнхий түгшүүрийн оноо\n• Оноо автоматаар тооцогддог\n\n📖 <b>Noba Project</b> (nobaproject.com) — 100+ бүлэг бүхий нээлттэй сэтгэл судлалын сурах бичиг, видео үзүүлэнтэй.\n\n🎤 <b>TED Psychology</b> — ted.com/topics/psychology — дэлхийн мэргэжилтнүүдийн илтгэлүүд, хадмал орчуулгатай."
+        },
+
+        // ── АУБ дэлгэрэнгүй хэрэгслүүд ──
+        {
+            keys: ["google forms","google sheets","google calendar","google classroom","canva education","miro","notion","remind","seesaw"],
+            reply: "📊 <b>АУБ хэрэгслүүдийн дэлгэрэнгүй:</b>\n\n📝 <b>Google Forms</b> — Ирц бүртгэл, асуулга, маягт. Хариулт автоматаар Sheets-т орно\n📊 <b>Google Sheets</b> — Дүн, ирц хянах хүснэгт, автомат тооцоо\n📅 <b>Google Calendar</b> — Уулзалт, арга хэмжээ, сануулга\n📋 <b>Google Classroom</b> — Даалгавар, материал тараах, шалгах\n🎨 <b>Canva for Education</b> — Гэрчилгээ, слайд, мэдэгдэл\n🗂️ <b>Padlet</b> — Дижитал самбар, бүтээл хуваалцах\n🖊️ <b>Miro Board</b> — Хамтын зурагт самбар, сэдэлзүй\n📒 <b>Notion</b> — АУБ-ийн ажлын дэвтэр, бүртгэл, тайлан\n💬 <b>Remind</b> — Аюулгүй SMS мессеж, хувийн дугаар нуугддаг\n📔 <b>Seesaw</b> — Суралцагчийн портфолио, эцэг эхэд ахиц дамжуулах\n\n→ Нүүр хуудас » АУБ карт » Үзэх →"
+        },
+
+        // ── Вэбсайтын бүтэц / навигаци ──
+        {
+            keys: ["нүүр хуудас","navigation","цэс","хэсэг","аль хуудас","хаана байна","яаж олох","хайх","навигаци"],
+            reply: "🗺️ <b>EduMongol навигаци:</b>\n\n🏠 <b>Нүүр</b> — ЕБС (10 хичээл), СӨБ, Мэргэжлийн боловсрол табууд\n&nbsp;&nbsp;&nbsp;+ АУБ карт, Сэтгэл зүйн боловсрол карт\n\n📚 <b>Хичээлүүд</b> — Монгол видео + 8 үнэгүй олон улсын курс\n\n🧩 <b>Тест</b> — ХО-ны мэдлэг шалгах тест\n\n📊 <b>Дашбоард</b> — Хичээлийн явцын хяналт\n\n👥 <b>Бидний баг</b> — 36 гишүүний фото грид, lightbox\n\n📬 <b>Холбоо барих</b> — Маягтаар мессеж илгээх\n\nЦэснээс сонгох эсвэл надаас асуугаарай!"
+        },
+
+        // ── Capstone тухай ──
+        {
+            keys: ["capstone","8-р баг","8р баг","найм дахь","өмнөговь","сэлэнгэ","аймаг","хөтөлбөр","хиймэл оюун ухааны хөтөлбөр","ai хөтөлбөр"],
+            reply: "🎓 <b>Capstone 8-р баг — EduMongol</b>\n\n📍 <b>Аймгууд:</b> Өмнөговь & Сэлэнгэ аймгуудийн нэгдэл\n\n🎯 <b>Хөтөлбөр:</b> Хиймэл оюун ухааны багш бэлтгэл хөтөлбөр (2026)\n\n👥 <b>36 гишүүн</b> — «Бидний баг» хуудсаас харна уу\n\n🌐 <b>Платформ:</b> EduMongol — Монголын боловсролын нөөцийн нэгдсэн цонх\n\n© 2026 Capstone 8-р баг | Хиймэл оюун ухааны багш бэлтгэл хөтөлбөр | Өмнөговь & Сэлэнгэ аймгууд"
+        },
+
+        // ── Footer / copyright ──
+        {
+            keys: ["footer","copyright","2026","зохиогч","эзэмшигч"],
+            reply: "© 2026 <b>Capstone 8-р баг</b>\nХиймэл оюун ухааны багш бэлтгэл хөтөлбөр\nӨмнөговь & Сэлэнгэ аймгууд\n\nЭнэ вэбсайт нь Монгол багш нарт AI-ийн боловсролын нөөцийг нэг дороос хүргэх зорилгоор хийгдсэн."
+        },
+
+        // ── Холбоо барих дэлгэрэнгүй ──
+        {
+            keys: ["форм","маягт","имэйл хаяг","dorjbat","мессеж явуул","web3forms","илгээх тулд"],
+            reply: "📬 <b>Холбоо барих маягт</b>\n\n«Холбоо барих» цэсийг нээгээд:\n1️⃣ <b>Нэр</b> бичнэ\n2️⃣ <b>Имэйл хаяг</b> оруулна\n3️⃣ <b>Сэдэв</b> бичнэ\n4️⃣ <b>Мессеж</b> бичнэ\n5️⃣ <b>«Илгээх»</b> товч дарна\n\n✅ Мессеж шууд dorjbat2dkxl@moes.edu.mn хаягт очно.\nBid удахгүй хариу илгээнэ! ✉️"
+        },
+
         // ── Баярлалаа ──
         {
             keys: ["баярлалаа","баяр","талархал","thanks","thank you","болсон","за","ок","ok"],
@@ -5154,10 +6107,41 @@
         }
     ];
 
-    function getBotReply(msg) {
-        const lower = msg.toLowerCase().trim();
+    const GROQ_KEY = "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";
+    const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+    const SYSTEM_CONTEXT = "Та EduMongol вэбсайтын AI туслах EduBot юм. Монгол багш нарт зориулсан боловсролын платформ. Вэбсайтын үндсэн хэсгүүд: ЕБС (Математик, Физик, Хими, Газар зүй, Англи хэл, МТ, Хөгжим, Нийгмийн ухаан, Мэргэжлийн боловсрол, Хүүхэд хамгаалал, Бага боловсрол), АУБ (ClassDojo, Google Classroom, Seesaw, Remind), Сэтгэл зүйн боловсрол (DASS-21, PHQ-9, GAD-7, MBTI тест, Therapist Aid, Mindfulness), EduBot AI чат, Бидний баг (8-р баг, Өмнөговь & Сэлэнгэ аймгууд), Холбоо барих форм. Линк оруулахдаа [гарчиг](URL) форматаар, YouTube бол [нэр](URL) форматаар бич. Хариултаа монгол хэлээр, товч тодорхой өг.";
 
-        // Оноо суурилсан хамгийн тохирох хариулт олох
+    async function askGemini(userMsg) {
+        try {
+            const res = await fetch(GROQ_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + GROQ_KEY
+                },
+                body: JSON.stringify({
+                    model: "llama-3.3-70b-versatile",
+                    messages: [
+                        { role: "system", content: SYSTEM_CONTEXT },
+                        { role: "user", content: userMsg }
+                    ],
+                    max_tokens: 600
+                })
+            });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                return "⚠️ AI алдаа: " + (err?.error?.message || res.status);
+            }
+            const data = await res.json();
+            const text = data.choices?.[0]?.message?.content || "Хариулт олдсонгүй.";
+            return "🤖 <b>EduBot AI:</b><br>" + text;
+        } catch (e) {
+            return "⚠️ AI холболт амжилтгүй: " + e.message;
+        }
+    }
+
+    function checkKeywords(msg) {
+        const lower = msg.toLowerCase().trim();
         let bestScore = 0;
         let bestReply = null;
 
@@ -5175,17 +6159,44 @@
             }
         }
 
-        if (bestReply) return bestReply;
+        return bestReply; // олдвол хариулт, олдохгүй бол null
+    }
 
-        // Таалцаагүй бол динамик зөвлөмж
-        const suggestions = [
-            "ЕБС", "СӨБ", "АУБ", "Физик", "Хөгжим", "Математик",
-            "Газар зүй", "Хими", "Англи хэл", "МТ", "Хүүхэд хамгаалал",
-            "Бага боловсрол", "Нийгмийн ухаан", "Мэргэжлийн боловсрол",
-            "Хичээлүүд", "ClassDojo", "ChatGPT", "Khan Academy", "Baг"
-        ];
-        const rnd = suggestions.sort(() => 0.5 - Math.random()).slice(0, 5).join(", ");
-        return `🤔 <b>«${msg}»</b> — ийм асуулт олдсонгүй.\n\nДараах сэдвүүдийн аль нэгийг бичиж туршина уу:\n💡 ${rnd}\n\nЭсвэл «юу мэдэх вэ?» гэж асуугаарай — бүх чадварыг жагсаана.`;
+    async function getBotReply(userMsg) {
+        // Эхлээд keyword шалга
+        const keywordReply = checkKeywords(userMsg);
+        if (keywordReply) return keywordReply;
+
+        // Keyword олдохгүй бол AI-д илгээ
+        return await askGemini(userMsg);
+    }
+
+    function formatBotResponse(text) {
+        // Bold **text**
+        text = text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+        // Italic *text*
+        text = text.replace(/\*([^*\n]+)\*/g, "<i>$1</i>");
+        // Markdown links [label](url) → styled button
+        text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, (m, label, url) => {
+            const isYT = /youtube\.com|youtu\.be/.test(url);
+            const cls = isYT ? "chat-link-btn chat-video-btn" : "chat-link-btn";
+            const icon = isYT ? "▶" : "🔗";
+            return `<a href="${url}" target="_blank" rel="noopener" class="${cls}">${icon} ${label}</a>`;
+        });
+        // Bare URLs → styled button
+        text = text.replace(/(^|[\s>])(https?:\/\/[^\s<"]+)/g, (m, pre, url) => {
+            if (url.endsWith(")") || url.endsWith(",") || url.endsWith(".")) url = url.slice(0, -1);
+            const isYT = /youtube\.com|youtu\.be/.test(url);
+            const cls = isYT ? "chat-link-btn chat-video-btn" : "chat-link-btn";
+            const icon = isYT ? "▶" : "🔗";
+            const label = url.replace(/^https?:\/\/(www\.)?/, "").slice(0, 38);
+            return `${pre}<a href="${url}" target="_blank" rel="noopener" class="${cls}">${icon} ${label}</a>`;
+        });
+        // Newlines → <br>
+        text = text.replace(/\n/g, "<br>");
+        // Ensure all <a> open in new tab
+        text = text.replace(/<a /g, '<a target="_blank" rel="noopener" ');
+        return text;
     }
 
     function addMessage(text, sender) {
@@ -5194,7 +6205,7 @@
         wrap.className = "chat-msg " + sender;
         const bubble = document.createElement("div");
         bubble.className = "chat-bubble";
-        bubble.innerHTML = text.replace(/\n/g, "<br>");
+        bubble.innerHTML = sender === "bot" ? formatBotResponse(text) : text;
         const time = document.createElement("div");
         time.className = "chat-time";
         time.textContent = new Date().toLocaleTimeString("mn-MN", { hour: "2-digit", minute: "2-digit" });
@@ -5219,16 +6230,15 @@
         if (el) el.remove();
     }
 
-    function sendMessage(text) {
+    async function sendMessage(text) {
         const msg = text.trim();
         if (!msg) return;
         addMessage(msg, "user");
         document.getElementById("chatInput").value = "";
         showTyping();
-        setTimeout(() => {
-            removeTyping();
-            addMessage(getBotReply(msg), "bot");
-        }, 800);
+        const reply = await getBotReply(msg);
+        removeTyping();
+        addMessage(reply, "bot");
     }
 
     // Chatbot товч
