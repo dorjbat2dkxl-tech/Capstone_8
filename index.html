@@ -23,6 +23,7 @@
         <ul class="nav-links">
             <li><a href="#" data-page="home">Нүүр</a></li>
             <li><a href="#" data-page="courses">Хичээлүүд</a></li>
+            <li><a href="#" data-page="bagshAi">📋 AI Хөтөлбөр</a></li>
             <li><a href="#" data-page="team">Бидний баг</a></li>
             <li><a href="#" data-page="contact">Холбоо барих</a></li>
         </ul>
@@ -58,6 +59,7 @@
             <button class="chat-chip" data-msg="СӨБ хэсэгт юу байдаг вэ?">🌱 СӨБ</button>
             <button class="chat-chip" data-msg="Мэргэжлийн боловсрол хэсэгт юу байдаг вэ?">🔧 Мэргэжлийн</button>
             <button class="chat-chip" data-msg="Математик хэсэгт юу байдаг вэ?">📐 Математик</button>
+            <button class="chat-chip" id="chipBagshAi" onclick="openBagshAi()">📋 Хөтөлбөр үүсгэх</button>
         </div>
     </div>
     <div class="chatbot-input-area">
@@ -1224,6 +1226,14 @@
         <h2 class="section-title">👩‍🏫 Анги Удирдсан Багш — Цахим хэрэгслүүд</h2>
         <p class="section-intro">Ангийн удирдлага, эцэг эхтэй харилцаа, суралцагчийн хяналт болон бүтээлч ажилд зориулсан 12 үнэгүй хэрэгсэл.</p>
 
+        <div class="video-grid" style="margin-bottom:24px">
+            <div class="video-wrap local-video-wrap">
+                <video controls preload="metadata" title="Анги Удирдсан Багш">
+                    <source src="Анги_Удирдсан_Багш.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
         <div class="aub-section-label">🏫 Ангийн удирдлага & харилцаа холбоо</div>
         <div class="courses-grid bridge-grid">
             <div class="card bridge-card" data-accent="aub-dojo">
@@ -2061,6 +2071,17 @@
         </div>
     </div>
 
+    <!-- AI ХӨТӨЛБӨР PAGE -->
+    <div id="bagshAiPage" style="display:none;">
+        <iframe
+            src="bagsh_ai_v3.html"
+            id="bagshAiFrame"
+            style="width:100%;height:calc(100vh - 72px);border:none;border-radius:0;display:block;"
+            title="AI Хичээлийн хөтөлбөр үүсгэгч"
+            loading="lazy">
+        </iframe>
+    </div>
+
     <!-- НИЙГМИЙН УХААН PAGE -->
     <div id="socialPage" style="display: none;">
         <button type="button" class="btn-sm back-btn" id="backFromSocial">← Нүүр хуудас</button>
@@ -2205,6 +2226,35 @@
             болон дүрэм-үгсийн сангийн платформуудын цуглуулга. Карт дээр дарж шууд тухайн
             хэрэгсэл рүү очно.
         </p>
+
+        <div class="video-grid" style="margin-bottom:24px">
+            <div class="video-wrap local-video-wrap">
+                <video controls preload="metadata" title="English Video">
+                    <source src="english%20video.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+
+        <h3 class="category-title">🎬 Холбогдох видеонууд</h3>
+        <div class="video-grid">
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/Cb50iRDPRT4" title="TEDx монгол хэлээр — Хэл сурах аргыг хакердах нь" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/9bPyvxdNApQ" title="600 хэрэгтэй үйл үгс — Англи хэл + Монгол хэл" allowfullscreen loading="lazy"></iframe>
+            </div>
+            <div class="local-vid-divider">📁 Татаж авсан видео</div>
+            <div class="video-wrap local-video-wrap">
+                <video controls preload="metadata" title="3 Great AI Apps for English Teachers to Use">
+                    <source src="Англи%20хэл/3%20Great%20AI%20Apps%20for%20English%20Teachers%20to%20Use.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="video-wrap local-video-wrap">
+                <video controls preload="metadata" title="FREE AI Tools for Language Learning — Tested in Class">
+                    <source src="Англи%20хэл/FREE%20AI%20Tools%20for%20Language%20Learning-%20Tested%20in%20Class.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
 
         <h3 class="category-title">🎲 Хичээл төлөвлөлт ба интерактив хэрэгслүүд</h3>
         <div class="resources-grid">
@@ -2460,26 +2510,6 @@
             </div>
         </div><!-- /#englishResourceBank -->
 
-        <h3 class="category-title">🎬 Холбогдох видеонууд</h3>
-        <div class="video-grid">
-            <div class="video-wrap">
-                <iframe src="https://www.youtube.com/embed/Cb50iRDPRT4" title="TEDx монгол хэлээр — Хэл сурах аргыг хакердах нь" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="video-wrap">
-                <iframe src="https://www.youtube.com/embed/9bPyvxdNApQ" title="600 хэрэгтэй үйл үгс — Англи хэл + Монгол хэл" allowfullscreen loading="lazy"></iframe>
-            </div>
-            <div class="local-vid-divider">📁 Татаж авсан видео</div>
-            <div class="video-wrap local-video-wrap">
-                <video controls preload="metadata" title="3 Great AI Apps for English Teachers to Use">
-                    <source src="Англи%20хэл/3%20Great%20AI%20Apps%20for%20English%20Teachers%20to%20Use.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="video-wrap local-video-wrap">
-                <video controls preload="metadata" title="FREE AI Tools for Language Learning — Tested in Class">
-                    <source src="Англи%20хэл/FREE%20AI%20Tools%20for%20Language%20Learning-%20Tested%20in%20Class.mp4" type="video/mp4">
-                </video>
-            </div>
-        </div>
     </div>
 
     <!-- МЭДЭЭЛЛИЙН ТЕХНОЛОГИ PAGE -->
@@ -3638,6 +3668,14 @@
             Физикийн багш нарт зориулсан виртуал туршилт, симуляци, онлайн платформ болон нөөцүүдийн цуглуулга.
             Хичээлийн хөтөлбөртэй нийцсэн интерактив материал, видео хичээлүүдийг эндээс олоорой.
         </p>
+
+        <div class="video-grid" style="margin-bottom:24px">
+            <div class="video-wrap local-video-wrap">
+                <video controls preload="metadata" title="Физикийн цахим нөөц">
+                    <source src="Физикийн%20цахим%20нөөц.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
 
         <h3 class="category-title">🔬 Виртуал туршилт ба симуляци</h3>
         <div class="resources-grid">
@@ -5663,7 +5701,7 @@
     // PAGE NAVIGATION
     function showPage(pageId) {
         ["homePage","coursesPage","mathPage","quizPage","dashboardPage","teamPage","contactPage",
-         "socialPage","englishPage","itPage","childprotectionPage","primaryeduPage","sobPage","vocationalPage","geographyPage","chemistryPage","physicsPage","musicPage","aubPage","psychPage"
+         "bagshAiPage","socialPage","englishPage","itPage","childprotectionPage","primaryeduPage","sobPage","vocationalPage","geographyPage","chemistryPage","physicsPage","musicPage","aubPage","psychPage"
         ].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.style.display = "none";
@@ -5688,6 +5726,7 @@
         if (pageId === "music")     document.getElementById("musicPage").style.display = "block";
         if (pageId === "aub")       document.getElementById("aubPage").style.display = "block";
         if (pageId === "psych")     document.getElementById("psychPage").style.display = "block";
+        if (pageId === "bagshAi")   document.getElementById("bagshAiPage").style.display = "block";
         document.querySelectorAll(".nav-links a").forEach(link => {
             if (link.getAttribute("data-page") === pageId) link.classList.add("active");
             else link.classList.remove("active");
@@ -5728,18 +5767,15 @@
         });
     }
 
-    // CONTACT FORM
-    // ══════════════════════════════════════════════
-    // Web3Forms — web3forms.com/activate дээр имэйл оруулаад авсан key
+    // CONTACT FORM — Web3Forms
     const W3F_KEY = "b97655f4-6349-40e0-8afd-49350436e5f0";
-    // ══════════════════════════════════════════════
 
     document.getElementById("contactForm")?.addEventListener("submit", async (e) => {
         e.preventDefault();
-        const name    = document.getElementById("contactName").value.trim();
-        const email   = document.getElementById("contactEmail").value.trim();
-        const subject = document.getElementById("contactSubject").value.trim() || "EduMongol вэбсайтаас мессеж";
-        const msg     = document.getElementById("contactMsg").value.trim();
+        const name     = document.getElementById("contactName").value.trim();
+        const email    = document.getElementById("contactEmail").value.trim();
+        const subject  = document.getElementById("contactSubject").value.trim() || "EduMongol вэбсайтаас мессеж";
+        const msg      = document.getElementById("contactMsg").value.trim();
         const feedback = document.getElementById("formFeedback");
         const btn      = document.getElementById("contactSubmitBtn");
         const btnText  = document.getElementById("submitBtnText");
@@ -5753,11 +5789,35 @@
             return;
         }
 
-        const s = encodeURIComponent(`EduMongol: ${subject}`);
-        const b = encodeURIComponent(`Нэр: ${name}\nИмэйл: ${email}\nСэдэв: ${subject}\n\nМессеж:\n${msg}`);
-        window.location.href = `mailto:dorjbat2dkxl@moes.edu.mn?subject=${s}&body=${b}`;
-        feedback.innerHTML = `<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:0.8rem;padding:0.9rem 1.1rem;color:#166534;">✅ <strong>Имэйл апп нээгдлээ!</strong><br><span style="font-size:0.85rem;">Gmail эсвэл Outlook дээр <b>«Илгээх»</b> дарна уу.</span></div>`;
-        document.getElementById("contactForm").reset();
+        btn.disabled = true;
+        btnText.textContent = "⏳ Илгээж байна...";
+        feedback.innerHTML = "";
+
+        try {
+            const res = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json", "Accept": "application/json" },
+                body: JSON.stringify({
+                    access_key: W3F_KEY,
+                    name: name,
+                    email: email,
+                    subject: "EduMongol: " + subject,
+                    message: msg
+                })
+            });
+            const data = await res.json();
+            if (data.success) {
+                feedback.innerHTML = `<div style="background:#f0fdf4;border:1px solid #86efac;border-radius:0.8rem;padding:0.9rem 1.1rem;color:#166534;">✅ <strong>Мессеж амжилттай илгээгдлээ!</strong><br><span style="font-size:0.85rem;">Удахгүй хариу илгээнэ. 📬</span></div>`;
+                document.getElementById("contactForm").reset();
+            } else {
+                throw new Error(data.message || "Илгээх амжилтгүй");
+            }
+        } catch (err) {
+            feedback.innerHTML = `<div style="background:#fff0f0;border:1px solid #f5c6cb;border-radius:0.8rem;padding:0.8rem 1rem;color:#c00;">❌ Алдаа гарлаа: ${err.message}</div>`;
+        } finally {
+            btn.disabled = false;
+            btnText.textContent = "📨 Илгээх";
+        }
     });
 
     // ===== GOOGLE SHEETS ХОЛБООС =====
@@ -6228,6 +6288,15 @@
     function removeTyping() {
         const el = document.getElementById("typingDots");
         if (el) el.remove();
+    }
+
+    function openBagshAi() {
+        // EduBot хаах
+        document.getElementById("chatbotPanel").classList.remove("open");
+        document.getElementById("chatbotPanel").setAttribute("aria-hidden", "true");
+        // AI Хөтөлбөр хуудас нээх
+        showPage("bagshAi");
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     async function sendMessage(text) {

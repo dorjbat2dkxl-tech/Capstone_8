@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edu Mongol — Хичээлийн хөтөлбөр үүсгэгч</title>
+<style>
+:root {
+  color-scheme: light;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #dbeafe;
+  --success: #16a34a;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --bg: #f1f5f9;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #3b82f6 100%);
+  color: white;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.35);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-icon { font-size: 26px; }
+.header-title { font-size: 18px; font-weight: 800; letter-spacing: -0.3px; }
+.header-subtitle { font-size: 11px; opacity: 0.75; }
+
+/* Tabs */
+.tabs {
+  display: flex;
+  background: white;
+  border-bottom: 2px solid var(--border);
+  padding: 0 20px;
+  gap: 4px;
+}
+.tab {
+  padding: 11px 18px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px 6px 0 0;
+}
+.tab:hover { color: var(--primary); background: var(--primary-light); }
+.tab.active { color: var(--primary); border-bottom-color: var(--primary); background: transparent; }
+
+/* Layout */
+.main { display: grid; grid-template-columns: 300px 1fr; gap: 16px; padding: 16px 20px; }
+.main.full-width { grid-template-columns: 1fr; }
+@media (max-width: 800px) { .main { grid-template-columns: 1fr; } }
+
+/* Card */
+.card { background: var(--card); border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); overflow: hidden; }
+.card-header { padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 700; font-size: 13px; display: flex; align-items: center; gap: 8px; background: #f8fafc; color: var(--text); }
+.card-body { padding: 16px; }
+
+/* Form */
+.form-group { margin-bottom: 13px; }
+.form-label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.form-control { width: 100%; padding: 8px 11px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 13px; color: var(--text); background: white; transition: border-color 0.15s, box-shadow 0.15s; outline: none; font-family: inherit; }
+.form-control:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(37,99,235,0.12); }
+textarea.form-control { resize: vertical; min-height: 70px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: var(--radius-sm); font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.18s; font-family: inherit; }
+.btn-primary { background: var(--primary); color: white; width: 100%; justify-content: center; padding: 11px; font-size: 14px; border-radius: 10px; }
+.btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(37,99,235,0.35); }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; box-shadow: none; }
+.btn-outline { background: white; color: var(--text); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+.btn-success { background: var(--success); color: white; }
+.btn-success:hover { background: #15803d; transform: translateY(-1px); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+
+/* Action row */
+.action-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+
+/* Loading */
+.loading { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 70px 20px; gap: 14px; color: var(--text-muted); }
+.spinner { width: 40px; height: 40px; border: 3px solid var(--primary-light); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.75s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Placeholder */
+.placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 70px 20px; gap: 10px; text-align: center; }
+.placeholder-icon { font-size: 52px; opacity: 0.2; }
+.placeholder-text { font-size: 15px; font-weight: 600; color: var(--text-light); }
+.placeholder-sub { font-size: 13px; color: var(--text-light); }
+
+/* Plan output */
+.plan-header { background: linear-gradient(135deg, #1e3a8a, #2563eb); color: white; padding: 18px 22px; }
+.plan-header h2 { font-size: 17px; font-weight: 800; margin-bottom: 6px; }
+.plan-meta { font-size: 12px; opacity: 0.85; display: flex; gap: 16px; flex-wrap: wrap; margin-top: 6px; }
+.plan-meta span { display: flex; align-items: center; gap: 4px; }
+.approved-line { font-size: 11px; opacity: 0.65; margin-bottom: 8px; }
+.plan-body { padding: 20px; }
+
+/* Section title */
+.section-title { font-size: 12px; font-weight: 800; color: var(--primary); text-transform: uppercase; letter-spacing: 0.6px; margin: 18px 0 10px; display: flex; align-items: center; gap: 6px; border-left: 3px solid var(--primary); padding-left: 8px; }
+.section-title:first-child { margin-top: 0; }
+
+/* ---- Info table ---- */
+.info-table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.info-table td {
+  padding: 11px 14px; border-bottom: 1px solid var(--border);
+  font-size: 13px; vertical-align: top;
+}
+.info-table td:first-child {
+  font-weight: 700;
+  background: linear-gradient(90deg, #eef2ff 0%, #f8fafc 100%);
+  width: 148px; color: #3b4f72; font-size: 11.5px;
+  white-space: nowrap; border-right: 2px solid #dde6f5;
+  text-transform: uppercase; letter-spacing: 0.4px;
+}
+.info-table tr:last-child td { border-bottom: none; }
+.info-table tbody tr:hover td { background: #f8fbff; }
+.info-table tbody tr:hover td:first-child { background: linear-gradient(90deg, #e0e9ff 0%, #f0f5ff 100%); }
+
+/* ---- Flow table ---- */
+.flow-table {
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+}
+.flow-table th {
+  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+  color: white; padding: 11px 14px; font-size: 12px;
+  font-weight: 700; text-align: left; letter-spacing: 0.3px;
+}
+.flow-table th:not(:last-child) { border-right: 1px solid rgba(255,255,255,0.15); }
+.flow-table td {
+  padding: 11px 13px; border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border); font-size: 13px; vertical-align: top;
+}
+.flow-table td:last-child { border-right: none; }
+.flow-table tr:last-child td { border-bottom: none; }
+.flow-table tbody tr:nth-child(even) td { background: #fafcff; }
+.flow-table tbody tr:hover td { background: #f0f6ff !important; }
+.flow-table tbody tr:hover .stage-cell { filter: brightness(1.08); }
+
+/* Stage cell */
+.stage-cell {
+  background: linear-gradient(160deg, #3b82f6 0%, #1e40af 100%) !important;
+  color: white !important; font-weight: 800;
+  width: 95px; font-size: 12px;
+  text-align: center; vertical-align: middle !important;
+  padding: 12px 8px !important; line-height: 1.4;
+}
+.stage-goal {
+  font-size: 10px; font-weight: 400;
+  color: rgba(255,255,255,0.72);
+  margin-top: 5px; line-height: 1.3;
+}
+
+/* Time cell */
+.time-cell {
+  vertical-align: middle !important; text-align: center;
+  padding: 11px 8px !important; width: 58px;
+}
+.time-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  background: #fef3c7; color: #b45309;
+  border: 1.5px solid #fde68a; border-radius: 999px;
+  font-size: 11px; font-weight: 800;
+  padding: 4px 10px; white-space: nowrap;
+}
+
+/* Editable cells */
+.editable-cell { width: 100%; border: none; background: transparent; font-family: inherit; font-size: 13px; color: var(--text); resize: none; outline: none; line-height: 1.6; padding: 0; min-height: 60px; }
+.editable-cell:focus { background: rgba(37,99,235,0.03); border-radius: 4px; padding: 2px 4px; margin: -2px -4px; }
+
+/* Homework */
+.homework-box { background: #fefce8; border: 1px solid #fde68a; border-radius: var(--radius-sm); padding: 12px 16px; }
+.homework-textarea { width: 100%; border: none; background: transparent; font-family: inherit; font-size: 13px; resize: none; outline: none; min-height: 48px; color: var(--text); line-height: 1.6; }
+
+/* Badges */
+.badge { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700; }
+.badge-a { background: #dcfce7; color: #15803d; }
+.badge-b { background: #dbeafe; color: #1d4ed8; }
+.badge-c { background: #fce7f3; color: #9d174d; }
+
+/* Quiz */
+.quiz-output { padding: 20px; }
+.quiz-question { background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; margin-bottom: 12px; }
+.quiz-q-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.quiz-q-num { font-weight: 800; color: var(--primary); font-size: 13px; }
+.quiz-type-badge { font-size: 11px; padding: 2px 7px; border-radius: 999px; font-weight: 600; }
+.quiz-mcq { background: #dbeafe; color: #1d4ed8; }
+.quiz-open { background: #f0fdf4; color: #16a34a; }
+.quiz-q-text { font-size: 14px; font-weight: 500; margin-bottom: 10px; line-height: 1.5; }
+.quiz-options { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.quiz-options li { padding: 5px 10px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; color: var(--text-muted); background: #f8fafc; }
+.quiz-answer { margin-top: 10px; font-size: 11px; color: #94a3b8; padding-top: 8px; border-top: 1px dashed var(--border); }
+.quiz-answer strong { color: var(--success); }
+.open-line { border-bottom: 1px solid var(--border); height: 26px; margin-top: 8px; }
+
+/* History */
+.history-wrap { padding: 16px 20px; }
+.history-item { background: white; border: 1.5px solid var(--border); border-radius: var(--radius-sm); padding: 13px 16px; margin-bottom: 10px; cursor: pointer; transition: all 0.18s; display: flex; justify-content: space-between; align-items: center; }
+.history-item:hover { border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.history-subject { font-weight: 700; font-size: 14px; }
+.history-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.history-right { display: flex; align-items: center; gap: 10px; }
+.history-date { font-size: 11px; color: var(--text-light); white-space: nowrap; }
+.history-del { color: var(--danger); font-size: 20px; line-height: 1; cursor: pointer; opacity: 0.4; transition: opacity 0.15s; }
+.history-del:hover { opacity: 1; }
+.empty-state { text-align: center; padding: 50px 20px; color: var(--text-light); }
+.empty-icon { font-size: 40px; opacity: 0.3; display: block; margin-bottom: 10px; }
+
+/* Alert */
+.alert { padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; margin-bottom: 12px; }
+.alert-error { background: #fef2f2; border: 1px solid #fecaca; color: var(--danger); }
+.alert-info { background: var(--primary-light); border: 1px solid #bfdbfe; color: var(--primary); }
+
+/* Footer stamp */
+.plan-stamp { margin-top: 16px; padding: 8px 12px; background: #f1f5f9; border-radius: 6px; font-size: 11px; color: var(--text-light); display: flex; justify-content: space-between; align-items: center; }
+
+/* ---- Bullet cell display ---- */
+.plan-bullets {
+  list-style: none; padding: 0; margin: 0;
+}
+.plan-bullets li {
+  position: relative;
+  padding: 4px 4px 4px 20px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  border-bottom: 1px dotted #dde3eb;
+}
+.plan-bullets li:last-child { border-bottom: none; }
+.plan-bullets li::before {
+  content: '';
+  position: absolute;
+  left: 5px; top: 11px;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0.55;
+}
+.hw-bullets li::before { background: var(--warning); opacity: 0.7; }
+
+.cell-view  { padding: 2px 0; }
+.cell-edit  { display: none; }
+.cell-edit.active { display: block; }
+.cell-view.hidden { display: none; }
+
+.edit-toggle {
+  display: inline-flex; align-items: center; gap: 4px;
+  margin-top: 5px; font-size: 11px; color: var(--text-light);
+  cursor: pointer; padding: 3px 8px; border-radius: 5px;
+  border: 1px dashed #d1d9e0; background: none; font-family: inherit;
+  transition: all 0.15s;
+}
+.edit-toggle:hover { color: var(--primary); border-color: var(--primary); background: var(--primary-light); }
+.edit-toggle.save-btn { color: var(--success); border-color: #86efac; }
+.edit-toggle.save-btn:hover { background: #f0fdf4; }
+
+.cell-empty { color: #b0bec5; font-style: italic; font-size: 12px; padding: 4px 0; }
+
+/* Medle.mn panel */
+.medle-card { margin-top: 12px; }
+.medle-header-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.medle-logo { display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 13px; color: #0f4c81; }
+.medle-logo-dot { width: 10px; height: 10px; border-radius: 50%; background: linear-gradient(135deg,#2563eb,#06b6d4); display: inline-block; }
+.medle-search-btn { font-size: 11px; padding: 4px 10px; }
+.medle-panel { max-height: 320px; overflow-y: auto; }
+.medle-item { padding: 10px 14px; border-bottom: 1px solid var(--border); transition: background 0.15s; }
+.medle-item:last-child { border-bottom: none; }
+.medle-item:hover { background: #f8fafc; }
+.medle-grade { display: inline-flex; align-items: center; padding: 1px 7px; background: var(--primary-light); color: var(--primary); border-radius: 999px; font-size: 10px; font-weight: 700; margin-bottom: 4px; }
+.medle-topic { font-size: 13px; font-weight: 600; margin-bottom: 3px; line-height: 1.4; }
+.medle-purpose { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin-bottom: 7px; }
+.medle-btns { display: flex; gap: 6px; }
+.medle-empty { padding: 14px; font-size: 12px; color: var(--text-light); text-align: center; }
+.medle-loading { padding: 14px; font-size: 12px; color: var(--text-muted); text-align: center; }
+.medle-spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid var(--primary-light); border-top-color: var(--primary); border-radius: 50%; animation: spin 0.7s linear infinite; margin-right: 6px; vertical-align: middle; }
+
+/* ---- Example problem cards ---- */
+.example-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+}
+@media (max-width: 860px) { .example-grid { grid-template-columns: 1fr; } }
+.example-card {
+  border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--border); box-shadow: var(--shadow);
+  display: flex; flex-direction: column;
+}
+.example-header {
+  padding: 9px 13px; font-weight: 800; font-size: 12px;
+  display: flex; align-items: center; gap: 6px;
+  letter-spacing: 0.2px;
+}
+.ex-a { background: #dcfce7; color: #15803d; }
+.ex-b { background: #dbeafe; color: #1d4ed8; }
+.ex-c { background: #fce7f3; color: #9d174d; }
+.example-body { padding: 12px 14px; flex: 1; display: flex; flex-direction: column; }
+.example-problem {
+  font-size: 13px; font-weight: 600; color: var(--text);
+  margin-bottom: 10px; line-height: 1.65; flex: 1;
+}
+.example-solution {
+  display: none; margin-top: 10px; padding-top: 10px;
+  border-top: 1px dashed #d1d9e6;
+}
+.example-solution.visible { display: block; }
+.ex-answer {
+  margin-top: 8px; padding: 6px 11px;
+  background: #f0fdf4; border-radius: 6px;
+  font-size: 12px; font-weight: 700; color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+/* ---- Board work ---- */
+.board-box {
+  background: linear-gradient(160deg, #162416 0%, #1e321e 100%);
+  color: #d4f0d4; border-radius: var(--radius-sm);
+  padding: 18px 20px; font-size: 13px; line-height: 1.85;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.25);
+}
+.board-box .plan-bullets li {
+  color: #d4f0d4; border-bottom-color: rgba(255,255,255,0.1);
+}
+.board-box .plan-bullets li::before { background: #4ade80; opacity: 0.8; }
+
+/* ---- Didactic materials ---- */
+.didactic-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+@media (max-width: 700px) { .didactic-grid { grid-template-columns: 1fr; } }
+.didactic-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 13px; background: #f8fafc;
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 12.5px; line-height: 1.55;
+  transition: background 0.15s, border-color 0.15s;
+}
+.didactic-item:hover { background: #eef4ff; border-color: #bfdbfe; }
+.didactic-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+
+/* Print */
+@media print {
+  .tabs, .action-row, .sidebar, .no-print, #plan-actions, .header { display: none !important; }
+  .main { grid-template-columns: 1fr !important; padding: 0 !important; }
+  .card { box-shadow: none !important; border: 1px solid #ccc !important; }
+  body { background: white !important; font-size: 11pt; }
+  .plan-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .flow-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .editable-cell { min-height: unset !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header no-print">
+  <div class="header-icon">📚</div>
+  <div>
+    <div class="header-title">Edu Mongol — Хичээлийн хөтөлбөр үүсгэгч</div>
+    <div class="header-subtitle">Монголын ЕБС-ийн стандартад нийцсэн · AI-аар дэмжигдсэн</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs no-print">
+  <div class="tab active" id="tab-plan" onclick="switchTab('plan')">📝 Ээлжит хичээл</div>
+  <div class="tab" id="tab-quiz" onclick="switchTab('quiz')">❓ Сорил/Тест</div>
+  <div class="tab" id="tab-history" onclick="switchTab('history')">📂 Хадгалсан <span id="hcount" style="background:#e2e8f0;padding:1px 7px;border-radius:999px;font-size:11px">0</span></div>
+</div>
+
+<!-- ===================== PAGE: PLAN ===================== -->
+<div id="page-plan">
+  <div class="main">
+
+    <!-- FORM SIDEBAR -->
+    <div class="sidebar no-print">
+      <div class="card">
+        <div class="card-header">✏️ Хичээлийн мэдээлэл</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">Сургалтын менежер</label>
+            <input id="manager" class="form-control" placeholder="Б.Болормаа" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Хичээл *</label>
+            <input id="subject" class="form-control" placeholder="Математик" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Хичээлийн сэдэв *</label>
+            <input id="topic" class="form-control" placeholder="Тригонометрийн функцүүд" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Анги *</label>
+              <input id="grade" class="form-control" placeholder="10-р анги" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Хугацаа</label>
+              <select id="duration" class="form-control">
+                <option>40 минут</option>
+                <option selected>45 минут</option>
+                <option>50 минут</option>
+                <option>60 минут</option>
+                <option>80 минут</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Суралцахуйн зорилт *</label>
+            <textarea id="objective" class="form-control" placeholder="Сурагчид sin, cos, tan функцийн утгыг тооцоолж бодлого бодно" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Нэмэлт заавар</label>
+            <textarea id="extra" class="form-control" placeholder="Geogebra ашиглах, бүлгээр ажиллах..." rows="2"></textarea>
+          </div>
+          <button class="btn btn-primary" id="gen-btn" onclick="generatePlan()">
+            ✨ AI-аар хөтөлбөр үүсгэх
+          </button>
+        </div>
+      </div>
+
+      <!-- API Key fallback -->
+      <!-- Medle.mn examples panel -->
+      <div class="card medle-card" id="medle-card" style="display:none">
+        <div class="card-header">
+          <div class="medle-header-row" style="width:100%">
+            <div class="medle-logo">
+              <span class="medle-logo-dot"></span> Medle.mn жишээ
+            </div>
+            <a href="https://medle.mn" target="_blank" class="btn btn-outline medle-search-btn">🔗 Нээх</a>
+          </div>
+        </div>
+        <div class="medle-panel" id="medle-panel">
+          <div class="medle-empty">Анги болон хичээл оруулахад жишээ хайна</div>
+        </div>
+      </div>
+
+      <div class="card" id="api-key-card" style="display:none;margin-top:12px">
+        <div class="card-header" style="background:#fefce8;border-color:#fde68a">🔑 Anthropic API Түлхүүр</div>
+        <div class="card-body">
+          <div class="alert alert-info" style="margin-bottom:10px;font-size:12px">
+            Cowork artifact-аас гадна ажиллуулахад API түлхүүр шаардлагатай.
+          </div>
+          <div class="form-group">
+            <label class="form-label">API Key</label>
+            <input type="password" id="api-key" class="form-control" placeholder="sk-ant-..." />
+          </div>
+          <div style="font-size:11px;color:var(--text-light)">
+            🔒 Түлхүүр зөвхөн таны браузерт ашиглагдана.<br>
+            <a href="https://console.anthropic.com/" target="_blank" style="color:var(--primary)">console.anthropic.com</a>-с авна уу.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- OUTPUT -->
+    <div>
+      <div class="action-row no-print" id="plan-actions" style="display:none">
+        <button class="btn btn-outline btn-sm" onclick="printPlan()">🖨️ Хэвлэх</button>
+        <button class="btn btn-outline btn-sm" onclick="downloadWord()">📄 Word татах</button>
+        <button class="btn btn-success btn-sm" onclick="savePlan()">💾 Хадгалах</button>
+        <button class="btn btn-outline btn-sm" onclick="generatePlan()">🔄 Дахин үүсгэх</button>
+      </div>
+      <div class="card" id="plan-output">
+        <div class="placeholder">
+          <div class="placeholder-icon">📋</div>
+          <div class="placeholder-text">Хөтөлбөр энд гарна</div>
+          <div class="placeholder-sub">Зүүн талд мэдээллийг бөглөж товч дарна уу</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PAGE: QUIZ ===================== -->
+<div id="page-quiz" style="display:none">
+  <div class="main">
+    <div class="sidebar no-print">
+      <div class="card">
+        <div class="card-header">❓ Сорил үүсгэх</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">Хичээл *</label>
+            <input id="q-subject" class="form-control" placeholder="Математик" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Сэдэв *</label>
+            <input id="q-topic" class="form-control" placeholder="Тригонометр" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Анги *</label>
+              <input id="q-grade" class="form-control" placeholder="10-р анги" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Асуулт тоо</label>
+              <select id="q-count" class="form-control">
+                <option value="5">5 асуулт</option>
+                <option value="10" selected>10 асуулт</option>
+                <option value="15">15 асуулт</option>
+                <option value="20">20 асуулт</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Сорилын төрөл</label>
+            <select id="q-type" class="form-control">
+              <option value="mixed">Холимог (сонгох + нээлттэй)</option>
+              <option value="mcq">Зөвхөн сонгох хариулттай</option>
+              <option value="open">Зөвхөн нээлттэй асуулт</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Хүндрэлийн түвшин</label>
+            <select id="q-level" class="form-control">
+              <option value="easy">Хялбар</option>
+              <option value="medium" selected>Дунд</option>
+              <option value="hard">Хүнд</option>
+            </select>
+          </div>
+          <button class="btn btn-primary" id="quiz-btn" onclick="generateQuiz()">
+            ✨ Сорил үүсгэх
+          </button>
+        </div>
+      </div>
+
+      <div class="card" id="api-key-card-quiz" style="display:none;margin-top:12px">
+        <div class="card-header" style="background:#fefce8;border-color:#fde68a">🔑 Anthropic API Түлхүүр</div>
+        <div class="card-body">
+          <div class="form-group">
+            <label class="form-label">API Key</label>
+            <input type="password" id="api-key-quiz" class="form-control" placeholder="sk-ant-..." />
+          </div>
+          <div style="font-size:11px;color:var(--text-light)">
+            🔒 Зөвхөн таны браузерт ашиглагдана.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="action-row no-print" id="quiz-actions" style="display:none">
+        <button class="btn btn-outline btn-sm" onclick="printQuiz()">🖨️ Хэвлэх</button>
+        <button class="btn btn-outline btn-sm" onclick="downloadQuizWord()">📄 Word татах</button>
+      </div>
+      <div class="card" id="quiz-output">
+        <div class="placeholder">
+          <div class="placeholder-icon">❓</div>
+          <div class="placeholder-text">Сорил/тест энд гарна</div>
+          <div class="placeholder-sub">Мэдээллийг бөглөж товч дарна уу</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PAGE: HISTORY ===================== -->
+<div id="page-history" style="display:none">
+  <div class="main full-width">
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <h3 style="font-size:15px;font-weight:800">📂 Хадгалсан хөтөлбөрүүд</h3>
+        <button class="btn btn-outline btn-sm" onclick="clearAllHistory()" style="color:var(--danger);border-color:#fecaca">🗑️ Бүгдийг устгах</button>
+      </div>
+      <div id="history-list"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// =========================================================
+// STATE
+// =========================================================
+let currentPlan = null;
+let currentQuiz = null;
+
+// =========================================================
+// GROQ AI CALLER
+// =========================================================
+const GROQ_KEY = "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";
+const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
+const GROQ_MODEL = "llama-3.3-70b-versatile";
+
+function toStr(raw) {
+  if (typeof raw === 'string') return raw;
+  if (!raw) return '';
+  if (raw.text)    return String(raw.text);
+  if (raw.content) {
+    if (typeof raw.content === 'string') return raw.content;
+    if (Array.isArray(raw.content)) return raw.content.map(c => c.text || c).join('');
+  }
+  if (raw.result)  return String(raw.result);
+  if (raw.output)  return String(raw.output);
+  return JSON.stringify(raw);
+}
+
+async function callAI(prompt) {
+  const resp = await fetch(GROQ_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + GROQ_KEY
+    },
+    body: JSON.stringify({
+      model: GROQ_MODEL,
+      messages: [{ role: 'user', content: prompt }],
+      max_tokens: 4096
+    })
+  });
+  if (!resp.ok) {
+    const err = await resp.json().catch(() => ({}));
+    throw new Error(err?.error?.message || 'HTTP ' + resp.status + ' алдаа. VPN унтраасан эсэхийг шалгана уу.');
+  }
+  const data = await resp.json();
+  return data.choices?.[0]?.message?.content || '';
+}
+
+// Escape unescaped control chars inside JSON string values
+function sanitizeJSON(str) {
+  let result = '';
+  let inString = false;
+  let escape = false;
+  for (let i = 0; i < str.length; i++) {
+    const ch = str[i];
+    if (escape) { result += ch; escape = false; continue; }
+    if (ch === '\\') { escape = true; result += ch; continue; }
+    if (ch === '"') { inString = !inString; result += ch; continue; }
+    if (inString && (ch === '\n' || ch === '\r' || ch === '\t')) {
+      result += ch === '\n' ? '\\n' : ch === '\r' ? '\\r' : '\\t';
+    } else {
+      result += ch;
+    }
+  }
+  return result;
+}
+
+// =========================================================
+// TABS
+// =========================================================
+function switchTab(name) {
+  ['plan','quiz','history'].forEach(t => {
+    document.getElementById('page-'+t).style.display = t === name ? 'block' : 'none';
+    document.getElementById('tab-'+t).classList.toggle('active', t === name);
+  });
+  if (name === 'history') renderHistory();
+}
+
+// =========================================================
+// GENERATE LESSON PLAN
+// =========================================================
+async function generatePlan() {
+  const manager   = document.getElementById('manager').value.trim();
+  const subject   = document.getElementById('subject').value.trim();
+  const topic     = document.getElementById('topic').value.trim();
+  const grade     = document.getElementById('grade').value.trim();
+  const duration  = document.getElementById('duration').value;
+  const objective = document.getElementById('objective').value.trim();
+  const extra     = document.getElementById('extra').value.trim();
+
+  if (!subject || !topic || !grade || !objective) {
+    alert('Хичээл, сэдэв, анги болон суралцахуйн зорилтыг заавал бөглөнө үү!');
+    return;
+  }
+
+  const btn = document.getElementById('gen-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Боловсруулж байна...';
+  document.getElementById('plan-actions').style.display = 'none';
+  document.getElementById('plan-output').innerHTML =
+    '<div class="loading"><div class="spinner"></div><div style="font-weight:600">AI хөтөлбөр боловсруулж байна...</div><div style="font-size:12px;color:#94a3b8">Хэдэн секунд хүлээнэ үү</div></div>';
+
+  const durNum  = parseInt(duration);
+  const tIntro  = Math.round(durNum * 0.15);
+  const tMain   = Math.round(durNum * 0.60);
+  const tConc   = durNum - tIntro - tMain;
+
+  const prompt = `Та Монгол улсын ЕБС-ийн сургалтын стандарт, заах арга зүйг маш сайн мэдэх мэргэжлийн "Сургалтын технологич, AI туслах багш" юм.
+
+Дараах мэдээллэлд үндэслэн ДЭЛГЭРЭНГҮЙ, ПРАКТИК, тодорхой ээлжит хичээлийн хөтөлбөрийг боловсруул:
+- Хичээл: ${subject}
+- Сэдэв: ${topic}
+- Анги: ${grade}
+- Хугацаа: ${durNum} минут (сэдэлжүүлэх: ${tIntro} мин, өрнөл: ${tMain} мин, дүгнэлт: ${tConc} мин)
+- Суралцахуйн зорилт: ${objective}
+${extra ? '- Нэмэлт заавар: ' + extra : ''}
+${await getMedleContext(grade, subject)}
+ЗӨВХӨН дараах JSON объектыг гарга. Тайлбар, markdown, код блок хэрэгтэйгүй. Монгол хэлээр бичнэ үү:
+
+{
+  "materials": "Хичээлд ашиглах 4-5 тодорхой хэрэглэгдэхүүн, интерактив хэрэгсэл эсвэл апп (нэр ба зорилго)",
+  "methodology": "Хичээлд ашиглах 3-4 заах арга зүй, тэдгээрийн товч тайлбар",
+  "classOrg": "Ангийн зохион байгуулалт — суудлын байрлал, бүлгийн тоо, хэрхэн зохион байгуулах",
+  "objA": "А түвшний зорилт — хялбар, үндсэн ойлголтыг эзэмших",
+  "objB": "Б түвшний зорилт — дунд, хэрэглэж чадах",
+  "objC": "В түвшний зорилт — ахисан, бүтээлчээр ашиглах",
+  "introGoal": "Сэдэлжүүлэх үе шатын зорилго",
+  "introTeacher": "Багшийн үйл ажиллагаа сэдэлжүүлэх үед (${tIntro} мин): алхам алхмаар, тодорхой арга барил, асуулт, хэрэгсэл ашиглах зааврыг дэлгэрэнгүй бичнэ",
+  "introStudent": "Сурагчдын үйл ажиллагаа сэдэлжүүлэх үед: хэрхэн оролцох, яаж хариулах",
+  "mainGoal": "Өрнөл үе шатын зорилго",
+  "mainTeacher": "Багшийн үйл ажиллагаа өрнөл үед (${tMain} мин): шинэ мэдлэг тайлбарлах арга, ашиглах хэрэгсэл, жишээ бодлого зааварчлах, бүлгийн даалгавар өгөх зааврыг дэлгэрэнгүй бичнэ",
+  "mainStudent": "Сурагчдын үйл ажиллагаа өрнөл үед: бие даан болон бүлгээр хийх дасгал, яаж суралцах",
+  "concludeGoal": "Дүгнэлт үе шатын зорилго",
+  "concludeTeacher": "Багшийн үйл ажиллагаа дүгнэлт үед (${tConc} мин): хичээлийн зорилтод хүрсэн эсэхийг үнэлэх, нэгтгэн дүгнэх, санал хүсэлт авах арга",
+  "concludeStudent": "Сурагчдын үйл ажиллагаа дүгнэлт үед: өөрийгөө үнэлэх, гол ойлголтыг давтах, асуулт асуух",
+  "homework": "Гэрийн даалгавар: бүтээлч, бататгах, 15-20 минутад хийж болохуйц тодорхой даалгавар",
+  "examples": [
+    {"level":"А","problem":"А түвшний жишээ бодлого (хялбар, үндсэн ойлголт шалгах)","steps":"1. Эхний алхам | 2. Хоёрдох алхам | 3. Гуравдах алхам","answer":"Хариулт"},
+    {"level":"Б","problem":"Б түвшний жишээ бодлого (хэрэглэх чадвар)","steps":"1. Эхний алхам | 2. Хоёрдох алхам | 3. Гуравдах алхам","answer":"Хариулт"},
+    {"level":"В","problem":"В түвшний жишээ бодлого (бүтээлч, өргөтгөсөн)","steps":"1. Эхний алхам | 2. Хоёрдох алхам | 3. Гуравдах алхам","answer":"Хариулт"}
+  ],
+  "boardWork": "Самбарт бичих/зурах агуулга тодорхойлно: голлох томьёо, схем, концепт зураг, гол нэр томьёо (мөр бүр тусдаа зүйл)",
+  "didacticList": "Ашиглах дидактик материалуудын жагсаалт: зураг, видео, диаграмм, хэвлэмэл хуудас зэрэг (мөр бүр нэг материал, хаана хайх/авах заавартай)"
+}`;
+
+  try {
+    const raw = toStr(await callAI(prompt));
+    const match = raw.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error('JSON олдсонгүй. AI хариулт: ' + raw.slice(0, 200));
+    let d;
+    try { d = JSON.parse(sanitizeJSON(match[0])); }
+    catch(pe) { throw new Error('JSON задлах алдаа: ' + pe.message.slice(0, 100)); }
+    d._manager  = manager || '.....................';
+    d._subject  = subject;
+    d._topic    = topic;
+    d._grade    = grade;
+    d._duration = duration;
+    d._objective= objective;
+    d._tIntro   = tIntro;
+    d._tMain    = tMain;
+    d._tConc    = tConc;
+    currentPlan = d;
+    renderPlan(d);
+    document.getElementById('plan-actions').style.display = 'flex';
+  } catch(e) {
+    document.getElementById('plan-output').innerHTML =
+      `<div style="padding:20px"><div class="alert alert-error">❌ Алдаа гарлаа: ${e.message}. Дахин оролдоно уу.</div></div>`;
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '✨ AI-аар хөтөлбөр үүсгэх';
+}
+
+// =========================================================
+// RENDER PLAN
+// =========================================================
+// ---- Bullet helpers ----
+let _bcId = 0;
+
+function textToBullets(text, extraClass) {
+  const lines = (text||'').split('\n').filter(l => l.trim());
+  if (!lines.length) return '<span class="cell-empty">—</span>';
+  const lis = lines.map(l =>
+    '<li>' + l.replace(/^[\-•·*]\s*/, '').replace(/^\d+[.)]\s*/, '').trim() + '</li>'
+  ).join('');
+  return '<ul class="plan-bullets ' + (extraClass||'') + '">' + lis + '</ul>';
+}
+
+function makeBulletCell(text, minH, extraClass) {
+  const id   = 'bc' + (++_bcId);
+  const safe = (text||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return `<div class="cell-view" id="view-${id}">
+    ${textToBullets(text, extraClass)}
+    <button class="edit-toggle" onclick="toggleCell('${id}',true)">✏️ засах</button>
+  </div>
+  <div class="cell-edit" id="edit-${id}">
+    <textarea class="editable-cell" style="min-height:${minH||80}px" oninput="ar(this)">${safe}</textarea>
+    <button class="edit-toggle save-btn" onclick="toggleCell('${id}',false,'${extraClass||''}')">✓ хадгалах</button>
+  </div>`;
+}
+
+function toggleCell(id, editMode, extraClass) {
+  const view = document.getElementById('view-'+id);
+  const edit = document.getElementById('edit-'+id);
+  if (editMode) {
+    view.classList.add('hidden');
+    edit.classList.add('active');
+    const ta = edit.querySelector('textarea');
+    ar(ta); ta.focus();
+  } else {
+    const ta   = edit.querySelector('textarea');
+    const newT = ta.value;
+    view.innerHTML =
+      textToBullets(newT, extraClass||'') +
+      '<button class="edit-toggle" onclick="toggleCell(\''+id+'\',true,\''+(extraClass||'')+'\')" >✏️ засах</button>';
+    view.classList.remove('hidden');
+    edit.classList.remove('active');
+  }
+}
+
+// Read current text from a bullet cell (view or edit mode)
+function readBulletCell(id) {
+  const edit = document.getElementById('edit-'+id);
+  if (edit && edit.classList.contains('active')) {
+    return edit.querySelector('textarea').value;
+  }
+  const view = document.getElementById('view-'+id);
+  if (!view) return '';
+  return Array.from(view.querySelectorAll('li')).map(li=>li.textContent.trim()).join('\n');
+}
+
+// ---- Example problem renderer ----
+function renderExample(ex, idx) {
+  const clsMap  = {А:'ex-a', Б:'ex-b', В:'ex-c'};
+  const iconMap = {А:'🟢', Б:'🔵', В:'🟣'};
+  const cls  = clsMap[ex.level]  || 'ex-b';
+  const icon = iconMap[ex.level] || '🔵';
+  const eid  = 'ex' + idx + '_' + (_bcId);
+  const esc  = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const stepsNorm = (ex.steps||'').replace(/\s*\|\s*/g, '\n');
+  const stepsHtml = textToBullets(stepsNorm, '');
+  return `<div class="example-card">
+    <div class="example-header ${cls}">${icon} ${esc(ex.level)} түвшин &nbsp;·&nbsp; Жишээ ${idx+1}</div>
+    <div class="example-body">
+      <div class="example-problem">${esc(ex.problem)}</div>
+      <button class="edit-toggle solution-toggle" onclick="toggleSolution('${eid}',this)">👁 Шийдэл харах</button>
+      <div class="example-solution" id="${eid}">
+        <div style="font-size:11px;font-weight:700;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.4px">Шийдлийн алхмууд:</div>
+        ${stepsHtml}
+        ${ex.answer ? `<div class="ex-answer">✓ Хариулт: ${esc(ex.answer)}</div>` : ''}
+      </div>
+    </div>
+  </div>`;
+}
+
+function toggleSolution(id, btn) {
+  const el = document.getElementById(id);
+  const visible = el.classList.toggle('visible');
+  btn.textContent = visible ? '🙈 Нуух' : '👁 Шийдэл харах';
+}
+
+function renderDidacticItems(text) {
+  const icons = ['🖼️','📹','📊','📄','🗺️','🎮','📐','🔬','📖','🎯','🖨️','📌'];
+  const lines = (text||'').split('\n').filter(l => l.trim());
+  return lines.map((l, i) => {
+    const clean = l.replace(/^[\-•*\d.]+\s*/, '').trim();
+    return `<div class="didactic-item">
+      <span class="didactic-icon">${icons[i % icons.length]}</span>
+      <span>${clean.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</span>
+    </div>`;
+  }).join('');
+}
+
+// ---- Render plan ----
+function renderPlan(d) {
+  _bcId = 0; // reset counter each render
+  const esc = s => (s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+  const html = `
+<div class="plan-header">
+  <div class="approved-line">Батлав: Сургалтын менежер _____________________ (${esc(d._manager)})</div>
+  <h2>📋 Ээлжит хичээлийн хөтөлбөр</h2>
+  <div class="plan-meta">
+    <span>📚 ${esc(d._subject)}</span>
+    <span>🎓 ${esc(d._grade)}</span>
+    <span>⏱️ ${esc(d._duration)}</span>
+  </div>
+  <div style="margin-top:8px;font-size:13px;opacity:0.9">Сэдэв: <strong>${esc(d._topic)}</strong></div>
+</div>
+<div class="plan-body">
+
+  <div class="section-title">📌 1. Ерөнхий төлөвлөлт</div>
+  <table class="info-table">
+    <tr><td>Хэрэглэгдэхүүн</td><td>${makeBulletCell(d.materials, 70)}</td></tr>
+    <tr><td>Арга зүй</td><td>${makeBulletCell(d.methodology, 70)}</td></tr>
+    <tr><td>Ангийн зохион байгуулалт</td><td>${makeBulletCell(d.classOrg, 50)}</td></tr>
+    <tr><td>Суралцахуйн зорилт</td><td>
+      <div style="display:flex;gap:6px;align-items:flex-start;margin-bottom:5px"><span class="badge badge-a">А</span><span style="font-size:13px">${esc(d.objA)}</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start;margin-bottom:5px"><span class="badge badge-b">Б</span><span style="font-size:13px">${esc(d.objB)}</span></div>
+      <div style="display:flex;gap:6px;align-items:flex-start"><span class="badge badge-c">В</span><span style="font-size:13px">${esc(d.objC)}</span></div>
+    </td></tr>
+  </table>
+
+  <div class="section-title">📊 2. Хичээлийн үйл ажиллагааны урсгал</div>
+  <table class="flow-table">
+    <tr>
+      <th style="width:90px">Үе шат</th>
+      <th style="width:50px">Цаг</th>
+      <th>Багшийн үйл ажиллагаа</th>
+      <th>Сурагчийн үйл ажиллагаа</th>
+    </tr>
+    <tr>
+      <td class="stage-cell">🚀 Сэдэлжүүлэх<div class="stage-goal">${esc(d.introGoal||'')}</div></td>
+      <td class="time-cell"><span class="time-badge">⏱ ${d._tIntro} мин</span></td>
+      <td>${makeBulletCell(d.introTeacher, 90)}</td>
+      <td>${makeBulletCell(d.introStudent, 90)}</td>
+    </tr>
+    <tr>
+      <td class="stage-cell">📖 Өрнөл<div class="stage-goal">${esc(d.mainGoal||'')}</div></td>
+      <td class="time-cell"><span class="time-badge">⏱ ${d._tMain} мин</span></td>
+      <td>${makeBulletCell(d.mainTeacher, 110)}</td>
+      <td>${makeBulletCell(d.mainStudent, 110)}</td>
+    </tr>
+    <tr>
+      <td class="stage-cell">✅ Дүгнэлт<div class="stage-goal">${esc(d.concludeGoal||'')}</div></td>
+      <td class="time-cell"><span class="time-badge">⏱ ${d._tConc} мин</span></td>
+      <td>${makeBulletCell(d.concludeTeacher, 90)}</td>
+      <td>${makeBulletCell(d.concludeStudent, 90)}</td>
+    </tr>
+  </table>
+
+  <div class="section-title">📝 3. Гэрийн даалгавар</div>
+  <div class="homework-box">
+    ${makeBulletCell(d.homework, 60, 'hw-bullets')}
+  </div>
+
+  ${(d.examples && d.examples.length) ? `
+  <div class="section-title">📐 4. Жишээ бодлого &amp; Шийдэл</div>
+  <div class="example-grid">
+    ${d.examples.map((ex, i) => renderExample(ex, i)).join('')}
+  </div>` : ''}
+
+  ${d.boardWork ? `
+  <div class="section-title">🖊️ 5. Самбарт бичих агуулга</div>
+  <div class="board-box">${textToBullets(d.boardWork, '')}</div>` : ''}
+
+  ${d.didacticList ? `
+  <div class="section-title">📋 6. Дидактик материал</div>
+  <div class="didactic-grid">${renderDidacticItems(d.didacticList)}</div>` : ''}
+
+  <div class="plan-stamp">
+    <span>🤖 Edu Mongol v3.0</span>
+    <span>${new Date().toLocaleDateString('mn-MN')} · Монгол ЕБС-ийн стандарт</span>
+  </div>
+</div>`;
+
+  document.getElementById('plan-output').innerHTML = html;
+}
+
+function ar(el) {
+  el.style.height = 'auto';
+  el.style.height = (el.scrollHeight) + 'px';
+}
+
+// =========================================================
+// GENERATE QUIZ
+// =========================================================
+async function generateQuiz() {
+  const subject = document.getElementById('q-subject').value.trim();
+  const topic   = document.getElementById('q-topic').value.trim();
+  const grade   = document.getElementById('q-grade').value.trim();
+  const count   = document.getElementById('q-count').value;
+  const type    = document.getElementById('q-type').value;
+  const level   = document.getElementById('q-level').value;
+
+  if (!subject || !topic || !grade) {
+    alert('Хичээл, сэдэв, ангийг бөглөнө үү!');
+    return;
+  }
+
+  const btn = document.getElementById('quiz-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Үүсгэж байна...';
+  document.getElementById('quiz-actions').style.display = 'none';
+  document.getElementById('quiz-output').innerHTML =
+    '<div class="loading"><div class="spinner"></div><div style="font-weight:600">Сорил боловсруулж байна...</div></div>';
+
+  const typeLabel  = {mixed:'холимог (сонгох ба нээлттэй)', mcq:'зөвхөн сонгох хариулттай', open:'зөвхөн нээлттэй'}[type];
+  const levelLabel = {easy:'хялбар', medium:'дунд', hard:'хүнд'}[level];
+
+  const prompt = `Та Монгол улсын ЕБС-ийн мэргэжлийн багш юм. ${grade}-д зориулсан ${subject} хичээлийн "${topic}" сэдвээр ${count} асуулттай ${typeLabel} сорил үүсгэ. Хүндрэлийн түвшин: ${levelLabel}.
+
+ЗӨВХӨН дараах JSON-г гарга, тайлбар хэрэгтэйгүй:
+{
+  "title": "Сорилын гарчиг",
+  "timeLimit": "хугацаа (мин)",
+  "totalPoints": ${count},
+  "questions": [
+    {
+      "num": 1,
+      "type": "mcq",
+      "text": "Асуулт",
+      "options": ["А) ...", "Б) ...", "В) ...", "Г) ..."],
+      "answer": "Зөв хариулт",
+      "points": 1
+    }
+  ]
+}
+Анхаарал: mcq=сонгох (options 4 байна), open=нээлттэй (options хоосон []). Монгол хэлээр.`;
+
+  try {
+    const raw = toStr(await callAI(prompt));
+    const match = raw.match(/\{[\s\S]*\}/);
+    if (!match) throw new Error('JSON олдсонгүй. AI хариулт: ' + raw.slice(0, 200));
+    let d;
+    try { d = JSON.parse(sanitizeJSON(match[0])); }
+    catch(pe) { throw new Error('JSON задлах алдаа: ' + pe.message.slice(0, 100)); }
+    currentQuiz = { data: d, subject, grade };
+    renderQuiz(d, subject, grade);
+    document.getElementById('quiz-actions').style.display = 'flex';
+  } catch(e) {
+    document.getElementById('quiz-output').innerHTML =
+      `<div style="padding:20px"><div class="alert alert-error">❌ Алдаа: ${e.message}. Дахин оролдоно уу.</div></div>`;
+  }
+
+  btn.disabled = false;
+  btn.innerHTML = '✨ Сорил үүсгэх';
+}
+
+// =========================================================
+// RENDER QUIZ
+// =========================================================
+function renderQuiz(d, subject, grade) {
+  let html = `
+<div class="plan-header">
+  <h2>❓ ${d.title || subject + ' — Сорил'}</h2>
+  <div class="plan-meta">
+    <span>🎓 ${grade}</span>
+    <span>⏱️ ${d.timeLimit}</span>
+    <span>⭐ Нийт оноо: ${d.totalPoints}</span>
+  </div>
+  <div style="margin-top:10px;font-size:12px;opacity:0.8">
+    Нэр: _________________________________ &nbsp;&nbsp; Огноо: _______________
+  </div>
+</div>
+<div class="quiz-output">`;
+
+  (d.questions || []).forEach((q, i) => {
+    const isMCQ = q.type === 'mcq' && q.options && q.options.length > 0;
+    html += `<div class="quiz-question">
+      <div class="quiz-q-header">
+        <span class="quiz-q-num">${q.num || i+1}.</span>
+        <span class="quiz-type-badge ${isMCQ ? 'quiz-mcq' : 'quiz-open'}">${isMCQ ? '🔘 Сонгох' : '✍️ Нээлттэй'}</span>
+        <span style="font-size:11px;color:#94a3b8;margin-left:auto">${q.points||1} оноо</span>
+      </div>
+      <div class="quiz-q-text">${q.text||''}</div>`;
+
+    if (isMCQ) {
+      html += `<ul class="quiz-options">`;
+      q.options.forEach(opt => {
+        html += `<li>${opt}</li>`;
+      });
+      html += `</ul>`;
+    } else {
+      html += `<div class="open-line"></div><div class="open-line"></div>`;
+    }
+
+    html += `<div class="quiz-answer">💡 Хариулт: <strong>${q.answer||''}</strong></div>
+    </div>`;
+  });
+
+  html += `</div>`;
+  document.getElementById('quiz-output').innerHTML = html;
+}
+
+// =========================================================
+// HISTORY
+// =========================================================
+function savePlan() {
+  if (!currentPlan) return;
+  const list = JSON.parse(localStorage.getItem('bagshAI_v3')||'[]');
+  list.unshift({
+    id:      Date.now(),
+    date:    new Date().toLocaleDateString('mn-MN'),
+    subject: currentPlan._subject,
+    topic:   currentPlan._topic,
+    grade:   currentPlan._grade,
+    data:    currentPlan
+  });
+  if (list.length > 60) list.pop();
+  localStorage.setItem('bagshAI_v3', JSON.stringify(list));
+  updateHCount();
+  const btn = event.currentTarget;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✅ Хадгалагдлаа!';
+  setTimeout(() => btn.innerHTML = orig, 2000);
+}
+
+function loadHistory(id) {
+  const list = JSON.parse(localStorage.getItem('bagshAI_v3')||'[]');
+  const item = list.find(x => x.id === id);
+  if (!item) return;
+  currentPlan = item.data;
+  document.getElementById('manager').value  = item.data._manager  || '';
+  document.getElementById('subject').value  = item.data._subject  || '';
+  document.getElementById('topic').value    = item.data._topic    || '';
+  document.getElementById('grade').value    = item.data._grade    || '';
+  document.getElementById('objective').value= item.data._objective|| '';
+  renderPlan(item.data);
+  document.getElementById('plan-actions').style.display = 'flex';
+  switchTab('plan');
+}
+
+function deleteHistory(id, e) {
+  e.stopPropagation();
+  let list = JSON.parse(localStorage.getItem('bagshAI_v3')||'[]');
+  list = list.filter(x => x.id !== id);
+  localStorage.setItem('bagshAI_v3', JSON.stringify(list));
+  updateHCount();
+  renderHistory();
+}
+
+function clearAllHistory() {
+  if (!confirm('Бүх хадгалсан хөтөлбөрийг устгах уу?')) return;
+  localStorage.removeItem('bagshAI_v3');
+  updateHCount();
+  renderHistory();
+}
+
+function renderHistory() {
+  const list = JSON.parse(localStorage.getItem('bagshAI_v3')||'[]');
+  const el = document.getElementById('history-list');
+  if (!list.length) {
+    el.innerHTML = '<div class="empty-state"><span class="empty-icon">📂</span>Хадгалсан хөтөлбөр байхгүй байна</div>';
+    return;
+  }
+  el.innerHTML = list.map(item => `
+    <div class="history-item" onclick="loadHistory(${item.id})">
+      <div>
+        <div class="history-subject">📚 ${item.subject} · ${item.topic}</div>
+        <div class="history-meta">🎓 ${item.grade}</div>
+      </div>
+      <div class="history-right">
+        <div class="history-date">${item.date}</div>
+        <div class="history-del" onclick="deleteHistory(${item.id}, event)" title="Устгах">×</div>
+      </div>
+    </div>`).join('');
+}
+
+function updateHCount() {
+  const list = JSON.parse(localStorage.getItem('bagshAI_v3')||'[]');
+  document.getElementById('hcount').textContent = list.length;
+}
+
+// =========================================================
+// PRINT
+// =========================================================
+function printPlan()  { window.print(); }
+function printQuiz()  { window.print(); }
+
+// =========================================================
+// WORD EXPORT
+// =========================================================
+function baseWordStyle() {
+  return `<style>
+    body{font-family:"Times New Roman",serif;font-size:12pt;margin:2cm;line-height:1.5}
+    h1{font-size:14pt;text-align:center;margin-bottom:6pt}
+    h2{font-size:12pt;margin:12pt 0 4pt}
+    table{width:100%;border-collapse:collapse;margin-bottom:8pt}
+    td,th{border:1px solid #555;padding:5pt 7pt;font-size:11pt;vertical-align:top}
+    th{background:#2563eb;color:white;font-weight:bold}
+    .lbl{font-weight:bold;width:130pt;background:#f5f5f5}
+    .meta{text-align:center;margin-bottom:10pt;font-size:11pt}
+    p{margin:4pt 0}
+  </style>`;
+}
+
+function downloadWord() {
+  if (!currentPlan) return;
+  const d = currentPlan;
+  const html = `<html><head><meta charset="UTF-8">${baseWordStyle()}</head><body>
+<div style="text-align:right;font-size:10pt">Батлав: Сургалтын менежер ________________ (${d._manager})</div>
+<h1>Ээлжит хичээлийн хөтөлбөр</h1>
+<div class="meta">
+  <b>Хичээл:</b> ${d._subject} &nbsp;|&nbsp; <b>Анги:</b> ${d._grade} &nbsp;|&nbsp; <b>Хугацаа:</b> ${d._duration}<br>
+  <b>Сэдэв:</b> ${d._topic}<br>
+  <b>Суралцахуйн зорилт:</b> ${d._objective}
+</div>
+<h2>1. Ерөнхий төлөвлөлт</h2>
+<table>
+  <tr><td class="lbl">Хэрэглэгдэхүүн</td><td>${d.materials||''}</td></tr>
+  <tr><td class="lbl">Арга зүй</td><td>${d.methodology||''}</td></tr>
+  <tr><td class="lbl">Ангийн зохион байгуулалт</td><td>${d.classOrg||''}</td></tr>
+  <tr><td class="lbl">Суралцахуйн зорилт</td><td><b>А:</b> ${d.objA||''}<br><b>Б:</b> ${d.objB||''}<br><b>В:</b> ${d.objC||''}</td></tr>
+</table>
+<h2>2. Хичээлийн үйл ажиллагааны урсгал</h2>
+<table>
+  <tr><th style="width:80pt">Үе шат</th><th style="width:45pt">Хугацаа</th><th>Багшийн үйл ажиллагаа</th><th>Сурагчийн үйл ажиллагаа</th></tr>
+  <tr><td>Сэдэлжүүлэх</td><td>${d._tIntro} мин</td><td>${d.introTeacher||''}</td><td>${d.introStudent||''}</td></tr>
+  <tr><td>Өрнөл</td><td>${d._tMain} мин</td><td>${d.mainTeacher||''}</td><td>${d.mainStudent||''}</td></tr>
+  <tr><td>Дүгнэлт</td><td>${d._tConc} мин</td><td>${d.concludeTeacher||''}</td><td>${d.concludeStudent||''}</td></tr>
+</table>
+<h2>3. Гэрийн даалгавар</h2>
+<p>${d.homework||''}</p>
+<p style="margin-top:20pt;font-size:10pt;color:#777">Edu Mongol v3.0 · ${new Date().toLocaleDateString('mn-MN')}</p>
+</body></html>`;
+
+  const blob = new Blob([html], { type: 'application/msword' });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement('a'), { href: url, download: `${d._subject}_${d._topic}_хөтөлбөр.doc` });
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function downloadQuizWord() {
+  if (!currentQuiz) return;
+  const { data: d, subject, grade } = currentQuiz;
+  let qHtml = '';
+  (d.questions||[]).forEach((q,i) => {
+    const isMCQ = q.type === 'mcq' && q.options && q.options.length > 0;
+    qHtml += `<p style="margin-top:10pt"><b>${q.num||i+1}. ${q.text}</b></p>`;
+    if (isMCQ) {
+      q.options.forEach(o => { qHtml += `<p style="margin-left:16pt">${o}</p>`; });
+    } else {
+      qHtml += `<p>________________________________________________________</p>`;
+      qHtml += `<p>________________________________________________________</p>`;
+    }
+    qHtml += `<p style="color:green;font-size:10pt"><i>✔ Хариулт: ${q.answer||''}</i></p>`;
+  });
+
+  const html = `<html><head><meta charset="UTF-8">${baseWordStyle()}</head><body>
+<h1>${d.title || subject + ' — Сорил'}</h1>
+<div class="meta"><b>Анги:</b> ${grade} &nbsp;|&nbsp; <b>Хугацаа:</b> ${d.timeLimit} &nbsp;|&nbsp; <b>Нийт оноо:</b> ${d.totalPoints}</div>
+<p>Нэр: _________________________________ &nbsp;&nbsp; Огноо: _______________ &nbsp;&nbsp; Оноо: _______</p>
+<hr>
+${qHtml}
+</body></html>`;
+
+  const blob = new Blob([html], { type: 'application/msword' });
+  const url  = URL.createObjectURL(blob);
+  const a    = Object.assign(document.createElement('a'), { href: url, download: `${subject}_сорил.doc` });
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+// =========================================================
+// MEDLE.MN INTEGRATION
+// =========================================================
+const MEDLE_GQL = 'https://medle.edu.mn/api/graphql';
+let medleCacheAll = null;      // cached full list
+let medleSearchTimer = null;   // debounce timer
+
+async function fetchAllMedle() {
+  if (medleCacheAll) return medleCacheAll;
+  try {
+    const res = await fetch(MEDLE_GQL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query: `{ lessonTemplateList {
+        ELEMENT_DETAIL_ID ELEMENT_DETAIL_NAME PROGRAM_ELEMENT_NAME
+        ACADEMIC_LEVEL SUBJECT_AREA_ID DESCRIPTION PURPOSE_NAME UNIT_TOPIC_NAME
+      } }` })
+    });
+    const j = await res.json();
+    medleCacheAll = j.data?.lessonTemplateList || [];
+    return medleCacheAll;
+  } catch(e) {
+    return [];
+  }
+}
+
+function scoreLesson(lesson, gradeNum, subjectWords) {
+  let score = 0;
+  if (gradeNum && lesson.ACADEMIC_LEVEL === gradeNum) score += 10;
+  const lname = (lesson.PROGRAM_ELEMENT_NAME + ' ' + lesson.ELEMENT_DETAIL_NAME + ' ' + (lesson.UNIT_TOPIC_NAME||'')).toLowerCase();
+  for (const w of subjectWords) {
+    if (w.length > 1 && lname.includes(w)) score += 5;
+  }
+  return score;
+}
+
+async function searchMedle() {
+  const grade   = document.getElementById('grade').value.trim();
+  const subject = document.getElementById('subject').value.trim();
+  const topic   = document.getElementById('topic').value.trim();
+  if (!grade && !subject) return;
+
+  document.getElementById('medle-card').style.display = 'block';
+  document.getElementById('medle-panel').innerHTML =
+    '<div class="medle-loading"><span class="medle-spinner"></span>Хайж байна...</div>';
+
+  const all = await fetchAllMedle();
+  const gradeNum  = (grade.match(/\d+/) || [])[0] || '';
+  const keywords  = (subject + ' ' + topic).toLowerCase()
+                    .split(/[\s,\/·]+/).filter(w => w.length > 1);
+
+  const scored = all
+    .map(l => ({ l, s: scoreLesson(l, gradeNum, keywords) }))
+    .filter(x => x.s > 0)
+    .sort((a,b) => b.s - a.s)
+    .slice(0, 5)
+    .map(x => x.l);
+
+  renderMedlePanel(scored, grade, subject);
+}
+
+function renderMedlePanel(lessons, grade, subject) {
+  const panel = document.getElementById('medle-panel');
+  if (!lessons.length) {
+    panel.innerHTML = `<div class="medle-empty">
+      "${grade} · ${subject}" тохирох жишээ олдсонгүй.<br>
+      <a href="https://medle.mn" target="_blank" style="color:var(--primary)">medle.mn дээр хайх →</a>
+    </div>`;
+    return;
+  }
+
+  panel.innerHTML = lessons.map(ex => {
+    const subjectShort = (ex.PROGRAM_ELEMENT_NAME||'').split('(')[0].trim();
+    const safeId      = ex.ELEMENT_DETAIL_ID;
+    const safePurpose = (ex.PURPOSE_NAME||'').replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$/g,'\\$');
+    const safeTopic   = (ex.ELEMENT_DETAIL_NAME||'').replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$/g,'\\$');
+    return `<div class="medle-item">
+      <div><span class="medle-grade">${ex.ACADEMIC_LEVEL}-р анги · ${subjectShort}</span></div>
+      <div class="medle-topic">${ex.ELEMENT_DETAIL_NAME}</div>
+      ${ex.PURPOSE_NAME ? `<div class="medle-purpose">🎯 ${ex.PURPOSE_NAME}</div>` : ''}
+      <div class="medle-btns">
+        <button class="btn btn-outline btn-sm" style="font-size:11px"
+          onclick="applyMedle(\`${safePurpose}\`,\`${safeTopic}\`)">✅ Зорилт хэрэглэх</button>
+        <a href="https://medle.mn/lesson/${safeId}" target="_blank"
+          class="btn btn-outline btn-sm" style="font-size:11px">🔗 Үзэх</a>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function applyMedle(purpose, topic) {
+  if (purpose) document.getElementById('objective').value = purpose;
+  if (topic && !document.getElementById('topic').value.trim()) {
+    document.getElementById('topic').value = topic;
+  }
+  // Smooth scroll to objective field
+  document.getElementById('objective').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  document.getElementById('objective').focus();
+}
+
+async function getMedleContext(grade, subject) {
+  try {
+    const all = medleCacheAll || await fetchAllMedle();
+    const gradeNum = (grade.match(/\d+/) || [])[0] || '';
+    const keywords = subject.toLowerCase().split(/[\s,\/]+/).filter(w => w.length > 1);
+    const matches  = all
+      .map(l => ({ l, s: scoreLesson(l, gradeNum, keywords) }))
+      .filter(x => x.s > 0)
+      .sort((a,b) => b.s - a.s)
+      .slice(0, 3)
+      .map(x => x.l);
+    if (!matches.length) return '';
+    const ctx = matches.map(l =>
+      `  • ${l.ACADEMIC_LEVEL}-р анги, ${l.PROGRAM_ELEMENT_NAME.split('(')[0].trim()}: "${l.ELEMENT_DETAIL_NAME}" — Зорилт: ${l.PURPOSE_NAME||''}`
+    ).join('\n');
+    return `- Medle.mn-с ижил төстэй хичээлийн жишээ зорилтууд (лавлах болгон ашиглах):\n${ctx}`;
+  } catch(e) {
+    return '';
+  }
+}
+
+function debouncedSearchMedle() {
+  clearTimeout(medleSearchTimer);
+  medleSearchTimer = setTimeout(searchMedle, 600);
+}
+
+// =========================================================
+// INIT
+// =========================================================
+updateHCount();
+
+// Hook grade/subject/topic fields to auto-search medle
+['grade','subject','topic'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', debouncedSearchMedle);
+});
+</script>
+</body>
+</html>
