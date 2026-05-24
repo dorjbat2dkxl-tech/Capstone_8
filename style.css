@@ -187,9 +187,9 @@ body {
 
 /* ========== HERO SECTION ========== */
 .hero {
-    background-image: url('newhome.png');
-    background-size: cover;
-    background-position: center 60%;
+    background-image: url('newbanner.png');
+    background-size: 100% auto;
+    background-position: center center;
     background-repeat: no-repeat;
     border-radius: 2rem;
     margin: 2rem 0;
