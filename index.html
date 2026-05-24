@@ -88,6 +88,24 @@
             Ангиллаа сонгоод хичээлийн картруу ороорой.
         </p>
 
+        <!-- EduMongol танилцуулга видео -->
+        <div style="margin: 20px 0 28px; text-align:center;">
+            <div style="margin-bottom:14px;">
+                <div style="font-size:22px; margin-bottom:6px;">🎬</div>
+                <div style="font-size:17px; font-weight:800; color:#1e293b; letter-spacing:-0.3px;">EduMongol танилцуулга</div>
+                <div style="font-size:12px; color:#64748b; margin-top:3px;">Платформын тухай товч мэдээлэл</div>
+            </div>
+            <video controls preload="metadata"
+                style="
+                    width:100%; border-radius:10px;
+                    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+                    display:block; background:#000;
+                    max-height:460px;
+                ">
+                <source src="EduMongol.mp4" type="video/mp4">
+            </video>
+        </div>
+
         <!-- Боловсролын түвшний таб -->
         <div class="edu-tabs" role="tablist" aria-label="Боловсролын түвшин">
             <button class="edu-tab active" data-tab="ebs" role="tab" aria-selected="true" aria-controls="tab-ebs">
@@ -225,6 +243,17 @@
                         <div class="card-footer">
                             <span class="card-count">📎 нөөц бий</span>
                             <button class="btn-sm bridge-btn" data-subject="music">Үзэх →</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bridge-card" data-accent="steam">
+                    <div class="card-img" aria-hidden="true">🚀</div>
+                    <div class="card-content">
+                        <h3>STEAM</h3>
+                        <p>Шинжлэх ухаан, технологи, инженерчлэл, урлаг, математикийн интерактив нөөц, AI хэрэгслүүд.</p>
+                        <div class="card-footer">
+                            <span class="card-count">20+ нөөц</span>
+                            <button class="btn-sm bridge-btn" data-subject="steam">Үзэх →</button>
                         </div>
                     </div>
                 </div>
@@ -718,10 +747,168 @@
         </div>
     </div>
 
+    <!-- STEAM PAGE -->
+    <div id="steamPage" style="display: none;">
+        <button type="button" class="btn-sm back-btn" id="backFromSteam">← Нүүр хуудас</button>
+        <h2 class="section-title">🚀 STEAM — Хичээлийн нөөц сан</h2>
+        <p class="page-intro">
+            Шинжлэх ухаан, Технологи, Инженерчлэл, Урлаг, Математикийн хичээл заахад ашиглагдах
+            AI хэрэгслүүд, онлайн платформ, ном, цахим сан бүгдийг нэг дороос олоорой.
+        </p>
+
+        <!-- 1. AI хэрэгслүүд -->
+        <h3 class="category-title">🤖 STEAM-д зориулсан AI хэрэгслүүд</h3>
+        <div class="resources-grid">
+            <a href="https://www.seari.net/resources/ai-tools-for-steam-education" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🧠</div>
+                <h4>SEARINET STEAM AI Toolkit</h4>
+                <p>STEAM боловсролд зориулсан AI хэрэгслүүдийн жагсаалт — хичээл, даалгавар, загварчлал бүтээхэд ашиглана.</p>
+                <span class="resource-link">seari.net →</span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.ingenium.tca1912" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">📱</div>
+                <h4>STEAM AI Academy</h4>
+                <p>Android апп — сургалт, даалгавар бүтээгч, номын сан бүхий STEAM сурах орчин.</p>
+                <span class="resource-link">Google Play →</span>
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.pescAPPs.SteamKids" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🎮</div>
+                <h4>STEAM Games for Kids</h4>
+                <p>Хүүхдэд зориулсан STEAM тоглоом, гэгээлгээний апп — тоглоом хэлбэрээр суралцана.</p>
+                <span class="resource-link">Google Play →</span>
+            </a>
+            <a href="https://chat.openai.com" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">💬</div>
+                <h4>ChatGPT</h4>
+                <p>Хичээлийн төлөвлөгөө боловсруулах, сорил бүтээх, агуулга тайлбарлах универсал AI туслах.</p>
+                <span class="resource-link">chat.openai.com →</span>
+            </a>
+            <a href="https://openai.com/dall-e" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🎨</div>
+                <h4>DALL·E</h4>
+                <p>Текстээс зураг үүсгэх AI — STEAM хичээлийн дүрслэл, диаграмм, бүтээлч материал хийхэд тохиромжтой.</p>
+                <span class="resource-link">openai.com/dall-e →</span>
+            </a>
+        </div>
+
+        <!-- 2. Онлайн платформ -->
+        <h3 class="category-title">🌐 Онлайн платформ ба курс</h3>
+        <div class="resources-grid">
+            <a href="https://www.zangia.mn/academy" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🇲🇳</div>
+                <h4>Zangia Academy</h4>
+                <p>Монголын онлайн сургалтын платформ — STEAM хичээлийн контент, видео хичээл.</p>
+                <span class="resource-link">zangia.mn →</span>
+            </a>
+            <a href="https://www.coursera.org" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🎓</div>
+                <h4>Coursera</h4>
+                <p>Дэлхийн тэргүүлэх их сургуулиудын STEM/STEAM онлайн курсууд — үнэгүй аудит горимтой.</p>
+                <span class="resource-link">coursera.org →</span>
+            </a>
+            <a href="https://www.edx.org" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">📘</div>
+                <h4>edX</h4>
+                <p>MIT, Harvard зэрэг их сургуулийн STEAM хичээлүүд — сертификаттай курс бий.</p>
+                <span class="resource-link">edx.org →</span>
+            </a>
+            <a href="https://www.futurelearn.com" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🌱</div>
+                <h4>FutureLearn</h4>
+                <p>STEAM-д хамаарах олон чиглэлийн онлайн курс — багш нарт зориулсан мэргэжлийн хөгжлийн агуулга бий.</p>
+                <span class="resource-link">futurelearn.com →</span>
+            </a>
+            <a href="https://www.europeanschoolnetacademy.eu" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🇪🇺</div>
+                <h4>European Schoolnet Academy</h4>
+                <p>Европын сургуулийн сүлжээний онлайн сургалт — багш нарт зориулсан STEAM арга зүй.</p>
+                <span class="resource-link">europeanschoolnetacademy.eu →</span>
+            </a>
+            <a href="https://code.org" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">💻</div>
+                <h4>Code.org</h4>
+                <p>STEAM програмчлалын хичээл — хүүхдэд ойлгомжтой, тоглоом хэлбэртэй кодчиллын платформ.</p>
+                <span class="resource-link">code.org →</span>
+            </a>
+            <a href="https://www.polyup.com/educators" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">📐</div>
+                <h4>Polyup</h4>
+                <p>Математикийн STEAM хичээл — тоглоом болон бодлогоор математикийн сэтгэлгээ хөгжүүлнэ.</p>
+                <span class="resource-link">polyup.com →</span>
+            </a>
+            <a href="https://codeweek.eu/resources" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🗓️</div>
+                <h4>Code Week</h4>
+                <p>Кодчиллын долоо хоног — STEAM боломжууд, хичээлийн нөөц, арга зүй.</p>
+                <span class="resource-link">codeweek.eu →</span>
+            </a>
+        </div>
+
+        <!-- 3. Ном, цахим номын сан -->
+        <h3 class="category-title">📚 Ном, цахим номын сан</h3>
+        <div class="resources-grid">
+            <a href="https://e-library.num.edu.mn" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🏛️</div>
+                <h4>NUM Цахим номын сан</h4>
+                <p>Монгол улсын их сургуулийн цахим ном, НЭМИ-ийн нөөц — STEAM чиглэлийн эрдэм шинжилгээний материал.</p>
+                <span class="resource-link">e-library.num.edu.mn →</span>
+            </a>
+            <a href="https://esan.mn" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">📖</div>
+                <h4>Цахим сан (eSan)</h4>
+                <p>Үндэсний цахим ном, сэтгүүл, судалгааны материал — STEAM хичээлийн эх сурвалж.</p>
+                <span class="resource-link">esan.mn →</span>
+            </a>
+            <a href="https://www.digitallibrary.io" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">📱</div>
+                <h4>Digital Library</h4>
+                <p>Цахим ном, үлгэр — 9-14 насны өсвөр үеийнхэнд зориулсан олон хэлний номын сан.</p>
+                <span class="resource-link">digitallibrary.io →</span>
+            </a>
+            <a href="https://storyweaver.org.in" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">📗</div>
+                <h4>StoryWeaver</h4>
+                <p>Олон хэлний чуулган үлгэрийн цахим ном — бага насны суралцагчдад зориулсан уран зохиолын нөөц.</p>
+                <span class="resource-link">storyweaver.org.in →</span>
+            </a>
+            <a href="https://www.worldreader.org" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🌍</div>
+                <h4>Worldreader</h4>
+                <p>Олон улсын цахим номын сан — олон хэлний контент, багш сурагчдад зориулсан уншлагын нөөц.</p>
+                <span class="resource-link">worldreader.org →</span>
+            </a>
+        </div>
+
+        <!-- 4. Багшийн хэрэглээний платформ -->
+        <h3 class="category-title">👩‍🏫 Багшийн хэрэглээний платформ</h3>
+        <div class="resources-grid">
+            <a href="https://safety.edu.mn" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🛡️</div>
+                <h4>ХАБЭА Цахим платформ</h4>
+                <p>Soft Safety Academy — ажлын байрны аюулгүй байдал, эрүүл мэндийн онлайн сургалт.</p>
+                <span class="resource-link">safety.edu.mn →</span>
+            </a>
+            <a href="https://alison.com" target="_blank" rel="noopener" class="resource-card">
+                <div class="resource-icon">🎯</div>
+                <h4>Alison</h4>
+                <p>Үнэгүй онлайн сургалт — шинэлэг хичээл, мэргэжлийн хөгжлийн курс, STEAM чиглэлийн агуулга.</p>
+                <span class="resource-link">alison.com →</span>
+            </a>
+        </div>
+    </div>
+
     <!-- СЭТГЭЛ ЗҮЙ PAGE -->
     <div id="psychPage" style="display: none;">
         <h2 class="section-title">🧠 Сэтгэл зүйн боловсрол — Нөөц сан</h2>
         <p class="section-intro">Тест, судалгаа, видео, арга зүй — сургуулийн сэтгэл зүйчид болон багш нарт зориулсан 40+ үнэгүй эх сурвалж.</p>
+
+        <div class="video-grid" style="margin-bottom:24px">
+            <div class="video-wrap local-video-wrap">
+                <video controls preload="metadata" title="Сэтгэл зүйн боловсрол">
+                    <source src="setgelzui.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
 
         <!-- 1. Онлайн тест -->
         <div class="aub-section-label">📋 Сэтгэл зүйн онлайн тест, сорил</div>
@@ -1583,6 +1770,14 @@
     <div id="mathPage" style="display: none;">
         <h2 class="section-title">📐 Математикийн хичээлийн хөтөлбөр боловсруулах</h2>
         <p class="section-intro">Математикийн хичээлийн хөтөлбөр боловсруулахад туслах интерактив платформ. Доорх товч дарж шууд нэвтэрнэ үү.</p>
+
+        <div class="video-grid" style="margin-bottom:24px">
+            <div class="video-wrap local-video-wrap">
+                <video controls preload="metadata" title="Математик">
+                    <source src="math.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
 
         <a href="https://geographymc.my.canva.site/c73deb594bps0rcv" target="_blank" rel="noopener" class="math-open-btn">
             📐 Математикийн хичээлийн хөтөлбөр боловсруулах →
@@ -2520,6 +2715,14 @@
             МТ-ийн багш нарт зориулсан хиймэл оюун ухааны хэрэгслүүд, интерактив програмчлалын
             платформ болон тоон боловсролын нөөцүүдийн цуглуулга. Карт дээр дарж шууд тухайн платформ руу очно.
         </p>
+
+        <div class="video-grid" style="margin-bottom:24px">
+            <div class="video-wrap local-video-wrap">
+                <video controls preload="metadata" title="Мэдээллийн технологи">
+                    <source src="MT.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
 
         <h3 class="category-title">🤖 Багш нарт зориулсан AI хэрэгслүүд</h3>
         <div class="resources-grid">
@@ -5481,6 +5684,7 @@
         chemistry: "chemistry",
         physics: "physics",
         music: "music",
+        steam: "steam",
         aub: "aub",
         psych: "psych"
     };
@@ -5701,7 +5905,7 @@
     // PAGE NAVIGATION
     function showPage(pageId) {
         ["homePage","coursesPage","mathPage","quizPage","dashboardPage","teamPage","contactPage",
-         "bagshAiPage","socialPage","englishPage","itPage","childprotectionPage","primaryeduPage","sobPage","vocationalPage","geographyPage","chemistryPage","physicsPage","musicPage","aubPage","psychPage"
+         "bagshAiPage","socialPage","englishPage","itPage","childprotectionPage","primaryeduPage","sobPage","vocationalPage","geographyPage","chemistryPage","physicsPage","musicPage","aubPage","psychPage","steamPage"
         ].forEach(id => {
             const el = document.getElementById(id);
             if (el) el.style.display = "none";
@@ -5724,6 +5928,7 @@
         if (pageId === "chemistry") document.getElementById("chemistryPage").style.display = "block";
         if (pageId === "physics")   document.getElementById("physicsPage").style.display = "block";
         if (pageId === "music")     document.getElementById("musicPage").style.display = "block";
+        if (pageId === "steam")     document.getElementById("steamPage").style.display = "block";
         if (pageId === "aub")       document.getElementById("aubPage").style.display = "block";
         if (pageId === "psych")     document.getElementById("psychPage").style.display = "block";
         if (pageId === "bagshAi")   document.getElementById("bagshAiPage").style.display = "block";
@@ -5735,7 +5940,7 @@
 
     // Дотоод bridge хуудаснуудаас буцах товч
     ["backFromSocial","backFromEnglish","backFromIT","backFromChildprotection",
-     "backFromPrimaryedu","backFromSob","backFromVocational","backFromGeography","backFromChemistry","backFromPhysics","backFromMusic"
+     "backFromPrimaryedu","backFromSob","backFromVocational","backFromGeography","backFromChemistry","backFromPhysics","backFromMusic","backFromSteam"
     ].forEach(btnId => {
         document.getElementById(btnId)?.addEventListener("click", () => {
             showPage("home");
@@ -6167,7 +6372,7 @@
         }
     ];
 
-    const GROQ_KEY = "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";
+    const GROQ_KEY = "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";
     const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
     const SYSTEM_CONTEXT = "Та EduMongol вэбсайтын AI туслах EduBot юм. Монгол багш нарт зориулсан боловсролын платформ. Вэбсайтын үндсэн хэсгүүд: ЕБС (Математик, Физик, Хими, Газар зүй, Англи хэл, МТ, Хөгжим, Нийгмийн ухаан, Мэргэжлийн боловсрол, Хүүхэд хамгаалал, Бага боловсрол), АУБ (ClassDojo, Google Classroom, Seesaw, Remind), Сэтгэл зүйн боловсрол (DASS-21, PHQ-9, GAD-7, MBTI тест, Therapist Aid, Mindfulness), EduBot AI чат, Бидний баг (8-р баг, Өмнөговь & Сэлэнгэ аймгууд), Холбоо барих форм. Линк оруулахдаа [гарчиг](URL) форматаар, YouTube бол [нэр](URL) форматаар бич. Хариултаа монгол хэлээр, товч тодорхой өг.";
 

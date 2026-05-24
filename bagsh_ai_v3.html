@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edu Mongol — Хичээлийн хөтөлбөр үүсгэгч</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="if(window.renderMathInElement)renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
 <style>
 :root {
   color-scheme: light;
@@ -367,6 +371,34 @@ textarea.form-control { resize: vertical; min-height: 70px; }
 .didactic-item:hover { background: #eef4ff; border-color: #bfdbfe; }
 .didactic-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
 
+/* ---- Formula box ---- */
+.formula-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 10px;
+}
+.formula-item {
+  background: linear-gradient(135deg,#f0f4ff 0%,#e8f0fe 100%);
+  border: 1.5px solid #c7d7fd; border-radius: 10px;
+  padding: 12px 16px; text-align: center;
+}
+.formula-label {
+  font-size: 11px; font-weight: 700; color: #3b5bdb;
+  text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;
+}
+.formula-expr {
+  font-size: 16px; font-weight: 700; color: #1e293b;
+  font-family: 'Georgia', serif; line-height: 1.5;
+  word-break: break-word;
+}
+.solution-toggle { margin-top: 6px; }
+
+/* ---- Visual aid box ---- */
+.visual-aid-box {
+  background: #fffbeb; border: 1.5px solid #fde68a;
+  border-radius: 10px; padding: 14px 18px;
+  font-size: 13px; line-height: 1.75; color: #1e293b;
+  white-space: pre-wrap; font-family: 'Courier New', monospace;
+}
+
 /* Print */
 @media print {
   .tabs, .action-row, .sidebar, .no-print, #plan-actions, .header { display: none !important; }
@@ -605,7 +637,7 @@ let currentQuiz = null;
 // =========================================================
 // GROQ AI CALLER
 // =========================================================
-const GROQ_KEY = "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";
+const GROQ_KEY = "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";
 const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "llama-3.3-70b-versatile";
 
@@ -704,7 +736,7 @@ async function generatePlan() {
 
   const prompt = `Та Монгол улсын ЕБС-ийн сургалтын стандарт, заах арга зүйг маш сайн мэдэх мэргэжлийн "Сургалтын технологич, AI туслах багш" юм.
 
-Дараах мэдээллэлд үндэслэн ДЭЛГЭРЭНГҮЙ, ПРАКТИК, тодорхой ээлжит хичээлийн хөтөлбөрийг боловсруул:
+Дараах мэдээллэлд үндэслэн ДЭЛГЭРЭНГҮЙ, БОДИТ, ТОДОРХОЙ ээлжит хичээлийн хөтөлбөрийг боловсруул:
 - Хичээл: ${subject}
 - Сэдэв: ${topic}
 - Анги: ${grade}
@@ -712,32 +744,44 @@ async function generatePlan() {
 - Суралцахуйн зорилт: ${objective}
 ${extra ? '- Нэмэлт заавар: ' + extra : ''}
 ${await getMedleContext(grade, subject)}
-ЗӨВХӨН дараах JSON объектыг гарга. Тайлбар, markdown, код блок хэрэгтэйгүй. Монгол хэлээр бичнэ үү:
+ЧУХАЛ ШААРДЛАГА:
+1. keyFormulas: хичээлтэй холбоотой БОДИТ томьёонуудыг KaTeX LaTeX форматаар бич ($ ... $)
+2. examples: ерөнхий тайлбар бус БОДИТ тоо, хувьсагч бүхий бодлого — тоон хариулттай
+3. boardWork: самбарт БОДИТ бичигдэх зүйл — томьёо, нэр томьёо, схем
+4. visualAid: ASCII/текст тэмдэгтээр схем, диаграмм, зураг зур
+
+ЗӨВХӨН JSON гарга. Тайлбар, markdown, код блок хэрэгтэйгүй. Монгол хэлээр:
 
 {
-  "materials": "Хичээлд ашиглах 4-5 тодорхой хэрэглэгдэхүүн, интерактив хэрэгсэл эсвэл апп (нэр ба зорилго)",
-  "methodology": "Хичээлд ашиглах 3-4 заах арга зүй, тэдгээрийн товч тайлбар",
-  "classOrg": "Ангийн зохион байгуулалт — суудлын байрлал, бүлгийн тоо, хэрхэн зохион байгуулах",
-  "objA": "А түвшний зорилт — хялбар, үндсэн ойлголтыг эзэмших",
-  "objB": "Б түвшний зорилт — дунд, хэрэглэж чадах",
-  "objC": "В түвшний зорилт — ахисан, бүтээлчээр ашиглах",
-  "introGoal": "Сэдэлжүүлэх үе шатын зорилго",
-  "introTeacher": "Багшийн үйл ажиллагаа сэдэлжүүлэх үед (${tIntro} мин): алхам алхмаар, тодорхой арга барил, асуулт, хэрэгсэл ашиглах зааврыг дэлгэрэнгүй бичнэ",
-  "introStudent": "Сурагчдын үйл ажиллагаа сэдэлжүүлэх үед: хэрхэн оролцох, яаж хариулах",
-  "mainGoal": "Өрнөл үе шатын зорилго",
-  "mainTeacher": "Багшийн үйл ажиллагаа өрнөл үед (${tMain} мин): шинэ мэдлэг тайлбарлах арга, ашиглах хэрэгсэл, жишээ бодлого зааварчлах, бүлгийн даалгавар өгөх зааврыг дэлгэрэнгүй бичнэ",
-  "mainStudent": "Сурагчдын үйл ажиллагаа өрнөл үед: бие даан болон бүлгээр хийх дасгал, яаж суралцах",
-  "concludeGoal": "Дүгнэлт үе шатын зорилго",
-  "concludeTeacher": "Багшийн үйл ажиллагаа дүгнэлт үед (${tConc} мин): хичээлийн зорилтод хүрсэн эсэхийг үнэлэх, нэгтгэн дүгнэх, санал хүсэлт авах арга",
-  "concludeStudent": "Сурагчдын үйл ажиллагаа дүгнэлт үед: өөрийгөө үнэлэх, гол ойлголтыг давтах, асуулт асуух",
-  "homework": "Гэрийн даалгавар: бүтээлч, бататгах, 15-20 минутад хийж болохуйц тодорхой даалгавар",
-  "examples": [
-    {"level":"А","problem":"А түвшний жишээ бодлого (хялбар, үндсэн ойлголт шалгах)","steps":"1. Эхний алхам | 2. Хоёрдох алхам | 3. Гуравдах алхам","answer":"Хариулт"},
-    {"level":"Б","problem":"Б түвшний жишээ бодлого (хэрэглэх чадвар)","steps":"1. Эхний алхам | 2. Хоёрдох алхам | 3. Гуравдах алхам","answer":"Хариулт"},
-    {"level":"В","problem":"В түвшний жишээ бодлого (бүтээлч, өргөтгөсөн)","steps":"1. Эхний алхам | 2. Хоёрдох алхам | 3. Гуравдах алхам","answer":"Хариулт"}
+  "materials": "4-5 тодорхой хэрэглэгдэхүүн нэр ба зорилгоор",
+  "methodology": "3-4 заах арга зүй тайлбартай",
+  "classOrg": "Суудлын байрлал, бүлгийн тоо",
+  "objA": "А түвшний зорилт — үндсэн ойлголт",
+  "objB": "Б түвшний зорилт — хэрэглэх чадвар",
+  "objC": "В түвшний зорилт — бүтээлч хэрэглэх",
+  "introGoal": "Сэдэлжүүлэх зорилго",
+  "introTeacher": "Багшийн үйл ажиллагаа сэдэлжүүлэх үед (${tIntro} мин) — бодит асуулт, арга хэрэгсэл дурдаж дэлгэрэнгүй",
+  "introStudent": "Сурагчдын үйл ажиллагаа сэдэлжүүлэх үед",
+  "mainGoal": "Өрнөлийн зорилго",
+  "mainTeacher": "Багшийн үйл ажиллагаа өрнөл үед (${tMain} мин) — томьёо тайлбарлах, жишээ бодох, бүлгийн даалгавар дэлгэрэнгүй",
+  "mainStudent": "Сурагчдын үйл ажиллагаа өрнөл үед",
+  "concludeGoal": "Дүгнэлтийн зорилго",
+  "concludeTeacher": "Багшийн үйл ажиллагаа дүгнэлт үед (${tConc} мин)",
+  "concludeStudent": "Сурагчдын үйл ажиллагаа дүгнэлт үед",
+  "homework": "Бүтээлч тодорхой гэрийн даалгавар бодит тоотой",
+  "keyFormulas": [
+    {"label": "Томьёоны нэр 1", "expr": "$LaTeX_томьёо_1$", "desc": "тайлбар"},
+    {"label": "Томьёоны нэр 2", "expr": "$LaTeX_томьёо_2$", "desc": "тайлбар"},
+    {"label": "Томьёоны нэр 3", "expr": "$LaTeX_томьёо_3$", "desc": "тайлбар"}
   ],
-  "boardWork": "Самбарт бичих/зурах агуулга тодорхойлно: голлох томьёо, схем, концепт зураг, гол нэр томьёо (мөр бүр тусдаа зүйл)",
-  "didacticList": "Ашиглах дидактик материалуудын жагсаалт: зураг, видео, диаграмм, хэвлэмэл хуудас зэрэг (мөр бүр нэг материал, хаана хайх/авах заавартай)"
+  "examples": [
+    {"level":"А","problem":"БОДИТ тоотой хялбар бодлого","steps":"1. алхам | 2. алхам | 3. алхам","answer":"тоон хариулт"},
+    {"level":"Б","problem":"БОДИТ тоотой дунд бодлого","steps":"1. алхам | 2. алхам | 3. алхам","answer":"тоон хариулт"},
+    {"level":"В","problem":"БОДИТ тоотой хүнд бодлого","steps":"1. алхам | 2. алхам | 3. алхам","answer":"тоон хариулт"}
+  ],
+  "boardWork": "Самбарт бичих БОДИТ агуулга — томьёо, нэр томьёо, схем (мөр бүр тусдаа)",
+  "visualAid": "ASCII/текст тэмдэгтээр схем эсвэл диаграмм",
+  "didacticList": "Дидактик материал — мөр бүр нэг материал, хаанаас авах заавартай"
 }`;
 
   try {
@@ -931,18 +975,33 @@ function renderPlan(d) {
     ${makeBulletCell(d.homework, 60, 'hw-bullets')}
   </div>
 
+  ${(d.keyFormulas && d.keyFormulas.length) ? `
+  <div class="section-title">📐 4. Гол томьёонууд</div>
+  <div class="formula-grid">
+    ${d.keyFormulas.map(f => `
+    <div class="formula-item">
+      <div class="formula-label">${(f.label||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
+      <div class="formula-expr">${(f.expr||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>
+      ${f.desc ? `<div style="font-size:11px;color:#64748b;margin-top:4px">${f.desc.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>` : ''}
+    </div>`).join('')}
+  </div>` : ''}
+
   ${(d.examples && d.examples.length) ? `
-  <div class="section-title">📐 4. Жишээ бодлого &amp; Шийдэл</div>
+  <div class="section-title">🧮 5. Жишээ бодлого &amp; Шийдэл</div>
   <div class="example-grid">
     ${d.examples.map((ex, i) => renderExample(ex, i)).join('')}
   </div>` : ''}
 
   ${d.boardWork ? `
-  <div class="section-title">🖊️ 5. Самбарт бичих агуулга</div>
+  <div class="section-title">🖊️ 6. Самбарт бичих агуулга</div>
   <div class="board-box">${textToBullets(d.boardWork, '')}</div>` : ''}
 
+  ${d.visualAid ? `
+  <div class="section-title">🗺️ 7. Визуал схем / Диаграмм</div>
+  <div class="visual-aid-box">${(d.visualAid||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>` : ''}
+
   ${d.didacticList ? `
-  <div class="section-title">📋 6. Дидактик материал</div>
+  <div class="section-title">📋 8. Дидактик материал</div>
   <div class="didactic-grid">${renderDidacticItems(d.didacticList)}</div>` : ''}
 
   <div class="plan-stamp">
@@ -952,6 +1011,17 @@ function renderPlan(d) {
 </div>`;
 
   document.getElementById('plan-output').innerHTML = html;
+
+  // KaTeX томьёог render хийх
+  if (window.renderMathInElement) {
+    renderMathInElement(document.getElementById('plan-output'), {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false
+    });
+  }
 }
 
 function ar(el) {
