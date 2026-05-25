@@ -6372,18 +6372,13 @@
         }
     ];
 
-    const GROQ_KEY = "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";
-    const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
     const SYSTEM_CONTEXT = "Та EduMongol вэбсайтын AI туслах EduBot юм. Монгол багш нарт зориулсан боловсролын платформ. Вэбсайтын үндсэн хэсгүүд: ЕБС (Математик, Физик, Хими, Газар зүй, Англи хэл, МТ, Хөгжим, Нийгмийн ухаан, Мэргэжлийн боловсрол, Хүүхэд хамгаалал, Бага боловсрол), АУБ (ClassDojo, Google Classroom, Seesaw, Remind), Сэтгэл зүйн боловсрол (DASS-21, PHQ-9, GAD-7, MBTI тест, Therapist Aid, Mindfulness), EduBot AI чат, Бидний баг (8-р баг, Өмнөговь & Сэлэнгэ аймгууд), Холбоо барих форм. Линк оруулахдаа [гарчиг](URL) форматаар, YouTube бол [нэр](URL) форматаар бич. Хариултаа монгол хэлээр, товч тодорхой өг.";
 
     async function askGemini(userMsg) {
         try {
-            const res = await fetch(GROQ_URL, {
+            const res = await fetch('/api/groq', {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": "Bearer " + GROQ_KEY
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     model: "llama-3.3-70b-versatile",
                     messages: [

@@ -637,8 +637,6 @@ let currentQuiz = null;
 // =========================================================
 // GROQ AI CALLER
 // =========================================================
-const GROQ_KEY = "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";
-const GROQ_URL = "https://api.groq.com/openai/v1/chat/completions";
 const GROQ_MODEL = "llama-3.3-70b-versatile";
 
 function toStr(raw) {
@@ -655,12 +653,9 @@ function toStr(raw) {
 }
 
 async function callAI(prompt) {
-  const resp = await fetch(GROQ_URL, {
+  const resp = await fetch('/api/groq', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + GROQ_KEY
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       model: GROQ_MODEL,
       messages: [{ role: 'user', content: prompt }],
