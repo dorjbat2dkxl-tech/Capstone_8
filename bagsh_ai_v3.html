@@ -672,12 +672,23 @@ async function callAI(prompt) {
 
 // Escape unescaped control chars inside JSON string values
 function sanitizeJSON(str) {
+  // Valid JSON escape characters
+  const validEscapes = new Set(['"', '\\', '/', 'b', 'f', 'n', 'r', 't', 'u']);
   let result = '';
   let inString = false;
   let escape = false;
   for (let i = 0; i < str.length; i++) {
     const ch = str[i];
-    if (escape) { result += ch; escape = false; continue; }
+    if (escape) {
+      // If escape sequence is invalid, double the backslash to escape it
+      if (!validEscapes.has(ch)) {
+        result += '\\' + ch;
+      } else {
+        result += ch;
+      }
+      escape = false;
+      continue;
+    }
     if (ch === '\\') { escape = true; result += ch; continue; }
     if (ch === '"') { inString = !inString; result += ch; continue; }
     if (inString && (ch === '\n' || ch === '\r' || ch === '\t')) {
