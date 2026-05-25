@@ -11,6 +11,10 @@
 </head>
 <body>
 
+<div class="ticker-wrap">
+  <div class="ticker-track" id="tickerTrack"></div>
+</div>
+
 <nav class="navbar">
     <div class="container nav-container">
         <div class="brand">
@@ -6585,6 +6589,24 @@
     initBridgeButtons();
     initEduTabs();
     showPage("home");
+
+    // Ticker bar
+    const tickerItems = [
+        "🎓 EduMongol — Монгол багш нарт зориулсан боловсролын платформ",
+        "📚 ЕБС, АУБ, СӨБ, Сэтгэл зүй — бүх хэсэг нэг дороос",
+        "🤖 AI Хөтөлбөр — хичээлийн төлөвлөгөө автоматаар үүсгэнэ",
+        "🌍 STEAM хэсэг — шинэ нэмэлт материалууд бэлэн боллоо",
+        "💡 Capstone 8-р баг — Өмнөговь & Сэлэнгэ аймгуудын нэгдэл",
+    ];
+    const track = document.getElementById('tickerTrack');
+    if (track) {
+        [...tickerItems, ...tickerItems].forEach(text => {
+            const span = document.createElement('span');
+            span.className = 'ticker-item';
+            span.innerHTML = '<span class="ticker-dot"></span>' + text;
+            track.appendChild(span);
+        });
+    }
 </script>
 </body>
 </html>
