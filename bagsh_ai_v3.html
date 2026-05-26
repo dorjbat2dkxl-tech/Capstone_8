@@ -746,7 +746,7 @@ async function generatePlan() {
   const tMain   = Math.round(durNum * 0.60);
   const tConc   = durNum - tIntro - tMain;
 
-  const medleCtx = await getMedleContext(grade, subject);
+  const medleCtx = await getMedleContext(grade, subject, topic);
   const prompt = `Дараах мэдээлэлд үндэслэн ЕБС-ийн ээлжит хичээлийн ДЭЛГЭРЭНГҮЙ хөтөлбөрийг боловсруул.
 
 ХИЧЭЭЛИЙН МЭДЭЭЛЭЛ:
@@ -1379,13 +1379,41 @@ async function fetchAllMedle() {
   }
 }
 
-function scoreLesson(lesson, gradeNum, subjectWords) {
+function scoreLesson(lesson, gradeNum, topicWords, subjectWords) {
   let score = 0;
-  if (gradeNum && lesson.ACADEMIC_LEVEL === gradeNum) score += 10;
-  const lname = (lesson.PROGRAM_ELEMENT_NAME + ' ' + lesson.ELEMENT_DETAIL_NAME + ' ' + (lesson.UNIT_TOPIC_NAME||'')).toLowerCase();
-  for (const w of subjectWords) {
-    if (w.length > 1 && lname.includes(w)) score += 5;
+
+  // Анги тохируулах — ACADEMIC_LEVEL нь тоо эсвэл мөр байж болно
+  const lessonGrade = String(lesson.ACADEMIC_LEVEL || '');
+  if (gradeNum) {
+    if (lessonGrade === gradeNum)                                    score += 15;
+    else if (Math.abs(Number(lessonGrade) - Number(gradeNum)) === 1) score += 4;
   }
+
+  const detailName = (lesson.ELEMENT_DETAIL_NAME  || '').toLowerCase();
+  const unitTopic  = (lesson.UNIT_TOPIC_NAME      || '').toLowerCase();
+  const progName   = (lesson.PROGRAM_ELEMENT_NAME || '').toLowerCase();
+  const purpose    = (lesson.PURPOSE_NAME         || '').toLowerCase();
+
+  // Сэдвийн үгс — хамгийн өндөр жин (яг хичээлийн нэрэнд тохирвол маш сайн)
+  for (const w of topicWords) {
+    if (detailName.includes(w)) score += 8;
+    if (unitTopic.includes(w))  score += 6;
+    if (purpose.includes(w))    score += 3;
+  }
+
+  // Хичээлийн нэрийн үгс — бага жин
+  for (const w of subjectWords) {
+    if (progName.includes(w))   score += 4;
+    if (detailName.includes(w)) score += 2;
+  }
+
+  // Бонус: topic-ийн бүтэн хэллэг яг ELEMENT_DETAIL_NAME-д байвал
+  const topicPhrase = topicWords.join(' ');
+  if (topicPhrase.length > 3) {
+    if (detailName.includes(topicPhrase)) score += 25;
+    if (unitTopic.includes(topicPhrase))  score += 15;
+  }
+
   return score;
 }
 
@@ -1400,25 +1428,26 @@ async function searchMedle() {
     '<div class="medle-loading"><span class="medle-spinner"></span>Хайж байна...</div>';
 
   const all = await fetchAllMedle();
-  const gradeNum  = (grade.match(/\d+/) || [])[0] || '';
-  const keywords  = (subject + ' ' + topic).toLowerCase()
-                    .split(/[\s,\/·]+/).filter(w => w.length > 1);
+  const gradeNum    = (grade.match(/\d+/) || [])[0] || '';
+  const split       = s => s.toLowerCase().split(/[\s,\/·\-()]+/).filter(w => w.length > 2);
+  const topicWords  = split(topic);
+  const subjectWords= split(subject);
 
   const scored = all
-    .map(l => ({ l, s: scoreLesson(l, gradeNum, keywords) }))
+    .map(l => ({ l, s: scoreLesson(l, gradeNum, topicWords, subjectWords) }))
     .filter(x => x.s > 0)
     .sort((a,b) => b.s - a.s)
     .slice(0, 5)
     .map(x => x.l);
 
-  renderMedlePanel(scored, grade, subject);
+  renderMedlePanel(scored, grade, subject, topic);
 }
 
-function renderMedlePanel(lessons, grade, subject) {
+function renderMedlePanel(lessons, grade, subject, topic) {
   const panel = document.getElementById('medle-panel');
   if (!lessons.length) {
     panel.innerHTML = `<div class="medle-empty">
-      "${grade} · ${subject}" тохирох жишээ олдсонгүй.<br>
+      "${grade} · ${subject}${topic ? ' · ' + topic : ''}" тохирох жишээ олдсонгүй.<br>
       <a href="https://medle.mn" target="_blank" style="color:var(--primary)">medle.mn дээр хайх →</a>
     </div>`;
     return;
@@ -1453,13 +1482,15 @@ function applyMedle(purpose, topic) {
   document.getElementById('objective').focus();
 }
 
-async function getMedleContext(grade, subject) {
+async function getMedleContext(grade, subject, topic) {
   try {
-    const all = medleCacheAll || await fetchAllMedle();
+    const all      = medleCacheAll || await fetchAllMedle();
     const gradeNum = (grade.match(/\d+/) || [])[0] || '';
-    const keywords = subject.toLowerCase().split(/[\s,\/]+/).filter(w => w.length > 1);
-    const matches  = all
-      .map(l => ({ l, s: scoreLesson(l, gradeNum, keywords) }))
+    const split    = s => (s||'').toLowerCase().split(/[\s,\/\-()]+/).filter(w => w.length > 2);
+    const topicWords   = split(topic);
+    const subjectWords = split(subject);
+    const matches = all
+      .map(l => ({ l, s: scoreLesson(l, gradeNum, topicWords, subjectWords) }))
       .filter(x => x.s > 0)
       .sort((a,b) => b.s - a.s)
       .slice(0, 3)
