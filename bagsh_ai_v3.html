@@ -328,6 +328,11 @@ textarea.form-control { resize: vertical; min-height: 70px; }
 .ex-b { background: #dbeafe; color: #1d4ed8; }
 .ex-c { background: #fce7f3; color: #9d174d; }
 .example-body { padding: 12px 14px; flex: 1; display: flex; flex-direction: column; }
+.example-hint {
+  font-size: 12px; color: #92400e; background: #fffbeb;
+  border: 1px solid #fde68a; border-radius: 6px;
+  padding: 5px 10px; margin-bottom: 8px;
+}
 .example-problem {
   font-size: 13px; font-weight: 600; color: var(--text);
   margin-bottom: 10px; line-height: 1.65; flex: 1;
@@ -652,15 +657,14 @@ function toStr(raw) {
   return JSON.stringify(raw);
 }
 
-async function callAI(prompt) {
+async function callAI(prompt, sys) {
+  const messages = sys
+    ? [{ role: 'system', content: sys }, { role: 'user', content: prompt }]
+    : [{ role: 'user', content: prompt }];
   const resp = await fetch('/api/groq', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: GROQ_MODEL,
-      messages: [{ role: 'user', content: prompt }],
-      max_tokens: 4096
-    })
+    body: JSON.stringify({ model: GROQ_MODEL, messages, max_tokens: 6000 })
   });
   if (!resp.ok) {
     const err = await resp.json().catch(() => ({}));
@@ -669,6 +673,8 @@ async function callAI(prompt) {
   const data = await resp.json();
   return data.choices?.[0]?.message?.content || '';
 }
+
+const PLAN_SYSTEM = `Та Монгол улсын ЕБС-ийн мэргэжлийн сургалтын технологич. 2022 оны сургалтын стандарт, Блумын таксономи, хамтарч суралцах арга зүйг эзэмшсэн. ЗӨВХӨН цэвэр JSON, Монгол хэлээр гарга. Markdown блок, код блок, нэмэлт тайлбар нэмэж болохгүй.`;
 
 // Escape unescaped control chars inside JSON string values
 function sanitizeJSON(str) {
@@ -740,58 +746,79 @@ async function generatePlan() {
   const tMain   = Math.round(durNum * 0.60);
   const tConc   = durNum - tIntro - tMain;
 
-  const prompt = `Та Монгол улсын ЕБС-ийн сургалтын стандарт, заах арга зүйг маш сайн мэдэх мэргэжлийн "Сургалтын технологич, AI туслах багш" юм.
+  const medleCtx = await getMedleContext(grade, subject);
+  const prompt = `Дараах мэдээлэлд үндэслэн ЕБС-ийн ээлжит хичээлийн ДЭЛГЭРЭНГҮЙ хөтөлбөрийг боловсруул.
 
-Дараах мэдээллэлд үндэслэн ДЭЛГЭРЭНГҮЙ, БОДИТ, ТОДОРХОЙ ээлжит хичээлийн хөтөлбөрийг боловсруул:
-- Хичээл: ${subject}
-- Сэдэв: ${topic}
-- Анги: ${grade}
-- Хугацаа: ${durNum} минут (сэдэлжүүлэх: ${tIntro} мин, өрнөл: ${tMain} мин, дүгнэлт: ${tConc} мин)
-- Суралцахуйн зорилт: ${objective}
-${extra ? '- Нэмэлт заавар: ' + extra : ''}
-${await getMedleContext(grade, subject)}
-ЧУХАЛ ШААРДЛАГА:
-1. keyFormulas: хичээлтэй холбоотой БОДИТ томьёонуудыг KaTeX LaTeX форматаар бич ($ ... $)
-2. examples: ерөнхий тайлбар бус БОДИТ тоо, хувьсагч бүхий бодлого — тоон хариулттай
-3. boardWork: самбарт БОДИТ бичигдэх зүйл — томьёо, нэр томьёо, схем
-4. visualAid: ASCII/текст тэмдэгтээр схем, диаграмм, зураг зур
+ХИЧЭЭЛИЙН МЭДЭЭЛЭЛ:
+Хичээл: ${subject} | Сэдэв: ${topic} | Анги: ${grade}
+Хугацаа: ${durNum} мин (Сэдэлжүүлэх ${tIntro} мин · Өрнөл ${tMain} мин · Дүгнэлт ${tConc} мин)
+Суралцахуйн зорилт: ${objective}
+${extra ? 'Нэмэлт заавар: ' + extra : ''}
+${medleCtx}
 
-ЗӨВХӨН JSON гарга. Тайлбар, markdown, код блок хэрэгтэйгүй. Монгол хэлээр:
+ЗААВАЛ БИЕЛҮҮЛЭХ ШААРДЛАГУУД:
+1. Блумын таксономиор зорилт тодорхойл: А=санах/ойлгох, Б=хэрэглэх/шийдвэрлэх, В=шинжлэх/бүтээх
+2. introTeacher, mainTeacher, concludeTeacher — тус бүр 4-6 ДУГААРЛАГДСАН, тодорхой алхам бич
+3. examples.steps — ЗААВАЛ ["1-р алхам: ...", "2-р алхам: ..."] массив хэлбэрээр, дор хаяж 3 алхам
+4. keyFormulas — тухайн сэдэвт яг хамаарах томьёог KaTeX ($...$) форматаар
+5. connection — тухайн ойлголтын бодит амьдрал, мэргэжил дэх хэрэглээг 2-3 жишээтэй бич
+6. evaluation — явцын (формат) болон дүгнэх үнэлгээний аргыг тодорхойлж бич
+7. Монгол ЕБС-ийн нэр томьёог зөв хэрэглэ, агуулга нь тухайн хичээл, ангид яг тохирох байх
+
+ЗӨВХӨН JSON, МОНГОЛ ХЭЛЭЭР:
 
 {
-  "materials": "4-5 тодорхой хэрэглэгдэхүүн нэр ба зорилгоор",
-  "methodology": "3-4 заах арга зүй тайлбартай",
-  "classOrg": "Суудлын байрлал, бүлгийн тоо",
-  "objA": "А түвшний зорилт — үндсэн ойлголт",
-  "objB": "Б түвшний зорилт — хэрэглэх чадвар",
-  "objC": "В түвшний зорилт — бүтээлч хэрэглэх",
-  "introGoal": "Сэдэлжүүлэх зорилго",
-  "introTeacher": "Багшийн үйл ажиллагаа сэдэлжүүлэх үед (${tIntro} мин) — бодит асуулт, арга хэрэгсэл дурдаж дэлгэрэнгүй",
-  "introStudent": "Сурагчдын үйл ажиллагаа сэдэлжүүлэх үед",
-  "mainGoal": "Өрнөлийн зорилго",
-  "mainTeacher": "Багшийн үйл ажиллагаа өрнөл үед (${tMain} мин) — томьёо тайлбарлах, жишээ бодох, бүлгийн даалгавар дэлгэрэнгүй",
-  "mainStudent": "Сурагчдын үйл ажиллагаа өрнөл үед",
-  "concludeGoal": "Дүгнэлтийн зорилго",
-  "concludeTeacher": "Багшийн үйл ажиллагаа дүгнэлт үед (${tConc} мин)",
-  "concludeStudent": "Сурагчдын үйл ажиллагаа дүгнэлт үед",
-  "homework": "Бүтээлч тодорхой гэрийн даалгавар бодит тоотой",
+  "materials": "Тодорхой нэрс: маркер, A4 цаас, ширээний самбар, ...",
+  "methodology": "1. Хамтарч суралцах — жижиг бүлгээр бодлого шийднэ\\n2. Асуудалд суурилсан суралцахуй — бодит нөхцөлт асуудал\\n3. Харилцан заах — сурагчид хоорондоо тайлбарлана",
+  "classOrg": "4 хүний 6-7 бүлэг, U хэлбэрийн суудлын байрлал",
+  "objA": "${subject}-ийн [ойлголт]-ийг тайлбарлаж, жишээ хэлж чадна [санах/ойлгох]",
+  "objB": "[ойлголт]-ийг ашиглан бодлого шийдэж, тооцоолж чадна [хэрэглэх]",
+  "objC": "Бодит нөхцөлд [ойлголт]-ийг хэрэглэн шинэ шийдэл гаргаж чадна [бүтээх]",
+  "connection": "1. Өдөр тутмын амьдралд: ...\\n2. Мэргэжил дэх хэрэглээ: ...\\n3. Шинжлэх ухаан/технологитой холбоо: ...",
+  "introGoal": "Сурагчдын анхаарлыг татаж, өмнөх мэдлэгтэй холбох",
+  "introTeacher": "1. Бодит амьдралаас холбоотой асуулт тавина: '...?'\\n2. Өмнөх мэдлэгийг шалгах асуумж явуулна\\n3. Сэдвийн зорилтуудыг самбарт бичнэ\\n4. Урам зориг өгөх бодит жишээ харуулна",
+  "introStudent": "1. Багшийн асуултад хариулна\\n2. Өмнөх мэдлэгтэй холбоно\\n3. Зорилтуудаа дэвтэртээ бичнэ",
+  "mainGoal": "Шинэ мэдлэгийг эзэмшиж, бодлогод хэрэглэж сурах",
+  "mainTeacher": "1. Шинэ ойлголтыг самбарт алхам алхмаар тайлбарлана\\n2. Томьёо/аргыг жишээтэйгээр харуулна\\n3. А түвшний бодлогыг бүлгээр бодуулна\\n4. Б түвшний бодлогыг шийдэлтэй тайлбарлана\\n5. В түвшний бодлогоор бие даан ажиллуулна\\n6. Явцын үнэлгээ явуулна",
+  "mainStudent": "1. Тайлбарыг дагаж дэвтэртээ бичнэ\\n2. Бүлгийн бодлогод идэвхтэй оролцоно\\n3. Бие даан бодлого бодно\\n4. Хариултаа нийтэд тайлбарлана",
+  "concludeGoal": "Мэдлэгийг нэгтгэж, үнэлж, дараагийн хичээлтэй холбох",
+  "concludeTeacher": "1. Гол ойлголтуудыг давтан хураангуйлна\\n2. Сурагчдаас хичээлийн дүгнэлт хийлгэнэ\\n3. Гэрийн даалгавар өгч тайлбарлана\\n4. Дараагийн хичээлтэй холбоно",
+  "concludeStudent": "1. Хичээлийн гол санааг нэгтгэнэ\\n2. Асуулт, санал тавина\\n3. Гэрийн даалгаврыг тэмдэглэнэ",
+  "evaluation": "Явцын үнэлгээ: Бүлгийн ажлыг ажиглалт, асуулт-хариултаар үнэлнэ\\nДүгнэх үнэлгээ: А/Б/В түвшин тус бүр 1 бодлого бүхий жишиг тест",
+  "homework": "Сурах бичгийн ... дугаар дасгал: [тодорхой тоотой 2-3 бодлого]",
   "keyFormulas": [
-    {"label": "Томьёоны нэр 1", "expr": "$LaTeX_томьёо_1$", "desc": "тайлбар"},
-    {"label": "Томьёоны нэр 2", "expr": "$LaTeX_томьёо_2$", "desc": "тайлбар"},
-    {"label": "Томьёоны нэр 3", "expr": "$LaTeX_томьёо_3$", "desc": "тайлбар"}
+    {"label": "Томьёоны нэр", "expr": "$томьёо$", "desc": "Хаана, яаж хэрэглэгдэх"}
   ],
   "examples": [
-    {"level":"А","problem":"БОДИТ тоотой хялбар бодлого","steps":"1. алхам | 2. алхам | 3. алхам","answer":"тоон хариулт"},
-    {"level":"Б","problem":"БОДИТ тоотой дунд бодлого","steps":"1. алхам | 2. алхам | 3. алхам","answer":"тоон хариулт"},
-    {"level":"В","problem":"БОДИТ тоотой хүнд бодлого","steps":"1. алхам | 2. алхам | 3. алхам","answer":"тоон хариулт"}
+    {
+      "level": "А",
+      "problem": "БОДИТ ТОО бүхий хялбар бодлого...",
+      "steps": ["1-р алхам: Мэдэгдлийг бичнэ — ...", "2-р алхам: Томьёог хэрэглэнэ — ...", "3-р алхам: Тооцоо хийнэ — ..."],
+      "answer": "Хариулт: ... нэгж",
+      "hint": "Хялбар зам: ..."
+    },
+    {
+      "level": "Б",
+      "problem": "БОДИТ нөхцөлт дунд хүндийн бодлого...",
+      "steps": ["1-р алхам: ...", "2-р алхам: ...", "3-р алхам: ...", "4-р алхам: ..."],
+      "answer": "Хариулт: ... нэгж",
+      "hint": "Анхаарах зүйл: ..."
+    },
+    {
+      "level": "В",
+      "problem": "Нарийн задлал шаардах хүнд бодлого...",
+      "steps": ["1-р алхам: ...", "2-р алхам: ...", "3-р алхам: ...", "4-р алхам: ...", "5-р алхам: ..."],
+      "answer": "Хариулт: ... нэгж",
+      "hint": "Стратеги: ..."
+    }
   ],
-  "boardWork": "Самбарт бичих БОДИТ агуулга — томьёо, нэр томьёо, схем (мөр бүр тусдаа)",
-  "visualAid": "ASCII/текст тэмдэгтээр схем эсвэл диаграмм",
-  "didacticList": "Дидактик материал — мөр бүр нэг материал, хаанаас авах заавартай"
+  "boardWork": "Гол томьёо:\\nНэр томьёо:\\nСхем/зураг:",
+  "visualAid": "ASCII диаграмм эсвэл схем",
+  "didacticList": "Материал мөр бүр тусдаа"
 }`;
 
   try {
-    const raw = toStr(await callAI(prompt));
+    const raw = toStr(await callAI(prompt, PLAN_SYSTEM));
     const match = raw.match(/\{[\s\S]*\}/);
     if (!match) throw new Error('JSON олдсонгүй. AI хариулт: ' + raw.slice(0, 200));
     let d;
@@ -880,15 +907,20 @@ function readBulletCell(id) {
 function renderExample(ex, idx) {
   const clsMap  = {А:'ex-a', Б:'ex-b', В:'ex-c'};
   const iconMap = {А:'🟢', Б:'🔵', В:'🟣'};
+  const lblMap  = {А:'Хялбар', Б:'Дунд', В:'Хүнд'};
   const cls  = clsMap[ex.level]  || 'ex-b';
   const icon = iconMap[ex.level] || '🔵';
+  const lbl  = lblMap[ex.level]  || ex.level;
   const eid  = 'ex' + idx + '_' + (_bcId);
   const esc  = s => (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  const stepsNorm = (ex.steps||'').replace(/\s*\|\s*/g, '\n');
-  const stepsHtml = textToBullets(stepsNorm, '');
+  const stepsText = Array.isArray(ex.steps)
+    ? ex.steps.join('\n')
+    : (ex.steps||'').replace(/\s*\|\s*/g, '\n');
+  const stepsHtml = textToBullets(stepsText, '');
   return `<div class="example-card">
-    <div class="example-header ${cls}">${icon} ${esc(ex.level)} түвшин &nbsp;·&nbsp; Жишээ ${idx+1}</div>
+    <div class="example-header ${cls}">${icon} ${esc(ex.level)} түвшин — ${lbl} &nbsp;·&nbsp; Жишээ ${idx+1}</div>
     <div class="example-body">
+      ${ex.hint ? `<div class="example-hint">💡 <em>${esc(ex.hint)}</em></div>` : ''}
       <div class="example-problem">${esc(ex.problem)}</div>
       <button class="edit-toggle solution-toggle" onclick="toggleSolution('${eid}',this)">👁 Шийдэл харах</button>
       <div class="example-solution" id="${eid}">
@@ -941,6 +973,7 @@ function renderPlan(d) {
     <tr><td>Хэрэглэгдэхүүн</td><td>${makeBulletCell(d.materials, 70)}</td></tr>
     <tr><td>Арга зүй</td><td>${makeBulletCell(d.methodology, 70)}</td></tr>
     <tr><td>Ангийн зохион байгуулалт</td><td>${makeBulletCell(d.classOrg, 50)}</td></tr>
+    ${d.connection ? `<tr><td>Бодит амьдралтай холбоо</td><td>${makeBulletCell(d.connection, 60)}</td></tr>` : ''}
     <tr><td>Суралцахуйн зорилт</td><td>
       <div style="display:flex;gap:6px;align-items:flex-start;margin-bottom:5px"><span class="badge badge-a">А</span><span style="font-size:13px">${esc(d.objA)}</span></div>
       <div style="display:flex;gap:6px;align-items:flex-start;margin-bottom:5px"><span class="badge badge-b">Б</span><span style="font-size:13px">${esc(d.objB)}</span></div>
@@ -981,8 +1014,12 @@ function renderPlan(d) {
     ${makeBulletCell(d.homework, 60, 'hw-bullets')}
   </div>
 
+  ${d.evaluation ? `
+  <div class="section-title">📊 4. Үнэлгээний арга</div>
+  <div class="homework-box">${makeBulletCell(d.evaluation, 60)}</div>` : ''}
+
   ${(d.keyFormulas && d.keyFormulas.length) ? `
-  <div class="section-title">📐 4. Гол томьёонууд</div>
+  <div class="section-title">📐 5. Гол томьёонууд</div>
   <div class="formula-grid">
     ${d.keyFormulas.map(f => `
     <div class="formula-item">
@@ -993,21 +1030,21 @@ function renderPlan(d) {
   </div>` : ''}
 
   ${(d.examples && d.examples.length) ? `
-  <div class="section-title">🧮 5. Жишээ бодлого &amp; Шийдэл</div>
+  <div class="section-title">🧮 6. Жишээ бодлого &amp; Шийдэл</div>
   <div class="example-grid">
     ${d.examples.map((ex, i) => renderExample(ex, i)).join('')}
   </div>` : ''}
 
   ${d.boardWork ? `
-  <div class="section-title">🖊️ 6. Самбарт бичих агуулга</div>
+  <div class="section-title">🖊️ 7. Самбарт бичих агуулга</div>
   <div class="board-box">${textToBullets(d.boardWork, '')}</div>` : ''}
 
   ${d.visualAid ? `
-  <div class="section-title">🗺️ 7. Визуал схем / Диаграмм</div>
+  <div class="section-title">🗺️ 8. Визуал схем / Диаграмм</div>
   <div class="visual-aid-box">${(d.visualAid||'').replace(/&/g,'&amp;').replace(/</g,'&lt;')}</div>` : ''}
 
   ${d.didacticList ? `
-  <div class="section-title">📋 8. Дидактик материал</div>
+  <div class="section-title">📋 9. Дидактик материал</div>
   <div class="didactic-grid">${renderDidacticItems(d.didacticList)}</div>` : ''}
 
   <div class="plan-stamp">
