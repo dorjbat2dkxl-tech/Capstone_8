@@ -519,7 +519,7 @@ textarea.form-control { resize: vertical; min-height: 70px; }
       <div class="action-row no-print" id="plan-actions" style="display:none">
         <button class="btn btn-outline btn-sm" onclick="printPlan()">🖨️ Хэвлэх</button>
         <button class="btn btn-outline btn-sm" onclick="downloadWord()">📄 Word татах</button>
-        <button class="btn btn-success btn-sm" onclick="savePlan()">💾 Хадгалах</button>
+        <button class="btn btn-success btn-sm" onclick="savePlan(event)">💾 Хадгалах</button>
         <button class="btn btn-outline btn-sm" onclick="generatePlan()">🔄 Дахин үүсгэх</button>
       </div>
       <div class="card" id="plan-output">
@@ -1149,7 +1149,7 @@ function renderQuiz(d, subject, grade) {
 // =========================================================
 // HISTORY
 // =========================================================
-function savePlan() {
+function savePlan(e) {
   if (!currentPlan) return;
   const list = JSON.parse(localStorage.getItem('bagshAI_v3')||'[]');
   list.unshift({
@@ -1163,7 +1163,7 @@ function savePlan() {
   if (list.length > 60) list.pop();
   localStorage.setItem('bagshAI_v3', JSON.stringify(list));
   updateHCount();
-  const btn = event.currentTarget;
+  const btn = e.currentTarget;
   const orig = btn.innerHTML;
   btn.innerHTML = '✅ Хадгалагдлаа!';
   setTimeout(() => btn.innerHTML = orig, 2000);
@@ -1390,8 +1390,8 @@ function renderMedlePanel(lessons, grade, subject) {
   panel.innerHTML = lessons.map(ex => {
     const subjectShort = (ex.PROGRAM_ELEMENT_NAME||'').split('(')[0].trim();
     const safeId      = ex.ELEMENT_DETAIL_ID;
-    const safePurpose = (ex.PURPOSE_NAME||'').replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$/g,'\\$');
-    const safeTopic   = (ex.ELEMENT_DETAIL_NAME||'').replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$/g,'\\$');
+    const safePurpose = (ex.PURPOSE_NAME||'').replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$/g,'\\$').replace(/"/g,'&quot;');
+    const safeTopic   = (ex.ELEMENT_DETAIL_NAME||'').replace(/\\/g,'\\\\').replace(/`/g,'\\`').replace(/\$/g,'\\$').replace(/"/g,'&quot;');
     return `<div class="medle-item">
       <div><span class="medle-grade">${ex.ACADEMIC_LEVEL}-р анги · ${subjectShort}</span></div>
       <div class="medle-topic">${ex.ELEMENT_DETAIL_NAME}</div>
