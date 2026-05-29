@@ -2913,31 +2913,118 @@ footer {
     .geo-stat-card { min-width: 100px; padding: 0.75rem 0.9rem; }
 }
 
+/* ========== HAMBURGER ========== */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+}
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #e8f8ff;
+    border-radius: 2px;
+    transition: 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 /* ========== RESPONSIVE ========== */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+
+    /* Ticker */
+    .ticker-item { font-size: 11px; padding: 0 16px; }
+
+    /* Navbar */
+    .hamburger { display: flex; }
     .nav-links {
-        gap: 1rem;
-        flex-wrap: wrap;
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        background: rgba(10,15,28,0.97);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        padding: 0.5rem 0;
+        z-index: 200;
+        border-top: 1px solid rgba(100,200,220,0.15);
     }
-    .hero h1 {
-        font-size: 2rem;
+    .nav-links.open { display: flex; }
+    .nav-links li a {
+        display: block;
+        padding: 0.75rem 1.5rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+        font-size: 0.95rem;
     }
+    .navbar { position: relative; }
+    .nav-container { flex-wrap: nowrap; }
+    .chatbot-label { display: none; }
+
+    /* Hero */
     .hero {
-        padding: 3rem 1rem;
-        background-position: 70% center;
+        padding: 2.5rem 1rem;
+        background-size: cover;
+        background-position: center;
+        margin: 1rem 0;
+        border-radius: 1rem;
     }
-    .category-title {
-        font-size: 1.15rem;
-    }
+    .hero h1 { font-size: 1.6rem; line-height: 1.3; }
+    .hero-sub { font-size: 0.9rem; }
+
+    /* Грид карт */
+    .courses-grid,
+    .bridge-grid,
     .resources-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
     }
-    .brand-logo {
-        height: 44px;
-        width: 44px;
-        border-radius: 10px;
+
+    /* Tabs */
+    .edu-tabs {
+        gap: 0.4rem;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 0.5rem;
     }
-    .logo-text {
-        font-size: 1.2rem;
-    }
+    .edu-tab { min-width: 90px; font-size: 0.75rem; padding: 0.5rem 0.6rem; }
+
+    /* Section titles */
+    .section-title { font-size: 1.3rem; }
+    .category-title { font-size: 1rem; }
+
+    /* Video */
+    .video-wrap, .local-video-wrap { width: 100%; }
+    video { width: 100% !important; border-radius: 8px; }
+
+    /* Container padding */
+    .container { padding: 0 1rem; }
+
+    /* Cards */
+    .card { padding: 1rem; }
+    .brand-logo { height: 40px; width: 40px; }
+    .logo-text { font-size: 1.1rem; }
+    .badge { font-size: 0.6rem; }
+
+    /* Stats */
+    .geo-summary { flex-direction: column; }
+    .geo-stat-card { width: 100%; }
+
+    /* Back button */
+    .back-btn { font-size: 0.85rem; }
+
+    /* Form */
+    input, textarea, select { font-size: 16px; }
+}
+
+@media (max-width: 480px) {
+    .hero h1 { font-size: 1.35rem; }
+    .logo-text { font-size: 1rem; }
+    .edu-tab .tab-desc { display: none; }
+    .section-title { font-size: 1.15rem; }
 }

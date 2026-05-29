@@ -46,7 +46,7 @@
                 <span class="badge">Capstone 8-р баг</span>
             </div>
         </div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="navLinks">
             <li><a href="#" data-page="home">Нүүр</a></li>
             <li><a href="#" data-page="courses">Хичээлүүд</a></li>
             <li><a href="#" data-page="bagshAi">📋 AI Хөтөлбөр</a></li>
@@ -58,6 +58,9 @@
                 <span class="chatbot-icon">💬</span>
                 <span class="chatbot-label">AI Туслах</span>
                 <span class="chatbot-badge" id="chatBadge" style="display:none;">1</span>
+            </button>
+            <button class="hamburger" id="hamburgerBtn" aria-label="Цэс нээх">
+                <span></span><span></span><span></span>
             </button>
         </div>
     </div>
@@ -6633,6 +6636,22 @@
     initBridgeButtons();
     initEduTabs();
     showPage("home");
+
+    // Hamburger menu
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const navLinks = document.getElementById('navLinks');
+    if (hamburgerBtn && navLinks) {
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                hamburgerBtn.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+    }
 
     // Ticker bar
     const tickerItems = [
