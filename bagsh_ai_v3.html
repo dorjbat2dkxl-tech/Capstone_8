@@ -672,7 +672,16 @@ async function callAI(prompt) {
 
 // Escape unescaped control chars inside JSON string values
 function sanitizeJSON(str) {
-  // Valid JSON escape characters
+  // 1. Backtick-delimited template literals-г double-quote болгох
+  str = str.replace(/`([^`]*)`/gs, (_, inner) => {
+    const escaped = inner.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+      .replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t');
+    return '"' + escaped + '"';
+  });
+  // 2. Remaining loose backticks-г арилгах
+  str = str.replace(/`/g, "'");
+
+  // 3. Control chars болон invalid escape-үүдийг засах
   const validEscapes = new Set(['"', '\\', '/', 'b', 'f', 'n', 'r', 't', 'u']);
   let result = '';
   let inString = false;
@@ -680,7 +689,6 @@ function sanitizeJSON(str) {
   for (let i = 0; i < str.length; i++) {
     const ch = str[i];
     if (escape) {
-      // If escape sequence is invalid, double the backslash to escape it
       if (!validEscapes.has(ch)) {
         result += '\\' + ch;
       } else {
